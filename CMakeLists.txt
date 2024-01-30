@@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD 17)
 add_library(
   graphdbshared 
   src/server/http_server.cc
-  src/sql/parser.cc
+  src/sql/planner.cc
 )
 
 add_executable(
