@@ -529,6 +529,8 @@ limitations under the License.
                         <exclude>**/go.sum</exclude>
                         <exclude>**/coverage.out</exclude>
                         <exclude>**/gremlinconsoletest.egg-info/**</exclude>
+                        <exclude>**/GraphKV/**</exclude>
+                        <exclude>.gitmodules</exclude>
                     </excludes>
                     <licenses>
                         <license implementation="org.apache.rat.analysis.license.ApacheSoftwareLicense20"/>

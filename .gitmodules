@@ -1,0 +1,3 @@
+[submodule "GraphKV"]
+	path = GraphKV
+	url = git@github.com:NTU-Database-Group/GraphKV.git
