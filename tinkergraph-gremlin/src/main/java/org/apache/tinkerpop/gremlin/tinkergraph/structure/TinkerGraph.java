@@ -35,16 +35,12 @@ import org.apache.tinkerpop.gremlin.tinkergraph.process.traversal.strategy.optim
 import org.apache.tinkerpop.gremlin.tinkergraph.services.TinkerServiceRegistry;
 import org.apache.tinkerpop.gremlin.util.iterator.IteratorUtils;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Stream;
+
+import org.rocksdb.*;
 
 /**
  * An in-memory (with optional persistence on calls to {@link #close()}), reference implementation of the property
@@ -73,13 +69,36 @@ public class TinkerGraph extends AbstractTinkerGraph {
 
     private final TinkerGraphFeatures features = new TinkerGraphFeatures();
 
-    protected Map<Object, Vertex> vertices = new ConcurrentHashMap<>();
-    protected Map<Object, Edge> edges = new ConcurrentHashMap<>();
+    // protected Map<Object, Vertex> vertices = new ConcurrentHashMap<>();
+    // protected Map<Object, Edge> edges = new ConcurrentHashMap<>();
+    // protected RocksEdges edges;
+    protected RocksVertices vertices = null;
+
+    protected RocksDB db;
+    protected List<ColumnFamilyHandle> handles;
+
+    private void OpenRocksDB(final String path) {
+        try {
+            RocksDB.loadLibrary();
+            DBOptions options = new DBOptions();
+            options.setCreateIfMissing(true);
+            List<ColumnFamilyDescriptor> columnFamilyDescriptorList = new ArrayList<>();
+            columnFamilyDescriptorList.add(new ColumnFamilyDescriptor("adjacentListOut".getBytes(StandardCharsets.UTF_8)));
+            columnFamilyDescriptorList.add(new ColumnFamilyDescriptor("adjacentListIn".getBytes(StandardCharsets.UTF_8)));
+            columnFamilyDescriptorList.add(new ColumnFamilyDescriptor("vertexProperties".getBytes(StandardCharsets.UTF_8)));
+            options.setCreateMissingColumnFamilies(true);
+            db = RocksDB.open(options, path, columnFamilyDescriptorList, handles);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * An empty private constructor that initializes {@link TinkerGraph}.
      */
     TinkerGraph(final Configuration configuration) {
+        OpenRocksDB("/tmp/db");
+        vertices = new RocksVertices(db, handles.get(0), handles.get(1), handles.get(2), this);
         this.configuration = configuration;
         vertexIdManager = selectIdManager(configuration, GREMLIN_TINKERGRAPH_VERTEX_ID_MANAGER, Vertex.class);
         edgeIdManager = selectIdManager(configuration, GREMLIN_TINKERGRAPH_EDGE_ID_MANAGER, Edge.class);
@@ -135,81 +154,97 @@ public class TinkerGraph extends AbstractTinkerGraph {
 
     @Override
     public Vertex addVertex(final Object... keyValues) {
-        ElementHelper.legalPropertyKeyValueArray(keyValues);
-        Object idValue = vertexIdManager.convert(ElementHelper.getIdValue(keyValues).orElse(null));
-        final String label = ElementHelper.getLabelValue(keyValues).orElse(Vertex.DEFAULT_LABEL);
+//        ElementHelper.legalPropertyKeyValueArray(keyValues);
+//        Object idValue = vertexIdManager.convert(ElementHelper.getIdValue(keyValues).orElse(null));
+//        final String label = ElementHelper.getLabelValue(keyValues).orElse(Vertex.DEFAULT_LABEL);
+//
+//        if (null != idValue) {
+//            if (this.vertices.containsKey(idValue))
+//                throw Exceptions.vertexWithIdAlreadyExists(idValue);
+//        } else {
+//            idValue = vertexIdManager.getNextId(this);
+//        }
 
-        if (null != idValue) {
-            if (this.vertices.containsKey(idValue))
-                throw Exceptions.vertexWithIdAlreadyExists(idValue);
-        } else {
-            idValue = vertexIdManager.getNextId(this);
-        }
-
-        final Vertex vertex = createTinkerVertex(idValue, label, this);
-        ElementHelper.attachProperties(vertex, VertexProperty.Cardinality.list, keyValues);
-        this.vertices.put(vertex.id(), vertex);
-
-        return vertex;
+//        final Vertex vertex = createTinkerVertex(idValue, label, this);
+//        ElementHelper.attachProperties(vertex, VertexProperty.Cardinality.list, keyValues);
+        // this.vertices.put(vertex.id(), vertex);
+//        this.vertices.addVertex(vertex.id(), vertex);
+        Object vid = vertexIdManager.getNextId(this);
+        return vertices.addVertex(vid);
     }
 
     @Override
     public void removeVertex(final Object vertexId)
     {
-        this.vertices.remove(vertexId);
+        // this.vertices.remove(vertexId);
+        this.vertices.removeVertex(vertexId);
     }
 
     @Override
     public Edge addEdge(final TinkerVertex outVertex, final TinkerVertex inVertex, final String label, final Object... keyValues) {
-        ElementHelper.validateLabel(label);
-        ElementHelper.legalPropertyKeyValueArray(keyValues);
+        // ElementHelper.validateLabel(label);
+        // ElementHelper.legalPropertyKeyValueArray(keyValues);
 
-        Object idValue = edgeIdManager.convert(ElementHelper.getIdValue(keyValues).orElse(null));
+        // Object idValue = edgeIdManager.convert(ElementHelper.getIdValue(keyValues).orElse(null));
 
-        final Edge edge;
-        if (null != idValue) {
-            if (edges.containsKey(idValue))
-                throw Graph.Exceptions.edgeWithIdAlreadyExists(idValue);
-        } else {
-            idValue = edgeIdManager.getNextId(this);
-        }
+        // final Edge edge;
+        // if (null != idValue) {
+        //     // if (edges.containsKey(idValue))
+        //         // throw Graph.Exceptions.edgeWithIdAlreadyExists(idValue);
+        // } else {
+        //     idValue = edgeIdManager.getNextId(this);
+        // }
 
-        edge = new TinkerEdge(idValue, outVertex, label, inVertex);
-        ElementHelper.attachProperties(edge, keyValues);
-        edges.put(edge.id(), edge);
-        addOutEdge(outVertex, label, edge);
-        addInEdge(inVertex, label, edge);
-        return edge;
+        // edge = new TinkerEdge(idValue, outVertex, label, inVertex);
+        // ElementHelper.attachProperties(edge, keyValues);
+        // // edges.put(edge.id(), edge);
+        // // edges.addEdge(edge);
+        // addOutEdge(outVertex, label, edge);
+        // addInEdge(inVertex, label, edge);
+        // return edge;
+        assert(false);
+        return null;
     }
 
+    public Edge addEdge(final RocksVertex outVertex, final RocksVertex inVertex, final String label, final Object... keyValues) {
+        return this.vertices.addEdge(outVertex, inVertex);
+    }
+
+    public Edge getEdge(final Object edgeId) {
+        return null;
+    }
     @Override
     public void removeEdge(final Object edgeId) {
-        final Edge edge = edges.get(edgeId);
-        // already removed?
-        if (null == edge) return;
+        // final Edge edge = edges.getEdge(edgeId);
+        // // already removed?
+        // if (null == edge) return;
 
-        final TinkerVertex outVertex = (TinkerVertex) edge.outVertex();
-        final TinkerVertex inVertex = (TinkerVertex) edge.inVertex();
+        // final TinkerVertex outVertex = (TinkerVertex) edge.outVertex();
+        // final TinkerVertex inVertex = (TinkerVertex) edge.inVertex();
 
-        if (null != outVertex && null != outVertex.outEdges) {
-            final Set<Edge> edges = outVertex.outEdges.get(edge.label());
-            if (null != edges)
-                edges.removeIf(e -> e.id() == edgeId);
-        }
-        if (null != inVertex && null != inVertex.inEdges) {
-            final Set<Edge> edges = inVertex.inEdges.get(edge.label());
-            if (null != edges)
-                edges.removeIf(e -> e.id() == edgeId);
-        }
+        // if (null != outVertex && null != outVertex.outEdges) {
+        //     final Set<Edge> edges = outVertex.outEdges.get(edge.label());
+        //     if (null != edges)
+        //         edges.removeIf(e -> e.id() == edgeId);
+        //     // TODO: flush to db
+        // }
+        // if (null != inVertex && null != inVertex.inEdges) {
+        //     final Set<Edge> edges = inVertex.inEdges.get(edge.label());
+        //     if (null != edges)
+        //         edges.removeIf(e -> e.id() == edgeId);
+        //     // TODO: flush to db
+        // }
 
-        this.edges.remove(edgeId);
+        // this.edges.remove(edgeId);
+        // this.edges.removeEdge(edgeId);
+        this.vertices.removeEdge(edgeId);
     }
 
     @Override
     public void clear() {
         super.clear();
         this.vertices.clear();
-        this.edges.clear();
+        // this.edges.clear();
     }
 
     @Override
@@ -218,16 +253,16 @@ public class TinkerGraph extends AbstractTinkerGraph {
     }
 
     @Override
-    public int getVerticesCount() { return vertices.size(); }
+    public int getVerticesCount() { return vertices.vertexNum(); }
 
     @Override
     public boolean hasVertex(Object id) { return vertices.containsKey(id); }
 
     @Override
-    public int getEdgesCount() {  return edges.size(); }
+    public int getEdgesCount() {  return 0; }
 
     @Override
-    public boolean hasEdge(Object id) { return edges.containsKey(id); }
+    public boolean hasEdge(Object id) { return false; }
 
     @Override
     public TinkerServiceRegistry getServiceRegistry() {
@@ -236,22 +271,27 @@ public class TinkerGraph extends AbstractTinkerGraph {
 
     @Override
     public Vertex vertex(final Object vertexId) {
-        return vertices.get(vertexIdManager.convert(vertexId));
+        return vertices.getVertex(vertexIdManager.convert(vertexId));
     }
 
     @Override
     public Iterator<Vertex> vertices(final Object... vertexIds) {
-        return createElementIterator(Vertex.class, vertices, vertexIdManager, vertexIds);
+//        return createElementIterator(Vertex.class, vertices.inMemVertices, vertexIdManager, vertexIds);
+        List<Object> idList = Arrays.asList(vertexIds);
+        return IteratorUtils.map(idList, this::vertex).iterator();
     }
 
     @Override
     public Iterator<Edge> edges(final Object... edgeIds) {
-        return createElementIterator(Edge.class, edges, edgeIdManager, edgeIds);
+        // return createElementIterator(Edge.class, edges.inMemEdges, edgeIdManager, edgeIds);
+        List<Object> idList = Arrays.asList(edgeIds);
+        return IteratorUtils.map(idList, this::edge).iterator();
     }
 
     @Override
     public Edge edge(final Object edgeId) {
-        return edges.get(edgeIdManager.convert(edgeId));
+        // return edges.getEdge(edgeIdManager.convert(edgeId));
+        return this.vertices.getEdge(edgeId);
     }
 
 
@@ -302,6 +342,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
             vertex.inEdges.put(label, edges);
         }
         edges.add(edge);
+        // TODO: flush to db
     }
 
     /**
