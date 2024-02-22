@@ -191,16 +191,16 @@ public final class TinkerHelper {
     /**
      * Allows direct access to a TinkerGraph's storage which can be helpful for advanced use cases.
      */
-    public static Map<Object, Vertex> getVertices(final TinkerGraph graph) {
-        return graph.vertices;
-    }
+    // public static Map<Object, Vertex> getVertices(final TinkerGraph graph) {
+    //     return graph.vertices.inMemVertices;
+    // }
 
-    /**
-     * Allows direct access to a TinkerGraph's storage which can be helpful for advanced use cases.
-     */
-    public static Map<Object, Edge> getEdges(final TinkerGraph graph) {
-        return graph.edges;
-    }
+    // /**
+    //  * Allows direct access to a TinkerGraph's storage which can be helpful for advanced use cases.
+    //  */
+    // public static Map<Object, Edge> getEdges(final TinkerGraph graph) {
+    //     return graph.edges.inMemEdges;
+    // }
 
     // todo: move to SearchHelper?
     /**

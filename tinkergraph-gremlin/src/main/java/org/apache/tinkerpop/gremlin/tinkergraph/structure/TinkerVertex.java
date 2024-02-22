@@ -185,6 +185,7 @@ public class TinkerVertex extends TinkerElement implements Vertex {
         if (null == vertex) throw Graph.Exceptions.argumentCanNotBeNull("vertex");
         if (this.removed || ((TinkerVertex) vertex).removed) throw elementAlreadyRemoved(Vertex.class, this.id);
 
+        // TODO: add vertex
         return graph.addEdge(this, (TinkerVertex) vertex, label, keyValues);
     }
 

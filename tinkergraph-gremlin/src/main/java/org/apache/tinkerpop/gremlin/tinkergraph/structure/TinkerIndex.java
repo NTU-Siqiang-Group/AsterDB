@@ -128,13 +128,13 @@ final class TinkerIndex<T extends Element> extends AbstractTinkerIndex<T> {
             return;
         this.indexedKeys.add(key);
 
-        (Vertex.class.isAssignableFrom(this.indexClass) ?
-                // cleaner to use graph.vertices(), but graph.vertices is quicker
-                ((TinkerGraph)this.graph).vertices.values().parallelStream() :
-                ((TinkerGraph)this.graph).edges.values().parallelStream())
-                .map(e -> new Object[]{((T) e).property(key), e})
-                .filter(a -> ((Property) a[0]).isPresent())
-                .forEach(a -> this.put(key, ((Property) a[0]).value(), (T) a[1]));
+        // (Vertex.class.isAssignableFrom(this.indexClass) ?
+        //         // cleaner to use graph.vertices(), but graph.vertices is quicker
+        //         ((TinkerGraph)this.graph).vertices.inMemVertices.values().parallelStream() :
+        //         ((TinkerGraph)this.graph).edges.inMemEdges.values().parallelStream())
+        //         .map(e -> new Object[]{((T) e).property(key), e})
+        //         .filter(a -> ((Property) a[0]).isPresent())
+        //         .forEach(a -> this.put(key, ((Property) a[0]).value(), (T) a[1]));
     }
 
     @Override
