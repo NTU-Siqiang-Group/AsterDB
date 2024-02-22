@@ -27,7 +27,6 @@ import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Transaction;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.apache.tinkerpop.gremlin.structure.VertexProperty;
-import org.apache.tinkerpop.gremlin.structure.util.ElementHelper;
 import org.apache.tinkerpop.gremlin.structure.util.GraphFactory;
 import org.apache.tinkerpop.gremlin.structure.util.StringFactory;
 import org.apache.tinkerpop.gremlin.tinkergraph.process.traversal.strategy.optimization.TinkerGraphCountStrategy;
@@ -37,9 +36,10 @@ import org.apache.tinkerpop.gremlin.util.iterator.IteratorUtils;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Stream;
+import java.io.File;
 
+
+import org.apache.commons.io.FileUtils;
 import org.rocksdb.*;
 
 /**
@@ -75,15 +75,16 @@ public class TinkerGraph extends AbstractTinkerGraph {
     protected RocksVertices vertices = null;
 
     protected RocksDB db;
-    protected List<ColumnFamilyHandle> handles;
+    protected List<ColumnFamilyHandle> handles = new ArrayList<>();
 
-    private void OpenRocksDB(final String path) {
+    private void openRocksDB(final String path) {
         try {
+            FileUtils.deleteDirectory(new File(path));
             RocksDB.loadLibrary();
             DBOptions options = new DBOptions();
             options.setCreateIfMissing(true);
             List<ColumnFamilyDescriptor> columnFamilyDescriptorList = new ArrayList<>();
-            columnFamilyDescriptorList.add(new ColumnFamilyDescriptor("adjacentListOut".getBytes(StandardCharsets.UTF_8)));
+            columnFamilyDescriptorList.add(new ColumnFamilyDescriptor("default".getBytes(StandardCharsets.UTF_8)));
             columnFamilyDescriptorList.add(new ColumnFamilyDescriptor("adjacentListIn".getBytes(StandardCharsets.UTF_8)));
             columnFamilyDescriptorList.add(new ColumnFamilyDescriptor("vertexProperties".getBytes(StandardCharsets.UTF_8)));
             options.setCreateMissingColumnFamilies(true);
@@ -97,7 +98,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
      * An empty private constructor that initializes {@link TinkerGraph}.
      */
     TinkerGraph(final Configuration configuration) {
-        OpenRocksDB("/tmp/db");
+        openRocksDB("/tmp/db");
         vertices = new RocksVertices(db, handles.get(0), handles.get(1), handles.get(2), this);
         this.configuration = configuration;
         vertexIdManager = selectIdManager(configuration, GREMLIN_TINKERGRAPH_VERTEX_ID_MANAGER, Vertex.class);
@@ -211,7 +212,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
     }
 
     public Edge getEdge(final Object edgeId) {
-        return null;
+        return this.vertices.getEdge(edgeId);
     }
     @Override
     public void removeEdge(final Object edgeId) {
@@ -295,54 +296,55 @@ public class TinkerGraph extends AbstractTinkerGraph {
     }
 
 
-    private <T extends Element> Iterator<T> createElementIterator(final Class<T> clazz, final Map<Object, T> elements,
-                                                                  final IdManager idManager,
-                                                                  final Object... ids) {
-        final Iterator<T> iterator;
-        if (0 == ids.length) {
-            iterator = new TinkerGraphIterator<>(elements.values().iterator());
-        } else {
-            final List<Object> idList = Arrays.asList(ids);
+    // private <T extends Element> Iterator<T> createElementIterator(final Class<T> clazz, final Map<Object, T> elements,
+    //                                                               final IdManager idManager,
+    //                                                               final Object... ids) {
+    //     final Iterator<T> iterator;
+    //     if (0 == ids.length) {
+    //         iterator = new TinkerGraphIterator<>(elements.values().iterator());
+    //     } else {
+    //         final List<Object> idList = Arrays.asList(ids);
 
-            // TinkerGraph can take a Vertex/Edge or any object as an "id". If it is an Element then we just cast
-            // to that type and pop off the identifier. there is no need to pass that through the IdManager since
-            // the assumption is that if it's already an Element, its identifier must be valid to the Graph and to
-            // its associated IdManager. All other objects are passed to the IdManager for conversion.
-            return new TinkerGraphIterator<>(IteratorUtils.filter(IteratorUtils.map(idList, id -> {
-                // ids cant be null so all of those filter out
-                if (null == id) return null;
-                final Object iid = clazz.isAssignableFrom(id.getClass()) ? clazz.cast(id).id() : idManager.convert(id);
-                return elements.get(idManager.convert(iid));
-            }).iterator(), Objects::nonNull));
-        }
-        return TinkerHelper.inComputerMode(this) ?
-                (Iterator<T>) (clazz.equals(Vertex.class) ?
-                        IteratorUtils.filter((Iterator<Vertex>) iterator, t -> this.graphComputerView.legalVertex(t)) :
-                        IteratorUtils.filter((Iterator<Edge>) iterator, t -> this.graphComputerView.legalEdge(t.outVertex(), t))) :
-                iterator;
-    }
+    //         // TinkerGraph can take a Vertex/Edge or any object as an "id". If it is an Element then we just cast
+    //         // to that type and pop off the identifier. there is no need to pass that through the IdManager since
+    //         // the assumption is that if it's already an Element, its identifier must be valid to the Graph and to
+    //         // its associated IdManager. All other objects are passed to the IdManager for conversion.
+    //         return new TinkerGraphIterator<>(IteratorUtils.filter(IteratorUtils.map(idList, id -> {
+    //             // ids cant be null so all of those filter out
+    //             if (null == id) return null;
+    //             final Object iid = clazz.isAssignableFrom(id.getClass()) ? clazz.cast(id).id() : idManager.convert(id);
+    //             return elements.get(idManager.convert(iid));
+    //         }).iterator(), Objects::nonNull));
+    //     }
+    //     return TinkerHelper.inComputerMode(this) ?
+    //             (Iterator<T>) (clazz.equals(Vertex.class) ?
+    //                     IteratorUtils.filter((Iterator<Vertex>) iterator, t -> this.graphComputerView.legalVertex(t)) :
+    //                     IteratorUtils.filter((Iterator<Edge>) iterator, t -> this.graphComputerView.legalEdge(t.outVertex(), t))) :
+    //             iterator;
+    // }
 
     @Override
     protected void addOutEdge(final TinkerVertex vertex, final String label, final Edge edge) {
-        if (null == vertex.outEdges) vertex.outEdges = new HashMap<>();
-        Set<Edge> edges = vertex.outEdges.get(label);
-        if (null == edges) {
-            edges = new HashSet<>();
-            vertex.outEdges.put(label, edges);
-        }
-        edges.add(edge);
+        // if (null == vertex.outEdges) vertex.outEdges = new HashMap<>();
+        // Set<Edge> edges = vertex.outEdges.get(label);
+        // if (null == edges) {
+        //     edges = new HashSet<>();
+        //     vertex.outEdges.put(label, edges);
+        // }
+        // edges.add(edge);
+        assert(false);
     }
 
     @Override
     protected void addInEdge(final TinkerVertex vertex, final String label, final Edge edge) {
-        if (null == vertex.inEdges) vertex.inEdges = new HashMap<>();
-        Set<Edge> edges = vertex.inEdges.get(label);
-        if (null == edges) {
-            edges = new HashSet<>();
-            vertex.inEdges.put(label, edges);
-        }
-        edges.add(edge);
-        // TODO: flush to db
+        // if (null == vertex.inEdges) vertex.inEdges = new HashMap<>();
+        // Set<Edge> edges = vertex.inEdges.get(label);
+        // if (null == edges) {
+        //     edges = new HashSet<>();
+        //     vertex.inEdges.put(label, edges);
+        // }
+        // edges.add(edge);
+       assert(false);
     }
 
     /**

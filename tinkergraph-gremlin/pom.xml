@@ -39,6 +39,11 @@ limitations under the License.
             <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.15.1</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>4.2.3</version>
@@ -60,6 +65,19 @@ limitations under the License.
             <artifactId>rocksdbjni</artifactId>
             <version>8.9.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>1.36</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>1.36</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
     <build>
         <directory>${basedir}/target</directory>
@@ -89,7 +107,25 @@ limitations under the License.
             <properties>
                 <io.tmp.dir>${project.build.directory}/test-case-data/TinkerGraphTest/tinkerpop-io</io.tmp.dir>
             </properties>
-
+            <dependencies>
+                <dependency>
+                    <groupId>org.openjdk.jmh</groupId>
+                    <artifactId>jmh-core</artifactId>
+                    <version>1.36</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.openjdk.jmh</groupId>
+                    <artifactId>jmh-core</artifactId>
+                    <version>1.36</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.rocksdb</groupId>
+                    <artifactId>rocksdbjni</artifactId>
+                    <version>8.9.0</version>
+                </dependency>
+            </dependencies>
             <build>
                 <plugins>
                     <plugin>
