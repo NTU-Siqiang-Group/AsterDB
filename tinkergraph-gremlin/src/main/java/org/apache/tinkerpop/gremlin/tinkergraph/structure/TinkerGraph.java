@@ -80,11 +80,13 @@ public class TinkerGraph extends AbstractTinkerGraph {
     protected RocksGraph db;
     protected List<ColumnFamilyHandle> handles = new ArrayList<>();
 
+    protected Long CurrentVertexId = 0L;
+
     private void openRocksDB(final int update_policy) {
         try {
             // FileUtils.deleteDirectory(new File(path));
             RocksDB.loadLibrary();
-            DBOptions options = new DBOptions();
+            Options options = new Options();
             options.setCreateIfMissing(true);
             // List<ColumnFamilyDescriptor> columnFamilyDescriptorList = new ArrayList<>();
             // columnFamilyDescriptorList.add(new
@@ -93,7 +95,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
             // ColumnFamilyDescriptor("adjacentListIn".getBytes(StandardCharsets.UTF_8)));
             // columnFamilyDescriptorList.add(new
             // ColumnFamilyDescriptor("vertexProperties".getBytes(StandardCharsets.UTF_8)));
-            options.setCreateMissingColumnFamilies(true);
+            // options.setCreateMissingColumnFamilies(true);
             db = RocksGraph.open(options, update_policy);
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,7 +107,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
      */
     TinkerGraph(final Configuration configuration) {
         openRocksDB(1);
-        vertices = new RocksVertices(db, handles.get(0), handles.get(1), handles.get(2), this);
+        vertices = new RocksVertices(db, this);
         this.configuration = configuration;
         vertexIdManager = selectIdManager(configuration, GREMLIN_TINKERGRAPH_VERTEX_ID_MANAGER, Vertex.class);
         edgeIdManager = selectIdManager(configuration, GREMLIN_TINKERGRAPH_EDGE_ID_MANAGER, Edge.class);
@@ -191,8 +193,10 @@ public class TinkerGraph extends AbstractTinkerGraph {
         // keyValues);
         // this.vertices.put(vertex.id(), vertex);
         // this.vertices.addVertex(vertex.id(), vertex);
-        Object vid = vertexIdManager.getNextId(this);
-        return vertices.addVertex(vid);
+        //Object vid = vertexIdManager.getNextId(this);
+        Object id = CurrentVertexId;
+        CurrentVertexId = CurrentVertexId + 1;
+        return this.vertices.addVertex(id);
     }
 
     @Override
@@ -225,7 +229,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
         // addOutEdge(outVertex, label, edge);
         // addInEdge(inVertex, label, edge);
         // return edge;
-        assert (false);
+        //return this.vertices.addEdge(outVertex, inVertex);
         return null;
     }
 

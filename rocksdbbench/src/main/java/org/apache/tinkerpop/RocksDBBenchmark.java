@@ -42,80 +42,110 @@ import java.util.concurrent.TimeUnit;
 public class RocksDBBenchmark {
     final int keySize = 24;
     final int valueSize = 1000;
-    final int opNum = 5000000;
+    final int opNum = 50000;
     String getKey(int i) {
         return String.format("%0" + keySize + "d", i);
     }
     String getValue(int i) {
         return String.format("%0" + valueSize + "d", i);
     }
+//     @Benchmark
+//     @OperationsPerInvocation(opNum)
+//     public void testRocksDB(Blackhole blackhole) {
+//         RocksDB.loadLibrary();
+//         RocksDB db;
+//         String path = "/tmp/db";
+//         org.rocksdb.Options options = new org.rocksdb.Options();
+
+//         try {
+//             FileUtils.deleteDirectory(new File(path));
+//             options.setCreateIfMissing(true);
+//             options.setStatistics(new Statistics());
+//             db = RocksDB.open(options, path);
+//         } catch (Exception e) {
+//             e.printStackTrace();
+//             return;
+//         }
+//         for (int i = 0; i < opNum; i++) {
+//             String key = getKey(i);
+//             String value = getValue(i);
+//             try {
+//                 db.put(key.getBytes(), value.getBytes());
+//             } catch (RocksDBException e) {
+//                 e.printStackTrace();
+//                 return;
+//             }
+//         }
+//         System.out.println(options.statistics().toString());
+//         db.close();
+//     }
+//     @Benchmark
+//     @OperationsPerInvocation(opNum)
+//     public void testRocksDBGet(Blackhole blackhole) {
+//         RocksDB.loadLibrary();
+//         RocksDB db;
+//         String path = "/tmp/db";
+//         org.rocksdb.Options options = new org.rocksdb.Options();
+//         try {
+//             FileUtils.deleteDirectory(new File(path));
+//             FileUtils.copyDirectory(new File("/tmp/db1"), new File("/tmp/db"));
+//             options.setCreateIfMissing(false);
+//             options.setStatistics(new Statistics());
+//             db = RocksDB.open(options, path);
+//         } catch (Exception e) {
+//             e.printStackTrace();
+//             return;
+//         }
+
+//         try (BufferedReader br = new BufferedReader(new java.io.FileReader("/home/junfeng/Desktop/rand.txt"))) {
+//             String line = br.readLine();
+//             while (line != null) {
+// //                System.out.println(Integer.valueOf(line));
+//                 String key = getKey(Integer.parseInt(line));
+//                 byte[] value = db.get(key.getBytes());
+// //                String valStr = new String(value);
+// //                System.out.println(key);
+// //                System.out.println(valStr);
+//                 blackhole.consume(value);
+//                 line = br.readLine();
+//             }
+//         } catch (Exception e) {
+//             e.printStackTrace();
+//             db.close();
+//             return;
+//         }
+//         System.out.println(options.statistics().toString());
+//         db.close();
+//     }
     @Benchmark
     @OperationsPerInvocation(opNum)
-    public void testRocksDB(Blackhole blackhole) {
-        RocksDB.loadLibrary();
-        RocksDB db;
-        String path = "/tmp/db";
-        org.rocksdb.Options options = new org.rocksdb.Options();
-
+    public void testRocksGraph(Blackhole blackhole) {
         try {
+            RocksDB.loadLibrary();
+            RocksGraph db;
+            String path = "/tmp/db";
+            DBOptions options = new DBOptions();
             FileUtils.deleteDirectory(new File(path));
             options.setCreateIfMissing(true);
             options.setStatistics(new Statistics());
-            db = RocksDB.open(options, path);
+            db = RocksGraph.open(options, 1);
+            System.out.println(options.statistics().toString());
+            db.terminate();
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
-        for (int i = 0; i < opNum; i++) {
-            String key = getKey(i);
-            String value = getValue(i);
-            try {
-                db.put(key.getBytes(), value.getBytes());
-            } catch (RocksDBException e) {
-                e.printStackTrace();
-                return;
-            }
-        }
-        System.out.println(options.statistics().toString());
-        db.close();
-    }
-    @Benchmark
-    @OperationsPerInvocation(opNum)
-    public void testRocksDBGet(Blackhole blackhole) {
-        RocksDB.loadLibrary();
-        RocksDB db;
-        String path = "/tmp/db";
-        org.rocksdb.Options options = new org.rocksdb.Options();
-        try {
-            FileUtils.deleteDirectory(new File(path));
-            FileUtils.copyDirectory(new File("/tmp/db1"), new File("/tmp/db"));
-            options.setCreateIfMissing(false);
-            options.setStatistics(new Statistics());
-            db = RocksDB.open(options, path);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
-
-        try (BufferedReader br = new BufferedReader(new java.io.FileReader("/home/junfeng/Desktop/rand.txt"))) {
-            String line = br.readLine();
-            while (line != null) {
-//                System.out.println(Integer.valueOf(line));
-                String key = getKey(Integer.parseInt(line));
-                byte[] value = db.get(key.getBytes());
-//                String valStr = new String(value);
-//                System.out.println(key);
-//                System.out.println(valStr);
-                blackhole.consume(value);
-                line = br.readLine();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            db.close();
-            return;
-        }
-        System.out.println(options.statistics().toString());
-        db.close();
+        // for (int i = 0; i < opNum; i++) {
+        //     String key = getKey(i);
+        //     String value = getValue(i);
+        //     try {
+        //         db.put(key.getBytes(), value.getBytes());
+        //     } catch (RocksDBException e) {
+        //         e.printStackTrace();
+        //         return;
+        //     }
+        // }
+    
     }
 
     public static void main(String[] args) throws Exception {
