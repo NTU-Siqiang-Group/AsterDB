@@ -46,3 +46,4 @@ coverage.out
 .env
 gremlinconsoletest.egg-info
 /.metadata/
+.xml

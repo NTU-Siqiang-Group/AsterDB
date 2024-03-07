@@ -22,7 +22,7 @@ import org.apache.tinkerpop.gremlin.structure.Direction;
 import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.rocksdb.ColumnFamilyHandle;
-import org.rocksdb.RocksDB;
+import org.rocksdb.RocksGraph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.rocksdb.RocksDBException;
 
@@ -30,7 +30,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class RocksVertices {
-  private final RocksDB db;
+  private final RocksGraph db;
 
   private final ColumnFamilyHandle adjacentListOut;
 
@@ -40,8 +40,9 @@ public class RocksVertices {
 
   private final TinkerGraph graph;
 
-//  public Map<Object, Vertex> inMemVertices = new ConcurrentHashMap<>();
-  RocksVertices(RocksDB db, ColumnFamilyHandle adjacentListOut, ColumnFamilyHandle adjacentListIn, ColumnFamilyHandle vertexProperties, final TinkerGraph graph) {
+  // public Map<Object, Vertex> inMemVertices = new ConcurrentHashMap<>();
+  RocksVertices(RocksGraph db, ColumnFamilyHandle adjacentListOut, ColumnFamilyHandle adjacentListIn,
+      ColumnFamilyHandle vertexProperties, final TinkerGraph graph) {
     this.db = db;
     this.adjacentListOut = adjacentListOut;
     this.adjacentListIn = adjacentListIn;
@@ -50,36 +51,38 @@ public class RocksVertices {
   }
 
   public Vertex addVertex(final Object vertexId) {
-    long numId = Long.parseLong(vertexId.toString());
+    long numId = Long.parseLong(String.valueOf(vertexId));
     try {
-      db.put(vertexProperties, String.valueOf(numId).getBytes(), "empty placeholder".getBytes());
+      // db.put(vertexProperties, String.valueOf(numId).getBytes(), "empty
+      // placeholder".getBytes());
+      db.AddVertex(numId);
     } catch (RocksDBException e) {
       e.printStackTrace();
     }
     return new RocksVertex(vertexId, this.graph, new ConcurrentHashMap<>(), new ConcurrentHashMap<>());
   }
 
-  public Edge addEdge(final RocksVertex outVertex, final RocksVertex inVertex) {
+  public Edge addEdge(final RocksVertex source, final RocksVertex target) {
     // TODO: should invoke the graph interface directly
     try {
-      db.put(adjacentListOut, String.valueOf(outVertex.id()).getBytes(), String.valueOf(inVertex.id()).getBytes());
-      db.put(adjacentListIn, String.valueOf(inVertex.id()).getBytes(), String.valueOf(outVertex.id()).getBytes());
+      db.AddEdge(Long.parseLong(String.valueOf(source.id())), Long.parseLong(String.valueOf(target.id())));
     } catch (RocksDBException e) {
       e.printStackTrace();
     }
-    return new RocksEdge(encodeEdgeId(outVertex.id(), inVertex.id()), outVertex.id(), Edge.DEFAULT_LABEL, inVertex.id(), this.graph);
+    return new RocksEdge(encodeEdgeId(source.id(), target.id()), source.id(), Edge.DEFAULT_LABEL, target.id(),
+        this.graph);
   }
 
   void removeVertex(final Object vertexId) {
     long numId = Long.parseLong(vertexId.toString());
-    try {
-      // TODO: should invoke the graph interface directly
-      db.delete(vertexProperties, String.valueOf(numId).getBytes());
-      db.delete(adjacentListOut, String.valueOf(numId).getBytes());
-      // TODO: should remove all edges that point to this vertex (in edges)
-    } catch (RocksDBException e) {
-      e.printStackTrace();
-    }
+    // try {
+    // // TODO: should invoke the graph interface directly
+    // // db.delete(vertexProperties, String.valueOf(numId).getBytes());
+    // // db.delete(adjacentListOut, String.valueOf(numId).getBytes());
+    // // TODO: should remove all edges that point to this vertex (in edges)
+    // } catch (RocksDBException e) {
+    // e.printStackTrace();
+    // }
   }
 
   void removeEdge(final Object edgeId) {
@@ -91,18 +94,18 @@ public class RocksVertices {
 
   public Boolean containsKey(final Object key) {
     // TODO: should replace with graph interface
-    return db.keyMayExist(vertexProperties, String.valueOf(key).getBytes(), null);
+    // return db.keyMayExist(vertexProperties, String.valueOf(key).getBytes(),
+    // null);
+    return true;
   }
 
-  public int vertexNum() {
-    // TODO: should replace with graph interface
-    long keyNum = 0;
+  public long vertexNum() {
     try {
-      keyNum = db.getLongProperty("rocksdb.estimate-num-keys");
+      return db.CountVertex();
     } catch (RocksDBException e) {
       e.printStackTrace();
     }
-    return (int)keyNum;
+    return 0;
   }
 
   public void clear() {
@@ -116,21 +119,21 @@ public class RocksVertices {
 
   public Vertex getVertex(final Object key) {
     // Get the properties and its in/out edges
-    String edgeStr = "";
-    try {
-      db.get(adjacentListOut, String.valueOf(key).getBytes(), edgeStr.getBytes());
-      Set<Edge> outEdges = decodeEdges(edgeStr, key, Direction.OUT);
-      Map<String, Set<Edge>> outEdgesMap = new ConcurrentHashMap<>();
-      outEdgesMap.put(Edge.DEFAULT_LABEL, outEdges);
-      db.get(adjacentListIn, String.valueOf(key).getBytes(), edgeStr.getBytes());
-      Set<Edge> inEdges = decodeEdges(edgeStr, key, Direction.IN);
-      Map<String, Set<Edge>> inEdgesMap = new ConcurrentHashMap<>();
-      inEdgesMap.put(Edge.DEFAULT_LABEL, inEdges);
-      return new RocksVertex(key, this.graph, outEdgesMap, inEdgesMap);
-    } catch (RocksDBException e) {
-      e.printStackTrace();
-    }
-    return null;
+    // String edgeStr = "";
+    // try {
+    // db.get(adjacentListOut, String.valueOf(key).getBytes(), edgeStr.getBytes());
+    // Set<Edge> outEdges = decodeEdges(edgeStr, key, Direction.OUT);
+    // Map<String, Set<Edge>> outEdgesMap = new ConcurrentHashMap<>();
+    // outEdgesMap.put(Edge.DEFAULT_LABEL, outEdges);
+    // db.get(adjacentListIn, String.valueOf(key).getBytes(), edgeStr.getBytes());
+    // Set<Edge> inEdges = decodeEdges(edgeStr, key, Direction.IN);
+    // Map<String, Set<Edge>> inEdgesMap = new ConcurrentHashMap<>();
+    // inEdgesMap.put(Edge.DEFAULT_LABEL, inEdges);
+    // return new RocksVertex(key, this.graph, outEdgesMap, inEdgesMap);
+    // } catch (RocksDBException e) {
+    // e.printStackTrace();
+    // }
+    return new RocksVertex(key, this.graph);
   }
 
   private Set<Edge> decodeEdges(final String edgeListStr, Object vertexId, Direction direction) {
