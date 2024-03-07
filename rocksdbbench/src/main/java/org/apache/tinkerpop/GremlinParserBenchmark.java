@@ -15,38 +15,38 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.apache.tinkerpop.gremlin.language.grammar.GremlinQueryParser;
 import java.util.concurrent.TimeUnit;
 
-@BenchmarkMode(Mode.AverageTime)
-@Measurement(iterations = 5)
-@State(value = Scope.Benchmark)
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
-@Fork(value = 1)
-@Warmup(iterations = 0)
-public class GremlinParserBenchmark {
-    private static final GraphTraversalSource g = EmptyGraph.instance().traversal();
-    private final GremlinAntlrToJava gremlinAntlrToJava = new GremlinAntlrToJava(g,
-            VariableResolver.NullVariableResolver.instance());
-    @Benchmark
-    public void simpleParserBenchmark(Blackhole blackhole) {
-        GremlinQueryParser.parse("g.V(100)", gremlinAntlrToJava);
-    }
-    @Benchmark
-    public void mediumParserBenchmark(Blackhole blackhole) {
-        GremlinQueryParser.parse("g.V().out().out().path().by('name').by('age')", gremlinAntlrToJava);
-    }
+// @BenchmarkMode(Mode.AverageTime)
+// @Measurement(iterations = 5)
+// @State(value = Scope.Benchmark)
+// @OutputTimeUnit(TimeUnit.MICROSECONDS)
+// @Fork(value = 1)
+// @Warmup(iterations = 0)
+// public class GremlinParserBenchmark {
+//     private static final GraphTraversalSource g = EmptyGraph.instance().traversal();
+//     private final GremlinAntlrToJava gremlinAntlrToJava = new GremlinAntlrToJava(g,
+//             VariableResolver.NullVariableResolver.instance());
+//     @Benchmark
+//     public void simpleParserBenchmark(Blackhole blackhole) {
+//         GremlinQueryParser.parse("g.V(100)", gremlinAntlrToJava);
+//     }
+//     @Benchmark
+//     public void mediumParserBenchmark(Blackhole blackhole) {
+//         GremlinQueryParser.parse("g.V().out().out().path().by('name').by('age')", gremlinAntlrToJava);
+//     }
 
-    @Benchmark
-    public void complexParserBenchmark(Blackhole blackhole) {
-        GremlinQueryParser.parse("g.V().hasLabel('software').as('a','b','c').\n" +
-                "            select('a','b','c').\n" +
-                "              by('name').\n" +
-                "              by('lang').\n" +
-                "              by(__.in('created').values('name').fold())", gremlinAntlrToJava);
-    }
-    public static void main(String[] args) throws Exception {
-        Options opt = new OptionsBuilder()
-                .include(GremlinParserBenchmark.class.getSimpleName())
-                .result("result.json")
-                .resultFormat(ResultFormatType.JSON).build();
-        new Runner(opt).run();
-    }
-}
+//     @Benchmark
+//     public void complexParserBenchmark(Blackhole blackhole) {
+//         GremlinQueryParser.parse("g.V().hasLabel('software').as('a','b','c').\n" +
+//                 "            select('a','b','c').\n" +
+//                 "              by('name').\n" +
+//                 "              by('lang').\n" +
+//                 "              by(__.in('created').values('name').fold())", gremlinAntlrToJava);
+//     }
+//     public static void main(String[] args) throws Exception {
+//         Options opt = new OptionsBuilder()
+//                 .include(GremlinParserBenchmark.class.getSimpleName())
+//                 .result("result.json")
+//                 .resultFormat(ResultFormatType.JSON).build();
+//         new Runner(opt).run();
+//     }
+// }

@@ -32,21 +32,17 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RocksVertices {
   private final RocksGraph db;
 
-  private final ColumnFamilyHandle adjacentListOut;
+  // private final ColumnFamilyHandle adjacentListOut;
 
-  private final ColumnFamilyHandle adjacentListIn;
+  // private final ColumnFamilyHandle adjacentListIn;
 
-  private final ColumnFamilyHandle vertexProperties;
+  // private final ColumnFamilyHandle vertexProperties;
 
   private final TinkerGraph graph;
 
   // public Map<Object, Vertex> inMemVertices = new ConcurrentHashMap<>();
-  RocksVertices(RocksGraph db, ColumnFamilyHandle adjacentListOut, ColumnFamilyHandle adjacentListIn,
-      ColumnFamilyHandle vertexProperties, final TinkerGraph graph) {
+  RocksVertices(RocksGraph db, final TinkerGraph graph) {
     this.db = db;
-    this.adjacentListOut = adjacentListOut;
-    this.adjacentListIn = adjacentListIn;
-    this.vertexProperties = vertexProperties;
     this.graph = graph;
   }
 

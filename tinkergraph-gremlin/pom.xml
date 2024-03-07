@@ -64,8 +64,8 @@ limitations under the License.
             <groupId>org.rocksdb</groupId>
             <artifactId>rocksdbjni</artifactId>
             <version>8.9.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/../GraphKV/java/target/rocksdbjni-8.9.0-osx.jar</systemPath>
+            <!-- <scope>system</scope>
+            <systemPath>${project.basedir}/../GraphKV/java/target/rocksdbjni-8.9.0-linux64.jar</systemPath> -->
         </dependency>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
@@ -121,13 +121,6 @@ limitations under the License.
                     <artifactId>jmh-core</artifactId>
                     <version>1.36</version>
                     <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.rocksdb</groupId>
-                    <artifactId>rocksdbjni</artifactId>
-                    <version>8.9.0</version>
-                    <scope>system</scope>
-                    <systemPath>${project.basedir}/../GraphKV/java/target/rocksdbjni-8.9.0-osx.jar</systemPath>
                 </dependency>
             </dependencies>
             <build>
