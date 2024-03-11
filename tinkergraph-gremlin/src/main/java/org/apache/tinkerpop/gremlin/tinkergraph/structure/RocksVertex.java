@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.*;
 
 public class RocksVertex extends TinkerElement implements Vertex {
     final Object vertexId;
@@ -119,30 +120,45 @@ public class RocksVertex extends TinkerElement implements Vertex {
 
     @Override
     public Iterator<Edge> edges(final Direction direction, final String... edgeLabels) {
-        final List<Edge> edges = new ArrayList<>();
+        final List<Edge> edges_ = new ArrayList<>();
         if (direction.equals(Direction.OUT) || direction.equals(Direction.BOTH)) {
             if (!outEdgeFetched) {
                 //Set<Edge> outEdges = graph.GetOutNeighbours(vertexId);
+                outEdgesId = new HashMap<>();
                 outEdgesId.put(Edge.DEFAULT_LABEL, graph.GetOutNeighbours(vertexId));
             }
-            for (final String edgeLabel : edgeLabels) {
-                final Set<Edge> edgeSet = outEdgesId.get(edgeLabel);
-                if (null != edgeSet) {
-                    edges.addAll(edgeSet);
-                }
+            // for (final String edgeLabel : edgeLabels) {
+            //     final Set<Edge> edgeSet = outEdgesId.get(edgeLabel);
+            //     if (null != edgeSet) {
+            //         edges_.addAll(edgeSet);
+            //     }
+            // }
+            final String edgeLabel = Edge.DEFAULT_LABEL;
+            final Set<Edge> edgeSet = outEdgesId.get(edgeLabel);
+            if (null != edgeSet) {
+                edges_.addAll(edgeSet);
             }
         }
         if (direction.equals(Direction.IN) || direction.equals(Direction.BOTH)) {
-            for (final String edgeLabel : edgeLabels) {
-                final Set<Edge> edgeSet = inEdgesId.get(edgeLabel);
-                if (null != edgeSet) {
-                    edges.addAll(edgeSet);
-                }
+            if (!inEdgeFetched) {
+                inEdgesId = new HashMap<>();
+                inEdgesId.put(Edge.DEFAULT_LABEL, graph.GetInNeighbours(vertexId));
+            }
+            // for (final String edgeLabel : edgeLabels) {
+            //     final Set<Edge> edgeSet = inEdgesId.get(edgeLabel);
+            //     if (null != edgeSet) {
+            //         edges_.addAll(edgeSet);
+            //     }
+            // }
+            final String edgeLabel = Edge.DEFAULT_LABEL;
+            final Set<Edge> edgeSet = outEdgesId.get(edgeLabel);
+            if (null != edgeSet) {
+                edges_.addAll(edgeSet);
             }
         }
         return TinkerHelper.inComputerMode(this.graph)
-                ? IteratorUtils.filter(edges.iterator(), e -> this.graph.graphComputerView.legalEdge(this, e))
-                : edges.iterator();
+                ? IteratorUtils.filter(edges_.iterator(), e -> this.graph.graphComputerView.legalEdge(this, e))
+                : edges_.iterator();
     }
 
     @Override

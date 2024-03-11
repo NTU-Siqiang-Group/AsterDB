@@ -104,6 +104,15 @@ public class RocksVertices {
     return 0;
   }
 
+  public long edgeNum() {
+    try {
+      return db.CountEdge();
+    } catch (RocksDBException e) {
+      e.printStackTrace();
+    }
+    return 0;
+  }
+
   public void clear() {
     // TODO: should replace with graph interface
     // do nothing
