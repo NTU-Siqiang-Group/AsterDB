@@ -61,8 +61,6 @@ THE POSSIBILITY OF SUCH DAMAGE.
             <groupId>org.rocksdb</groupId>
             <artifactId>rocksdbjni</artifactId>
             <version>8.9.0</version>
-            <!-- <scope>system</scope>
-            <systemPath>${project.basedir}/../GraphKV/java/target/rocksdbjni-8.9.0-linux64.jar</systemPath> -->
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>

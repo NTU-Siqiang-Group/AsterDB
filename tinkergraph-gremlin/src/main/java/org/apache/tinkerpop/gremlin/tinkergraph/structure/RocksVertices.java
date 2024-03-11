@@ -59,7 +59,6 @@ public class RocksVertices {
   }
 
   public Edge addEdge(final RocksVertex source, final RocksVertex target) {
-    // TODO: should invoke the graph interface directly
     try {
       db.AddEdge(Long.parseLong(String.valueOf(source.id())), Long.parseLong(String.valueOf(target.id())));
     } catch (RocksDBException e) {
@@ -89,7 +88,7 @@ public class RocksVertices {
   }
 
   public Boolean containsKey(final Object key) {
-    // TODO: should replace with graph interface
+    // TODO: enable this function after we enable the ID manager
     // return db.keyMayExist(vertexProperties, String.valueOf(key).getBytes(),
     // null);
     return true;
