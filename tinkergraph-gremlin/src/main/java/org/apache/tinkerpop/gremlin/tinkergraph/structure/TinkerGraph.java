@@ -327,7 +327,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
 
     @Override
     public int getEdgesCount() {
-        return 0;
+        return Math.toIntExact(vertices.edgeNum());
     }
 
     @Override
@@ -349,7 +349,19 @@ public class TinkerGraph extends AbstractTinkerGraph {
     public Iterator<Vertex> vertices(final Object... vertexIds) {
         // return createElementIterator(Vertex.class, vertices.inMemVertices,
         // vertexIdManager, vertexIds);
-        List<Object> idList = Arrays.asList(vertexIds);
+        List<Object> idList = new  ArrayList<>();
+        for (int i = 0; i < vertexIds.length; i++) {  
+            Long lid = Long.parseLong(String.valueOf(vertexIds[i]));
+            if(lid < CurrentVertexId){
+                idList.add(lid);
+            }
+        } 
+        if (vertexIds == null || vertexIds.length == 0) {
+            for(Long lid = 0L; lid < CurrentVertexId; lid = lid + 1){
+                idList.add(lid);
+            }
+        }
+        //List<Object> idList = Arrays.asList(vertexIds);
         return IteratorUtils.map(idList, this::vertex).iterator();
     }
 
