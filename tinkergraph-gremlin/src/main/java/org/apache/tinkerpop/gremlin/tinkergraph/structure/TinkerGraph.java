@@ -80,7 +80,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
     protected RocksGraph db;
     protected List<ColumnFamilyHandle> handles = new ArrayList<>();
 
-    protected Long CurrentVertexId = 0L;
+    protected Long currentVertexId = 0L;
 
     private void openRocksDB(final int update_policy) {
         try {
@@ -194,8 +194,11 @@ public class TinkerGraph extends AbstractTinkerGraph {
         // this.vertices.put(vertex.id(), vertex);
         // this.vertices.addVertex(vertex.id(), vertex);
         //Object vid = vertexIdManager.getNextId(this);
-        Object id = CurrentVertexId;
-        CurrentVertexId = CurrentVertexId + 1;
+
+        //TODO: implement a more concrete id manager
+
+        Object id = currentVertexId;
+        currentVertexId = currentVertexId + 1;
         return this.vertices.addVertex(id);
     }
 
@@ -352,12 +355,12 @@ public class TinkerGraph extends AbstractTinkerGraph {
         List<Object> idList = new  ArrayList<>();
         for (int i = 0; i < vertexIds.length; i++) {  
             Long lid = Long.parseLong(String.valueOf(vertexIds[i]));
-            if(lid < CurrentVertexId){
+            if(lid < currentVertexId){
                 idList.add(lid);
             }
         } 
         if (vertexIds == null || vertexIds.length == 0) {
-            for(Long lid = 0L; lid < CurrentVertexId; lid = lid + 1){
+            for(Long lid = 0L; lid < currentVertexId; lid = lid + 1){
                 idList.add(lid);
             }
         }

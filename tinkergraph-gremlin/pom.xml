@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <!-- mvn install:install-file \
-    -Dfile=GraphKV/java/target/rocksdbjni-8.9.0-osx.jar -DgroupId=org.rocksdb -DartifactId=rocksdbjni -Dversion=8.9.0 \
+    -Dfile=GraphKV/java/target/rocksdbjni-8.9.0-{platform}.jar -DgroupId=org.rocksdb -DartifactId=rocksdbjni -Dversion=8.9.0 \
     -Dpackaging=jar -DlocalRepositoryPath=/root/.m2/repository/ -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -64,8 +64,6 @@ limitations under the License.
             <groupId>org.rocksdb</groupId>
             <artifactId>rocksdbjni</artifactId>
             <version>8.9.0</version>
-            <!-- <scope>system</scope>
-            <systemPath>${project.basedir}/../GraphKV/java/target/rocksdbjni-8.9.0-linux64.jar</systemPath> -->
         </dependency>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>

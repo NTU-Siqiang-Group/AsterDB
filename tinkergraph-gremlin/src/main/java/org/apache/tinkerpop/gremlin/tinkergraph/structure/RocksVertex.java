@@ -120,7 +120,7 @@ public class RocksVertex extends TinkerElement implements Vertex {
 
     @Override
     public Iterator<Edge> edges(final Direction direction, final String... edgeLabels) {
-        final List<Edge> edges_ = new ArrayList<>();
+        final List<Edge> edgeList = new ArrayList<>();
         if (direction.equals(Direction.OUT) || direction.equals(Direction.BOTH)) {
             if (!outEdgeFetched) {
                 //Set<Edge> outEdges = graph.GetOutNeighbours(vertexId);
@@ -130,13 +130,13 @@ public class RocksVertex extends TinkerElement implements Vertex {
             // for (final String edgeLabel : edgeLabels) {
             //     final Set<Edge> edgeSet = outEdgesId.get(edgeLabel);
             //     if (null != edgeSet) {
-            //         edges_.addAll(edgeSet);
+            //         edgeList.addAll(edgeSet);
             //     }
             // }
             final String edgeLabel = Edge.DEFAULT_LABEL;
             final Set<Edge> edgeSet = outEdgesId.get(edgeLabel);
             if (null != edgeSet) {
-                edges_.addAll(edgeSet);
+                edgeList.addAll(edgeSet);
             }
         }
         if (direction.equals(Direction.IN) || direction.equals(Direction.BOTH)) {
@@ -147,18 +147,18 @@ public class RocksVertex extends TinkerElement implements Vertex {
             // for (final String edgeLabel : edgeLabels) {
             //     final Set<Edge> edgeSet = inEdgesId.get(edgeLabel);
             //     if (null != edgeSet) {
-            //         edges_.addAll(edgeSet);
+            //         edgeList.addAll(edgeSet);
             //     }
             // }
             final String edgeLabel = Edge.DEFAULT_LABEL;
             final Set<Edge> edgeSet = outEdgesId.get(edgeLabel);
             if (null != edgeSet) {
-                edges_.addAll(edgeSet);
+                edgeList.addAll(edgeSet);
             }
         }
         return TinkerHelper.inComputerMode(this.graph)
-                ? IteratorUtils.filter(edges_.iterator(), e -> this.graph.graphComputerView.legalEdge(this, e))
-                : edges_.iterator();
+                ? IteratorUtils.filter(edgeList.iterator(), e -> this.graph.graphComputerView.legalEdge(this, e))
+                : edgeList.iterator();
     }
 
     @Override
