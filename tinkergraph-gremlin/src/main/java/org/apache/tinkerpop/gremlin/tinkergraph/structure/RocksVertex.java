@@ -126,6 +126,7 @@ public class RocksVertex extends TinkerElement implements Vertex {
                 //Set<Edge> outEdges = graph.GetOutNeighbours(vertexId);
                 outEdgesId = new HashMap<>();
                 outEdgesId.put(Edge.DEFAULT_LABEL, graph.GetOutNeighbours(vertexId));
+                outEdgeFetched = true;
             }
             // for (final String edgeLabel : edgeLabels) {
             //     final Set<Edge> edgeSet = outEdgesId.get(edgeLabel);
@@ -143,6 +144,7 @@ public class RocksVertex extends TinkerElement implements Vertex {
             if (!inEdgeFetched) {
                 inEdgesId = new HashMap<>();
                 inEdgesId.put(Edge.DEFAULT_LABEL, graph.GetInNeighbours(vertexId));
+                inEdgeFetched = true;
             }
             // for (final String edgeLabel : edgeLabels) {
             //     final Set<Edge> edgeSet = inEdgesId.get(edgeLabel);
