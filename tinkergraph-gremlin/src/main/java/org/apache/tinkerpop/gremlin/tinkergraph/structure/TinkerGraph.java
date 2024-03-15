@@ -80,7 +80,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
     protected RocksGraph db;
     protected List<ColumnFamilyHandle> handles = new ArrayList<>();
 
-    protected Long currentVertexId = 0L;
+    protected Long currentVertexId = 28408172L;
 
     private void openRocksDB(final int update_policy) {
         try {
