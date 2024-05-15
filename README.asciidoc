@@ -14,7 +14,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ////
-== TinkerPop3
+== AsterDB
 image:https://img.shields.io/maven-central/v/org.apache.tinkerpop/gremlin-driver?color=brightgreen[link="https://mvnrepository.com/artifact/org.apache.tinkerpop/gremlin-driver"]
 image:https://img.shields.io/nuget/v/Gremlin.Net?color=brightgreen[link="https://www.nuget.org/packages/Gremlin.Net"]
 image:https://img.shields.io/pypi/v/gremlinpython?color=brightgreen[link="https://pypi.org/project/gremlinpython/"]
@@ -25,38 +25,35 @@ image:https://codecov.io/gh/apache/tinkerpop/branch/master/graph/badge.svg?token
 
 image:https://raw.githubusercontent.com/apache/tinkerpop/master/docs/static/images/tinkerpop3-splash.png[TinkerPop3, link="https://tinkerpop.apache.org"]
 
-=== Documentation
+# Run and build AsterDB
 
-Apache TinkerPop™ provides graph computing capabilities for both graph databases (OLTP) and graph analytic systems (OLAP).
+## Pre-requisite
+1. OpenJDK11
+2. cmake
+3. gcc/g++
+4. gflags
+5. maven
 
-* link:https://tinkerpop.apache.org/[homepage (downloads)]
-* link:https://tinkerpop.apache.org/docs/current/reference/[reference documentation]
-* link:https://tinkerpop.apache.org/javadocs/current/core/[core javadoc]
-* link:https://tinkerpop.apache.org/javadocs/current/full/[full javadoc]
+## Build
+```shell
+git clone --recurse-submodules https://github.com/NTU-Database-Group/AsterDB.git
+cd GraphKV
+sudo DEBUG_LEVEL=0 DISABLE_WARNING_AS_ERROR=1 JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 EXTRA_CXXFLAGS=-fPIC make -j10 install-static
+sudo DEBUG_LEVEL=0 DISABLE_WARNING_AS_ERROR=1 JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 EXTRA_CXXFLAGS=-fPIC make -j10 install-shared
+sudo DEBUG_LEVEL=0 DISABLE_WARNING_AS_ERROR=1 JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 EXTRA_CXXFLAGS=-fPIC make -j10 rocksdbjava
 
-=== Building and Testing
+cd ..
+mvn install:install-file \
+    -Dfile=GraphKV/java/target/rocksdbjni-8.9.0-linux64.jar -DgroupId=org.rocksdb -DartifactId=rocksdbjni -Dversion=8.9.0 \
+    -Dpackaging=jar -DlocalRepositoryPath=<path-to-your-maven-repo>
 
-TinkerPop uses link:https://maven.apache.org/[Maven] and requires `Java 11` for proper building and proper operations. To build, execute unit tests and package Gremlin Console/Server run:
+mvn clean install -pl tinkergraph-gremlin,gremlin-console -Dmaven.test.skip=true
+```
 
-[source,bash]
-mvn clean install
-
-Please see the xref:docs/src/dev/developer/development-environment.asciidoc#building-on-windows[Building on Windows] section for Windows specific build instructions.
-
-The zip distributions can be found in the following directories:
-
-. `gremlin-server/target`
-. `gremlin-console/target`
-
-Please see the link:https://tinkerpop.apache.org/docs/current/dev/developer/#_contributing[CONTRIBUTING.asciidoc] file for more detailed information and options for building, test running and developing TinkerPop.
-
-=== Get Started
-
-Download link:https://tinkerpop.apache.org/download.html[Gremlin Console] (compatible with Java 8/11) and unzip to a directory, then:
-
-[source,bash]
-----
-$ bin/gremlin.sh
+## Run
+An example to try AsterDB
+```
+bin/gremlin.sh
 
          \,,,/
          (o o)
@@ -64,10 +61,9 @@ $ bin/gremlin.sh
 plugin activated: tinkerpop.server
 plugin activated: tinkerpop.utilities
 plugin activated: tinkerpop.tinkergraph
-gremlin> graph = TinkerFactory.createModern()
-==>tinkergraph[vertices:6 edges:6]
-gremlin> g = traversal().withEmbedded(graph)
-==>graphtraversalsource[tinkergraph[vertices:6 edges:6], standard]
-gremlin> g.V().has('name','vadas').valueMap()
-==>[name:[vadas], age:[27]]
-----
+gremlin> conf = new BaseConfiguration();
+gremlin> conf.setProperty("updatePolicy", 2); // adaptive
+gremlin> graph = TinkerGraph.open(conf);
+gremlin> g = graph.traversal();
+gremlin> g.V().id().fold().next();
+```
