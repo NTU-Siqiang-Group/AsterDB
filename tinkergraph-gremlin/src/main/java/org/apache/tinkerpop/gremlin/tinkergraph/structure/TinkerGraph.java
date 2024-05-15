@@ -80,7 +80,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
     protected RocksGraph db;
     protected List<ColumnFamilyHandle> handles = new ArrayList<>();
 
-    protected Long currentVertexId = 28408172L;
+    public Long currentVertexId = 0L;
 
     private void openRocksDB(final int update_policy) {
         try {
@@ -102,12 +102,37 @@ public class TinkerGraph extends AbstractTinkerGraph {
         }
     }
 
+    public void closeDB() {
+        try {
+            db.terminate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void setWorkload(float readRatio) {
+        try {
+            db.SetWorkload((readRatio));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void setCacheMissRate(double ratio) {
+        try {
+            db.SetCacheMissRate(ratio);
+        } catch(Exception e) {
+            // do nothing
+        }
+    }
     /**
      * An empty private constructor that initializes {@link TinkerGraph}.
      */
     TinkerGraph(final Configuration configuration) {
-        openRocksDB(1);
+        System.out.println("using update policy: " + configuration.getInt("updatePolicy"));
+        openRocksDB(configuration.getInt("updatePolicy"));
         vertices = new RocksVertices(db, this);
+
+        currentVertexId = vertices.vertexNum();
         this.configuration = configuration;
         vertexIdManager = selectIdManager(configuration, GREMLIN_TINKERGRAPH_VERTEX_ID_MANAGER, Vertex.class);
         edgeIdManager = selectIdManager(configuration, GREMLIN_TINKERGRAPH_EDGE_ID_MANAGER, Edge.class);
