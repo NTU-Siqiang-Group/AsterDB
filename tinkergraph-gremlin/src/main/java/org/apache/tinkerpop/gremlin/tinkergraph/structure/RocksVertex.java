@@ -17,6 +17,7 @@
  * under the License.
  */
 package org.apache.tinkerpop.gremlin.tinkergraph.structure;
+
 import org.apache.tinkerpop.gremlin.structure.*;
 import org.apache.tinkerpop.gremlin.structure.util.StringFactory;
 import org.apache.tinkerpop.gremlin.util.iterator.IteratorUtils;
@@ -26,52 +27,85 @@ import java.util.Map;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.*;
+
 public class RocksVertex extends TinkerElement implements Vertex {
     final Object vertexId;
     final TinkerGraph graph;
     // label->EdgeIdList
-    final Map<String, Set<Edge>> outEdgesId;
-    final Map<String, Set<Edge>> inEdgesId;
+    Map<String, Set<Edge>> outEdgesId;
+    Map<String, Set<Edge>> inEdgesId;
+    public Boolean outEdgeFetched = false;
+    public Boolean inEdgeFetched = false;
     public Boolean isRemoved = false;
 
-    public RocksVertex(final Object id, final TinkerGraph graph, final Map<String, Set<Edge>> outEdgesId, final Map<String, Set<Edge>> inEdgesId) {
+    public RocksVertex(final Object id, final TinkerGraph graph) {
+        super(id, Vertex.DEFAULT_LABEL);
+        this.vertexId = id;
+        this.graph = graph;
+    }
+
+    public RocksVertex(final Object id, final TinkerGraph graph, final Map<String, Set<Edge>> outEdgesId,
+            final Map<String, Set<Edge>> inEdgesId) {
         super(id, Vertex.DEFAULT_LABEL);
         this.vertexId = id;
         this.graph = graph;
         this.outEdgesId = outEdgesId;
         this.inEdgesId = inEdgesId;
+        this.outEdgeFetched = false;
+        this.inEdgeFetched = false;
     }
+
+
+    public RocksVertex(final Object id, final TinkerGraph graph, final Map<String, Set<Edge>> outEdgesId,
+            final Map<String, Set<Edge>> inEdgesId, final Boolean outEdgeFetched, final Boolean inEdgeFetched) {
+        super(id, Vertex.DEFAULT_LABEL);
+        this.vertexId = id;
+        this.graph = graph;
+        this.outEdgesId = outEdgesId;
+        this.inEdgesId = inEdgesId;
+        this.outEdgeFetched = outEdgeFetched;
+        this.inEdgeFetched = inEdgeFetched;
+    }
+
+
     @Override
     public <V> VertexProperty<V> property(final String key) {
         return null;
     }
 
     @Override
-    public <V> VertexProperty<V> property(final VertexProperty.Cardinality cardinality, final String key, final V value, final Object... keyValues) {
+    public <V> VertexProperty<V> property(final VertexProperty.Cardinality cardinality, final String key, final V value,
+            final Object... keyValues) {
         return null;
     }
+
     @Override
     public Object clone() {
-        return new RocksVertex(this.vertexId, this.graph, this.outEdgesId, this.inEdgesId);
+        return new RocksVertex(this.vertexId, this.graph, this.outEdgesId, this.inEdgesId, this.outEdgeFetched, this.inEdgeFetched);
     }
+
     @Override
     public Set<String> keys() {
         return null;
     }
+
     @Override
     public Edge addEdge(final String label, final Vertex dstVertex, final Object... keyValues) {
         if (null == dstVertex) {
             throw Graph.Exceptions.argumentCanNotBeNull("dstVertex");
         }
-        if (isRemoved || ((RocksVertex)dstVertex).isRemoved) {
+        if (isRemoved || ((RocksVertex) dstVertex).isRemoved) {
             throw elementAlreadyRemoved(Vertex.class, this.id);
         }
         return graph.addEdge(this, (RocksVertex) dstVertex, label, keyValues);
     }
+
     @Override
     public Graph graph() {
         return this.graph;
     }
+
     @Override
     public void remove() {
         // TODO: invoke the graph interface directly
@@ -86,36 +120,56 @@ public class RocksVertex extends TinkerElement implements Vertex {
 
     @Override
     public Iterator<Edge> edges(final Direction direction, final String... edgeLabels) {
-        final List<Edge> edges = new ArrayList<>();
+        final List<Edge> edgeList = new ArrayList<>();
         if (direction.equals(Direction.OUT) || direction.equals(Direction.BOTH)) {
-            for (final String edgeLabel : edgeLabels) {
-                final Set<Edge> edgeSet = outEdgesId.get(edgeLabel);
-                if (null != edgeSet) {
-                    edges.addAll(edgeSet);
-                }
+            if (!outEdgeFetched) {
+                //Set<Edge> outEdges = graph.GetOutNeighbours(vertexId);
+                outEdgesId = new HashMap<>();
+                outEdgesId.put(Edge.DEFAULT_LABEL, graph.GetOutNeighbours(vertexId));
+                outEdgeFetched = true;
+            }
+            // for (final String edgeLabel : edgeLabels) {
+            //     final Set<Edge> edgeSet = outEdgesId.get(edgeLabel);
+            //     if (null != edgeSet) {
+            //         edgeList.addAll(edgeSet);
+            //     }
+            // }
+            final String edgeLabel = Edge.DEFAULT_LABEL;
+            final Set<Edge> edgeSet = outEdgesId.get(edgeLabel);
+            if (null != edgeSet) {
+                edgeList.addAll(edgeSet);
             }
         }
         if (direction.equals(Direction.IN) || direction.equals(Direction.BOTH)) {
-            for (final String edgeLabel : edgeLabels) {
-                final Set<Edge> edgeSet = inEdgesId.get(edgeLabel);
-                if (null != edgeSet) {
-                    edges.addAll(edgeSet);
-                }
+            if (!inEdgeFetched) {
+                inEdgesId = new HashMap<>();
+                inEdgesId.put(Edge.DEFAULT_LABEL, graph.GetInNeighbours(vertexId));
+                inEdgeFetched = true;
+            }
+            // for (final String edgeLabel : edgeLabels) {
+            //     final Set<Edge> edgeSet = inEdgesId.get(edgeLabel);
+            //     if (null != edgeSet) {
+            //         edgeList.addAll(edgeSet);
+            //     }
+            // }
+            final String edgeLabel = Edge.DEFAULT_LABEL;
+            final Set<Edge> edgeSet = outEdgesId.get(edgeLabel);
+            if (null != edgeSet) {
+                edgeList.addAll(edgeSet);
             }
         }
-        return TinkerHelper.inComputerMode(this.graph) ?
-                IteratorUtils.filter(edges.iterator(), e -> this.graph.graphComputerView.legalEdge(this, e)) :
-                edges.iterator();
+        return TinkerHelper.inComputerMode(this.graph)
+                ? IteratorUtils.filter(edgeList.iterator(), e -> this.graph.graphComputerView.legalEdge(this, e))
+                : edgeList.iterator();
     }
 
     @Override
     public Iterator<Vertex> vertices(final Direction direction, final String... edgeLabels) {
-        return direction.equals(Direction.BOTH) ?
-                IteratorUtils.concat(
-                        IteratorUtils.map(this.edges(Direction.OUT, edgeLabels), Edge::inVertex),
-                        IteratorUtils.map(this.edges(Direction.IN, edgeLabels), Edge::outVertex)
-                ) :
-                IteratorUtils.map(this.edges(direction, edgeLabels), direction.equals(Direction.OUT) ? Edge::inVertex : Edge::outVertex);
+        return direction.equals(Direction.BOTH) ? IteratorUtils.concat(
+                IteratorUtils.map(this.edges(Direction.OUT, edgeLabels), Edge::inVertex),
+                IteratorUtils.map(this.edges(Direction.IN, edgeLabels), Edge::outVertex))
+                : IteratorUtils.map(this.edges(direction, edgeLabels),
+                        direction.equals(Direction.OUT) ? Edge::inVertex : Edge::outVertex);
     }
 
     @Override
