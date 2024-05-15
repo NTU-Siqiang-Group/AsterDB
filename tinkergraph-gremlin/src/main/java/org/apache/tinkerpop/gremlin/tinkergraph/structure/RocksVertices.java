@@ -28,6 +28,7 @@ import org.rocksdb.RocksDBException;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
 
 public class RocksVertices {
   private final RocksGraph db;
@@ -85,6 +86,11 @@ public class RocksVertices {
     Object outVertexId = getOutVertexIdFromEdgeId(edgeId);
     Object inVertexId = getInVertexIdFromEdgeId(edgeId);
     // TODO
+    try {
+      this.db.DeleteEdge(Long.parseLong(outVertexId.toString()), Long.parseLong(inVertexId.toString()));
+    } catch (Exception e) {
+      // do nothing
+    }
   }
 
   public Boolean containsKey(final Object key) {
