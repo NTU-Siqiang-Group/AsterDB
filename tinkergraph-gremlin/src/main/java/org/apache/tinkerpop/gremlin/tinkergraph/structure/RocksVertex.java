@@ -22,12 +22,8 @@ import org.apache.tinkerpop.gremlin.structure.*;
 import org.apache.tinkerpop.gremlin.structure.util.StringFactory;
 import org.apache.tinkerpop.gremlin.util.iterator.IteratorUtils;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class RocksVertex extends TinkerElement implements Vertex {
     final Object vertexId;
@@ -43,6 +39,8 @@ public class RocksVertex extends TinkerElement implements Vertex {
         super(id, Vertex.DEFAULT_LABEL);
         this.vertexId = id;
         this.graph = graph;
+        this.outEdgeFetched = false;
+        this.inEdgeFetched = false;
     }
 
     public RocksVertex(final Object id, final TinkerGraph graph, final Map<String, Set<Edge>> outEdgesId,
@@ -77,7 +75,11 @@ public class RocksVertex extends TinkerElement implements Vertex {
     @Override
     public <V> VertexProperty<V> property(final VertexProperty.Cardinality cardinality, final String key, final V value,
             final Object... keyValues) {
-        return null;
+        graph.addVertexProperty(vertexId, key, value);
+        final Property<V> newProperty = new TinkerProperty<>(this, key, value);
+        //if (null == this.properties) this.properties = new ConcurrentHashMap<>();
+        //this.properties.put(key, newProperty);
+        return newProperty;
     }
 
     @Override

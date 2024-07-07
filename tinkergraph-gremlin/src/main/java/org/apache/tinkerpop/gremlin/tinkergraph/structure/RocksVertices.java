@@ -21,9 +21,12 @@ package org.apache.tinkerpop.gremlin.tinkergraph.structure;
 import org.apache.tinkerpop.gremlin.structure.Direction;
 import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Graph;
+import org.apache.tinkerpop.gremlin.structure.Property;
+import org.apache.tinkerpop.gremlin.structure.TinkerProperty;
 import org.rocksdb.ColumnFamilyHandle;
 import org.rocksdb.RocksGraph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
+import org.apache.tinkerpop.gremlin.structure.util.ElementHelper;
 import org.rocksdb.RocksDBException;
 
 import java.util.*;
@@ -67,6 +70,25 @@ public class RocksVertices {
     }
     return new RocksEdge(encodeEdgeId(source.id(), target.id()), source.id(), Edge.DEFAULT_LABEL, target.id(),
         this.graph);
+  }
+
+  public void addVertexProperty(final Object vertexId,, final String key,
+      final V value) {
+    long numId = Long.parseLong(String.valueOf(vertexId));
+    db.AddVertexProperty(numId, key,
+        String.valueOf(value));
+    // final Property<V> newProperty = new TinkerProperty<>(this, key, value);
+    // return newProperty;
+  }
+
+  public void addEdgeProperty(final Object edgeId, final String key,
+      final V value) {
+    Object source = getOutVertexIdFromEdgeId(edgeId);
+    Object target = getInVertexIdFromEdgeId(edgeId);
+    db.AddEdgeProperty(Long.parseLong(source.toString()), Long.parseLong(target.toString()), key,
+        String.valueOf(value));
+    // final Property<V> newProperty = new TinkerProperty<>(this, key, value);
+    // return newProperty;
   }
 
   void removeVertex(final Object vertexId) {

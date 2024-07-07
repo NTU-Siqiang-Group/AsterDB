@@ -22,6 +22,7 @@ import org.apache.tinkerpop.gremlin.structure.util.StringFactory;
 
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class RocksEdge extends TinkerElement implements Edge {
     private final Object edgeId;
@@ -38,7 +39,11 @@ public class RocksEdge extends TinkerElement implements Edge {
     }
     @Override
     public <V> Property<V> property(String key, V value) {
-        return null;
+        graph.addEdgeProperty(edgeId, key, value);
+        final Property<V> newProperty = new TinkerProperty<>(this, key, value);
+        // if (null == this.properties) this.properties = new ConcurrentHashMap<>();
+        // this.properties.put(key, newProperty);
+        return newProperty;
     }
 
     @Override

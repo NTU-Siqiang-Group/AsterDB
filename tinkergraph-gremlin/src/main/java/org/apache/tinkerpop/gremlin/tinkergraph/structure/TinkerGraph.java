@@ -32,6 +32,7 @@ import org.apache.tinkerpop.gremlin.structure.util.StringFactory;
 import org.apache.tinkerpop.gremlin.tinkergraph.process.traversal.strategy.optimization.TinkerGraphCountStrategy;
 import org.apache.tinkerpop.gremlin.tinkergraph.process.traversal.strategy.optimization.TinkerGraphStepStrategy;
 import org.apache.tinkerpop.gremlin.tinkergraph.services.TinkerServiceRegistry;
+import org.apache.tinkerpop.gremlin.tinkergraph.services.TinkerServiceRegistry.LambdaServiceFactory.Options;
 import org.apache.tinkerpop.gremlin.util.iterator.IteratorUtils;
 
 import java.nio.charset.StandardCharsets;
@@ -117,13 +118,15 @@ public class TinkerGraph extends AbstractTinkerGraph {
             System.out.println(e);
         }
     }
+
     public void setCacheMissRate(double ratio) {
         try {
             db.SetCacheMissRate(ratio);
-        } catch(Exception e) {
+        } catch (Exception e) {
             // do nothing
         }
     }
+
     /**
      * An empty private constructor that initializes {@link TinkerGraph}.
      */
@@ -218,9 +221,9 @@ public class TinkerGraph extends AbstractTinkerGraph {
         // keyValues);
         // this.vertices.put(vertex.id(), vertex);
         // this.vertices.addVertex(vertex.id(), vertex);
-        //Object vid = vertexIdManager.getNextId(this);
+        // Object vid = vertexIdManager.getNextId(this);
 
-        //TODO: implement a more concrete id manager
+        // TODO: implement a more concrete id manager
 
         Object id = currentVertexId;
         currentVertexId = currentVertexId + 1;
@@ -257,7 +260,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
         // addOutEdge(outVertex, label, edge);
         // addInEdge(inVertex, label, edge);
         // return edge;
-        //return this.vertices.addEdge(outVertex, inVertex);
+        // return this.vertices.addEdge(outVertex, inVertex);
         return null;
     }
 
@@ -302,6 +305,16 @@ public class TinkerGraph extends AbstractTinkerGraph {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void addVertexProperty(final RocksVertex source, final String key,
+            final V value) {
+        this.vertices.addVertexProperty(source, key, value);
+    }
+
+    public void addEdgeProperty(final Object edgeId, final String key,
+            final V value) {
+                this.vertices.addEdgeProperty(edgeId, key, value);
     }
 
     @Override
@@ -377,19 +390,19 @@ public class TinkerGraph extends AbstractTinkerGraph {
     public Iterator<Vertex> vertices(final Object... vertexIds) {
         // return createElementIterator(Vertex.class, vertices.inMemVertices,
         // vertexIdManager, vertexIds);
-        List<Object> idList = new  ArrayList<>();
-        for (int i = 0; i < vertexIds.length; i++) {  
+        List<Object> idList = new ArrayList<>();
+        for (int i = 0; i < vertexIds.length; i++) {
             Long lid = Long.parseLong(String.valueOf(vertexIds[i]));
-            if(lid < currentVertexId){
-                idList.add(lid);
-            }
-        } 
-        if (vertexIds == null || vertexIds.length == 0) {
-            for(Long lid = 0L; lid < currentVertexId; lid = lid + 1){
+            if (lid < currentVertexId) {
                 idList.add(lid);
             }
         }
-        //List<Object> idList = Arrays.asList(vertexIds);
+        if (vertexIds == null || vertexIds.length == 0) {
+            for (Long lid = 0L; lid < currentVertexId; lid = lid + 1) {
+                idList.add(lid);
+            }
+        }
+        // List<Object> idList = Arrays.asList(vertexIds);
         return IteratorUtils.map(idList, this::vertex).iterator();
     }
 
@@ -554,11 +567,11 @@ public class TinkerGraph extends AbstractTinkerGraph {
     public <E extends Element> void createIndex(final String key, final Class<E> elementClass) {
         if (Vertex.class.isAssignableFrom(elementClass)) {
             if (null == this.vertexIndex)
-                this.vertexIndex = new TinkerIndex<>(this, TinkerVertex.class);
+                this.vertexIndex = new RocksIndexVertex<>(this, TinkerVertex.class, db);
             this.vertexIndex.createKeyIndex(key);
         } else if (Edge.class.isAssignableFrom(elementClass)) {
             if (null == this.edgeIndex)
-                this.edgeIndex = new TinkerIndex<>(this, TinkerEdge.class);
+                this.edgeIndex = new RocksIndexEdge<>(this, TinkerEdge.class, db);
             this.edgeIndex.createKeyIndex(key);
         } else {
             throw new IllegalArgumentException("Class is not indexable: " + elementClass);

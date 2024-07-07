@@ -68,8 +68,8 @@ public abstract class AbstractTinkerGraph implements Graph {
 
     protected TinkerGraphVariables variables = null;
     protected TinkerGraphComputerView graphComputerView = null;
-    protected AbstractTinkerIndex<TinkerVertex> vertexIndex = null;
-    protected AbstractTinkerIndex<TinkerEdge> edgeIndex = null;
+    protected AbstractTinkerIndex<RocksVertex> vertexIndex = null;
+    protected AbstractTinkerIndex<RocksEdge> edgeIndex = null;
 
     protected IdManager<Vertex> vertexIdManager;
     protected IdManager<Edge> edgeIdManager;
