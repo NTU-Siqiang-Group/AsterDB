@@ -307,9 +307,9 @@ public class TinkerGraph extends AbstractTinkerGraph {
         return null;
     }
 
-    public void addVertexProperty(final RocksVertex source, final String key,
+    public void addVertexProperty(final Object vertexId, final String key,
             final V value) {
-        this.vertices.addVertexProperty(source, key, value);
+        this.vertices.addVertexProperty(vertexId, key, value);
     }
 
     public void addEdgeProperty(final Object edgeId, final String key,
