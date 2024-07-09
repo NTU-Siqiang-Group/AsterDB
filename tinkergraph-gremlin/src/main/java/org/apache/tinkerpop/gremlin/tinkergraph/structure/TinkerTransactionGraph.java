@@ -469,10 +469,10 @@ public final class TinkerTransactionGraph extends AbstractTinkerGraph {
      */
     public <E extends Element> void createIndex(final String key, final Class<E> elementClass) {
         if (Vertex.class.isAssignableFrom(elementClass)) {
-            if (null == this.vertexIndex) this.vertexIndex = new TinkerTransactionalIndex<>(this, TinkerVertex.class);
+            if (null == this.vertexIndex) this.vertexIndex = new TinkerTransactionalIndex<>(this, RocksVertex.class);
             this.vertexIndex.createKeyIndex(key);
         } else if (Edge.class.isAssignableFrom(elementClass)) {
-            if (null == this.edgeIndex) this.edgeIndex = new TinkerTransactionalIndex<>(this, TinkerEdge.class);
+            if (null == this.edgeIndex) this.edgeIndex = new TinkerTransactionalIndex<>(this, RocksEdge.class);
             this.edgeIndex.createKeyIndex(key);
         } else {
             throw new IllegalArgumentException("Class is not indexable: " + elementClass);

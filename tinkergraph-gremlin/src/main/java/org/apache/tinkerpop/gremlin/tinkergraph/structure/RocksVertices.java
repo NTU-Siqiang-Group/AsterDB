@@ -22,7 +22,7 @@ import org.apache.tinkerpop.gremlin.structure.Direction;
 import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Property;
-import org.apache.tinkerpop.gremlin.structure.TinkerProperty;
+//import org.apache.tinkerpop.gremlin.structure.TinkerProperty;
 import org.rocksdb.ColumnFamilyHandle;
 import org.rocksdb.RocksGraph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
@@ -72,21 +72,29 @@ public class RocksVertices {
         this.graph);
   }
 
-  public void addVertexProperty(final Object vertexId,, final String key,
-      final V value) {
+  public void addVertexProperty(final Object vertexId, final String key,
+      final Object value) {
     long numId = Long.parseLong(String.valueOf(vertexId));
+    try {
     db.AddVertexProperty(numId, key,
         String.valueOf(value));
+    } catch (RocksDBException e) {
+      e.printStackTrace();
+    }
     // final Property<V> newProperty = new TinkerProperty<>(this, key, value);
     // return newProperty;
   }
 
   public void addEdgeProperty(final Object edgeId, final String key,
-      final V value) {
+      final Object value) {
     Object source = getOutVertexIdFromEdgeId(edgeId);
     Object target = getInVertexIdFromEdgeId(edgeId);
+    try {
     db.AddEdgeProperty(Long.parseLong(source.toString()), Long.parseLong(target.toString()), key,
         String.valueOf(value));
+    } catch (RocksDBException e) {
+      e.printStackTrace();
+    }
     // final Property<V> newProperty = new TinkerProperty<>(this, key, value);
     // return newProperty;
   }

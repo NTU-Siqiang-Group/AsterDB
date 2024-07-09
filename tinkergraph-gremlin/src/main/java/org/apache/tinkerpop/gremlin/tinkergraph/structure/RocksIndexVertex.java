@@ -36,34 +36,44 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-final class RocksIndexVertex<T extends Element> extends AbstractTinkerIndex<T> {
+final class RocksIndexVertex extends AbstractTinkerIndex<RocksVertex> {
 
-    protected Map<String, Map<Object, Set<T>>> index = new ConcurrentHashMap<>();
+    //protected Map<String, Map<Object, Set<T>>> index = new ConcurrentHashMap<>();
     private final RocksGraph db;
+    private final TinkerGraph tinkerGraph;
 
-    public RocksIndexVertex(final TinkerGraph graph, final Class<T> indexClass, RocksGraph db) {
+
+    public RocksIndexVertex(final TinkerGraph graph, final Class<RocksVertex> indexClass, RocksGraph db) {
         super(graph, indexClass);
+        this.tinkerGraph = graph;
         this.db = db;
     }
 
-    public void attachDB(RocksGraph db) {
-        this.db = db;
-    }
-
-    protected void put(final String key, final Object value, final T element) {
+    // protected void put(final String key, final Object value, final T element) {
         
-    }
+    // }
 
     @Override
-    public List<T> get(final String key, final Object value) {
+    public List<RocksVertex> get(final String key, final Object value) {
+        try{
+        System.out.println(key);
+        System.out.println(value);
         long[] vertexArray = db.GetVertexWithProperty(key, String.valueOf(value));
         Set<RocksVertex> vertexlist = new HashSet<>();
         for (int i = 0; i < vertexArray.length; i += 1) {
             long source = vertexArray[i];
-            RocksVertex edge = RocksVertex(source, this.graph, new ConcurrentHashMap<>(), new ConcurrentHashMap<>());
-            vertexlist.add(edge);
+            RocksVertex vertex = new RocksVertex(source, this.tinkerGraph, new ConcurrentHashMap<>(), new ConcurrentHashMap<>());
+            final VertexProperty<Object> property =  new TinkerVertexProperty<Object>(null, key, value);
+            List<VertexProperty> propertyList = new ArrayList<VertexProperty>();
+            propertyList.add(property);
+            vertex.properties.put(key, propertyList);
+            vertexlist.add(vertex);
         }
-        return new ArrayList<>(vertexArray);
+        return new ArrayList<>(vertexlist);
+        } catch (RocksDBException e) {
+        e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -72,17 +82,17 @@ final class RocksIndexVertex<T extends Element> extends AbstractTinkerIndex<T> {
     }
 
     @Override
-    public void remove(final String key, final Object value, final T element) {
+    public void remove(final String key, final Object value, final RocksVertex element) {
         
     }
 
     @Override
-    public void removeElement(final T element) {
+    public void removeElement(final RocksVertex element) {
         
     }
 
     @Override
-    public void autoUpdate(final String key, final Object newValue, final Object oldValue, final T element) {
+    public void autoUpdate(final String key, final Object newValue, final Object oldValue, final RocksVertex element) {
         
     }
 

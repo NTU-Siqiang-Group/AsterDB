@@ -87,7 +87,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
         try {
             // FileUtils.deleteDirectory(new File(path));
             RocksDB.loadLibrary();
-            Options options = new Options();
+            org.rocksdb.Options options = new org.rocksdb.Options();
             options.setCreateIfMissing(true);
             // List<ColumnFamilyDescriptor> columnFamilyDescriptorList = new ArrayList<>();
             // columnFamilyDescriptorList.add(new
@@ -308,12 +308,12 @@ public class TinkerGraph extends AbstractTinkerGraph {
     }
 
     public void addVertexProperty(final Object vertexId, final String key,
-            final V value) {
+            final Object value) {
         this.vertices.addVertexProperty(vertexId, key, value);
     }
 
     public void addEdgeProperty(final Object edgeId, final String key,
-            final V value) {
+            final Object value) {
                 this.vertices.addEdgeProperty(edgeId, key, value);
     }
 
@@ -410,6 +410,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
     public Iterator<Edge> edges(final Object... edgeIds) {
         // return createElementIterator(Edge.class, edges.inMemEdges, edgeIdManager,
         // edgeIds);
+        System.out.println("tinkergraph edges");
         List<Object> idList = Arrays.asList(edgeIds);
         return IteratorUtils.map(idList, this::edge).iterator();
     }
@@ -567,11 +568,11 @@ public class TinkerGraph extends AbstractTinkerGraph {
     public <E extends Element> void createIndex(final String key, final Class<E> elementClass) {
         if (Vertex.class.isAssignableFrom(elementClass)) {
             if (null == this.vertexIndex)
-                this.vertexIndex = new RocksIndexVertex<>(this, TinkerVertex.class, db);
+                this.vertexIndex = new RocksIndexVertex(this, RocksVertex.class, db);
             this.vertexIndex.createKeyIndex(key);
         } else if (Edge.class.isAssignableFrom(elementClass)) {
             if (null == this.edgeIndex)
-                this.edgeIndex = new RocksIndexEdge<>(this, TinkerEdge.class, db);
+                this.edgeIndex = new RocksIndexEdge(this, RocksEdge.class, db);
             this.edgeIndex.createKeyIndex(key);
         } else {
             throw new IllegalArgumentException("Class is not indexable: " + elementClass);

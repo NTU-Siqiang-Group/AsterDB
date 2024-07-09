@@ -37,33 +37,44 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-final class RocksIndexEdge<T extends Element> extends AbstractTinkerIndex<T> {
+final class RocksIndexEdge extends AbstractTinkerIndex<RocksEdge>{
 
-    protected Map<String, Map<Object, Set<T>>> index = new ConcurrentHashMap<>();
+    //protected Map<String, Map<Object, Set<T>>> index = new ConcurrentHashMap<>();
     private final RocksGraph db;
+    private final TinkerGraph tinkerGraph;
 
-    public RocksIndexEdge(final TinkerGraph graph, final Class<T> indexClass, RocksGraph db) {
+    public RocksIndexEdge(final TinkerGraph graph, final Class<RocksEdge> indexClass, RocksGraph db) {
         super(graph, indexClass);
         this.db = db;
+        this.tinkerGraph = graph;
     }
 
-    protected void put(final String key, final Object value, final T element) {
+    protected void put(final String key, final Object value, final RocksEdge element) {
         
     }
 
     @Override
-    public List<T> get(final String key, final Object value) {
+    public List<RocksEdge> get(final String key, final Object value) {
+        try{
+        System.out.println(key);
+        System.out.println(value);
         long[] edgeArray = db.GetEdgeWithProperty(key, String.valueOf(value));
         Set<RocksEdge> edgeList = new HashSet<>();
         for (int i = 0; i < edgeArray.length; i += 2) {
-            long source = edgeArray[i];
-            long target = edgeArray[i + 1];
+            Object source = edgeArray[i];
+            Object target = edgeArray[i + 1];
             Object edgeId;
-            edgeId = target + "-" + source.toString();
-            RocksEdge edge = new RocksEdge(edgeId, source, "edgeLabel", target, this);
+            edgeId = target.toString() + "-" + source.toString();
+            RocksEdge edge = new RocksEdge(edgeId, source, "edgeLabel", target, this.tinkerGraph);
+            final Property<Object> property =  new TinkerProperty<Object>(edge, key, value);
+            edge.propertyMap.put(key, property);
             edgeList.add(edge);
         }
         return new ArrayList<>(edgeList);
+        } catch (RocksDBException e) {
+        e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -72,23 +83,23 @@ final class RocksIndexEdge<T extends Element> extends AbstractTinkerIndex<T> {
     }
 
     @Override
-    public void remove(final String key, final Object value, final T element) {
+    public void remove(final String key, final Object value, final RocksEdge element) {
         
     }
 
     @Override
-    public void removeElement(final T element) {
+    public void removeElement(final RocksEdge element) {
         
     }
 
     @Override
-    public void autoUpdate(final String key, final Object newValue, final Object oldValue, final T element) {
+    public void autoUpdate(final String key, final Object newValue, final Object oldValue, final RocksEdge element) {
         
     }
 
     @Override
     public void createKeyIndex(final String key) {
-        
+        this.indexedKeys.add(key);
     }
 
     @Override
