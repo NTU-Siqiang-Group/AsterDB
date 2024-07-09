@@ -98,14 +98,15 @@ public final class TinkerGraphStep<S, E extends Element> extends GraphStep<S, E>
             iterator = Collections.emptyIterator();
         else if (this.ids.length > 0)
             iterator = this.iteratorList(graph.vertices(this.ids));
-        else
+        else{
+            // iterator = (null == indexedContainer ?
+            //         this.iteratorList(graph.vertices()) : TinkerIndexHelper.queryVertexIndex(graph, indexedContainer.getKey(), indexedContainer.getPredicate().getValue()).iterator());
             iterator = (null == indexedContainer ?
                     this.iteratorList(graph.vertices()) :
                     IteratorUtils.filter(TinkerIndexHelper.queryVertexIndex(graph, indexedContainer.getKey(), indexedContainer.getPredicate().getValue()).iterator(),
                                          vertex -> HasContainer.testAll(vertex, this.hasContainers)));
-
+        }
         iterators.add(iterator);
-
         return iterator;
     }
 

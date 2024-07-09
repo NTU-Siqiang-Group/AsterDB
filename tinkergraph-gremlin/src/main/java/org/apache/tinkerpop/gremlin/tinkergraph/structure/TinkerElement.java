@@ -43,6 +43,11 @@ public abstract class TinkerElement implements Element {
         this.currentVersion = currentVersion;
     }
 
+    protected TinkerElement(){
+        this.id = 0;
+        this.label = "0";
+    }
+
     @Override
     public int hashCode() {
         return ElementHelper.hashCode(this);

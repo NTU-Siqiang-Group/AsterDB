@@ -56,14 +56,12 @@ final class RocksIndexVertex extends AbstractTinkerIndex<RocksVertex> {
     @Override
     public List<RocksVertex> get(final String key, final Object value) {
         try{
-        System.out.println(key);
-        System.out.println(value);
         long[] vertexArray = db.GetVertexWithProperty(key, String.valueOf(value));
         Set<RocksVertex> vertexlist = new HashSet<>();
         for (int i = 0; i < vertexArray.length; i += 1) {
             long source = vertexArray[i];
             RocksVertex vertex = new RocksVertex(source, this.tinkerGraph, new ConcurrentHashMap<>(), new ConcurrentHashMap<>());
-            final VertexProperty<Object> property =  new TinkerVertexProperty<Object>(null, key, value);
+            final VertexProperty<Object> property =  new TinkerVertexProperty<Object>(key, value);
             List<VertexProperty> propertyList = new ArrayList<VertexProperty>();
             propertyList.add(property);
             vertex.properties.put(key, propertyList);
@@ -98,7 +96,7 @@ final class RocksIndexVertex extends AbstractTinkerIndex<RocksVertex> {
 
     @Override
     public void createKeyIndex(final String key) {
-        
+        this.indexedKeys.add(key);
     }
 
     @Override

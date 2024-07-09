@@ -56,8 +56,6 @@ final class RocksIndexEdge extends AbstractTinkerIndex<RocksEdge>{
     @Override
     public List<RocksEdge> get(final String key, final Object value) {
         try{
-        System.out.println(key);
-        System.out.println(value);
         long[] edgeArray = db.GetEdgeWithProperty(key, String.valueOf(value));
         Set<RocksEdge> edgeList = new HashSet<>();
         for (int i = 0; i < edgeArray.length; i += 2) {
