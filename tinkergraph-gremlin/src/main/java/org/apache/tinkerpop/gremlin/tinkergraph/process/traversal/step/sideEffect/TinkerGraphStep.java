@@ -105,9 +105,8 @@ public final class TinkerGraphStep<S, E extends Element> extends GraphStep<S, E>
                     this.iteratorList(graph.vertices()) :
                     IteratorUtils.filter(TinkerIndexHelper.queryVertexIndex(graph, indexedContainer.getKey(), indexedContainer.getPredicate().getValue()).iterator(),
                                          vertex -> HasContainer.testAll(vertex, this.hasContainers)));
-
+        }
         iterators.add(iterator);
-
         return iterator;
     }
 
@@ -117,7 +116,6 @@ public final class TinkerGraphStep<S, E extends Element> extends GraphStep<S, E>
         final Iterator<HasContainer> itty = IteratorUtils.filter(hasContainers.iterator(),
                 c -> c.getPredicate().getBiPredicate() == Compare.eq && indexedKeys.contains(c.getKey()));
         return itty.hasNext() ? itty.next() : null;
-
     }
 
     @Override
