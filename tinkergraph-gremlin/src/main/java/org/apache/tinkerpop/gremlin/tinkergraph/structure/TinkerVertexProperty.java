@@ -56,6 +56,13 @@ public class TinkerVertexProperty<V> extends TinkerElement implements VertexProp
         this(((AbstractTinkerGraph) vertex.graph()).vertexPropertyIdManager.getNextId((AbstractTinkerGraph) vertex.graph()), vertex, key, value, propertyKeyValues);
     }
 
+    public TinkerVertexProperty(final String key, final V value) {
+        this.key = key;
+        this.value = value;
+        this.vertex = null;
+        this.allowNullPropertyValues = true;
+    }
+
     /**
      * Use this constructor to construct {@link VertexProperty} instances for {@link TinkerGraph} where the {@code id}
      * can be explicitly set and validated against the expected data type.

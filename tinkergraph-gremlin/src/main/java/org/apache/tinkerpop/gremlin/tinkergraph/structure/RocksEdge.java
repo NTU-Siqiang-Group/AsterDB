@@ -19,15 +19,22 @@
 package org.apache.tinkerpop.gremlin.tinkergraph.structure;
 import org.apache.tinkerpop.gremlin.structure.*;
 import org.apache.tinkerpop.gremlin.structure.util.StringFactory;
+import org.apache.tinkerpop.gremlin.structure.util.ElementHelper;
+import org.apache.tinkerpop.gremlin.util.iterator.IteratorUtils;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
 
 public class RocksEdge extends TinkerElement implements Edge {
     private final Object edgeId;
     private final Object outVertexId;
     private final Object inVertexId;
-
+    public Map<String, Property> propertyMap;
     private final TinkerGraph graph;
     public RocksEdge(final Object id, final Object outVertexId, final String label, final Object inVertexId, final TinkerGraph graph) {
         super(id, label);
@@ -35,10 +42,15 @@ public class RocksEdge extends TinkerElement implements Edge {
         this.outVertexId = outVertexId;
         this.inVertexId = inVertexId;
         this.graph = graph;
+        propertyMap = new HashMap<>();
     }
     @Override
     public <V> Property<V> property(String key, V value) {
-        return null;
+        graph.addEdgeProperty(edgeId, key, value);
+        final Property<V> newProperty = new TinkerProperty<>(this, key, value);
+        // if (null == this.properties) this.properties = new ConcurrentHashMap<>();
+        // this.properties.put(key, newProperty);
+        return newProperty;
     }
 
     @Override
@@ -83,6 +95,14 @@ public class RocksEdge extends TinkerElement implements Edge {
 
     @Override
     public <V> Iterator<Property<V>> properties(String... propertyKeys) {
-        return null;
+        if (null == this.propertyMap) return Collections.emptyIterator();
+        if (propertyKeys.length == 1) {
+            if (null == propertyKeys[0])
+                return Collections.emptyIterator();
+            final Property<V> property = this.propertyMap.get(propertyKeys[0]);
+            //final Property<V> property =  new TinkerProperty<Object>(this, propertyKeys[0], this.propertyMap.get(propertyKeys[0]));
+            return null == property ? Collections.emptyIterator() : IteratorUtils.of(property);
+        } else
+            return (Iterator) this.propertyMap.entrySet().stream().filter(entry -> ElementHelper.keyExists(entry.getKey(), propertyKeys)).map(entry -> entry.getValue()).collect(Collectors.toList()).iterator();
     }
 }

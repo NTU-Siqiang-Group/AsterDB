@@ -20,14 +20,17 @@ package org.apache.tinkerpop.gremlin.tinkergraph.structure;
 
 import org.apache.tinkerpop.gremlin.structure.*;
 import org.apache.tinkerpop.gremlin.structure.util.StringFactory;
+import org.apache.tinkerpop.gremlin.structure.util.ElementHelper;
 import org.apache.tinkerpop.gremlin.util.iterator.IteratorUtils;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
 
 public class RocksVertex extends TinkerElement implements Vertex {
     final Object vertexId;
@@ -38,11 +41,15 @@ public class RocksVertex extends TinkerElement implements Vertex {
     public Boolean outEdgeFetched = false;
     public Boolean inEdgeFetched = false;
     public Boolean isRemoved = false;
+    protected Map<String, List<VertexProperty>> properties;
 
     public RocksVertex(final Object id, final TinkerGraph graph) {
         super(id, Vertex.DEFAULT_LABEL);
         this.vertexId = id;
         this.graph = graph;
+        this.outEdgeFetched = false;
+        this.inEdgeFetched = false;
+        this.properties = new HashMap<>();
     }
 
     public RocksVertex(final Object id, final TinkerGraph graph, final Map<String, Set<Edge>> outEdgesId,
@@ -54,6 +61,7 @@ public class RocksVertex extends TinkerElement implements Vertex {
         this.inEdgesId = inEdgesId;
         this.outEdgeFetched = false;
         this.inEdgeFetched = false;
+        this.properties = new HashMap<>();
     }
 
 
@@ -77,6 +85,13 @@ public class RocksVertex extends TinkerElement implements Vertex {
     @Override
     public <V> VertexProperty<V> property(final VertexProperty.Cardinality cardinality, final String key, final V value,
             final Object... keyValues) {
+        graph.addVertexProperty(vertexId, key, value);
+        //final Property<V> newProperty = new TinkerProperty<>(this, key, value);
+        // Object idValue = null;
+        // final VertexProperty<V> newProperty = createTinkerVertexProperty(idValue, this, key, value);
+        //if (null == this.properties) this.properties = new ConcurrentHashMap<>();
+        //this.properties.put(key, newProperty);
+        //return newProperty;
         return null;
     }
 
@@ -174,6 +189,25 @@ public class RocksVertex extends TinkerElement implements Vertex {
 
     @Override
     public <V> Iterator<VertexProperty<V>> properties(final String... propertyKeys) {
-        return null;
+        if (this.removed) return Collections.emptyIterator();
+        // if (TinkerHelper.inComputerMode((AbstractTinkerGraph) graph()))
+        //     return (Iterator) ((AbstractTinkerGraph) graph()).graphComputerView.getProperties(TinkerVertex.this).stream().filter(p -> ElementHelper.keyExists(p.key(), propertyKeys)).iterator();
+        // else 
+        {
+            if (null == this.properties) return Collections.emptyIterator();
+            if (propertyKeys.length == 1) {
+                if (null == propertyKeys[0])
+                    return Collections.emptyIterator();
+                final List<VertexProperty> properties = this.properties.getOrDefault(propertyKeys[0], Collections.emptyList());
+                if (properties.size() == 1) {
+                    return IteratorUtils.of(properties.get(0));
+                } else if (properties.isEmpty()) {
+                    return Collections.emptyIterator();
+                } else {
+                    return (Iterator) new ArrayList<>(properties).iterator();
+                }
+            } else
+                return (Iterator) this.properties.entrySet().stream().filter(entry -> ElementHelper.keyExists(entry.getKey(), propertyKeys)).flatMap(entry -> entry.getValue().stream()).collect(Collectors.toList()).iterator();
+        }
     }
 }
