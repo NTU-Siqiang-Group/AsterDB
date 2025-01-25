@@ -20,9 +20,10 @@
 /**
  * @author Igor Ostapenko
  */
-'use strict';
 
-module.exports = class UuidSerializer {
+import { Buffer } from 'buffer';
+
+export default class UuidSerializer {
   constructor(ioc) {
     this.ioc = ioc;
     this.ioc.serializers[ioc.DataType.UUID] = this;
@@ -116,4 +117,4 @@ module.exports = class UuidSerializer {
       throw this.ioc.utils.des_error({ serializer: this, args: arguments, cursor, err });
     }
   }
-};
+}

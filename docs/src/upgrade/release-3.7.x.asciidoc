@@ -21,24 +21,82 @@ image::https://raw.githubusercontent.com/apache/tinkerpop/master/docs/static/ima
 
 *Gremfir Master of the Pan Flute*
 
-== TinkerPop 3.7.2
+== TinkerPop 3.7.4
 
 *Release Date: NOT OFFICIALLY RELEASED YET*
 
-Please see the link:https://github.com/apache/tinkerpop/blob/3.7.2/CHANGELOG.asciidoc#release-3-7-2[changelog] for a
+Please see the link:https://github.com/apache/tinkerpop/blob/3.7.4/CHANGELOG.asciidoc#release-3-7-4[changelog] for a
 complete list of all the modifications that are part of this release.
 
 === Upgrading for Users
 
-==== Notice: Renaming `none()` step to `discard()` in 4.0.0
-`none()`, which is primarily used by `iterate()` to discard traversal results in remote contexts, will be renamed to
-`discard()` in release 4.0.0.
+==== Improved Server Memory Management
+
+A TinkerPop-specific `MessageSizeEstimator` was added to more accurately measure the size of responses being written
+back to the client. With a more accurate measurement, the server is able to better prevent exhaustion of direct memory
+by overly eager channels writing large result sets to slower clients. Overall, this change should help reduce the
+likelihood of the server hitting `OutOfMemoryExceptions` and other performance problems that may appear under certain
+workloads and network conditions.
+
+It is worth noting that logging around the `writeBufferHighWaterMark` has been modified to include a bit more
+information about the pause. This warning formerly was only issued on the first pause per request. Additional pauses
+for that request would not be noted in the logs. The warnings now appear periodically for a request, immediately for
+the first pause and then warnings will continue for subsequent pauses using an exponential backoff.
+
+See: link:https://issues.apache.org/jira/browse/TINKERPOP-3124[TINKERPOP-3124]
+
+==== Channel Metrics
+
+Gremlin Server has three new metrics in the `org.apache.tinkerpop.gremlin.server.GremlinServer` space:
+`channels.paused`, `channels.total`, and `channels.write-pauses`. These metrics are designed to provide more insight
+into channel (websocket and http) operations to use as a tool in understanding server memory issues and latency.
+
+See: link:https://tinkerpop.apache.org/docs/3.7.4/reference/#metrics[Reference Documentation - Metrics]
 
 === Upgrading for Providers
 
-==== Notice: Renaming NoneStep to DiscardStep in 4.0.0
-NoneStep, which is primarily used by `iterate()` to discard traversal results in remote contexts, will be renamed to
-DiscardStep in release 4.0.0 to make room for a list filtering NoneStep.
+==== Graph System Providers
+
+
+==== Graph Driver Providers
+
+
+== TinkerPop 3.7.3
+
+*Release Date: October 23, 2024*
+
+Please see the link:https://github.com/apache/tinkerpop/blob/3.7.3/CHANGELOG.asciidoc#release-3-7-3[changelog] for a
+complete list of all the modifications that are part of this release.
+
+=== Upgrading for Users
+
+==== GraphBinary Compatibility
+
+When properties on element were introduced and returned as default in 3.7.0, setting `ReferenceElementStrategy` on the
+server provided a way to continue to send references for lightweight wire transfer and compatibility reasons. However,
+an issue was discovered where when using GraphBinary, the 3.7.x server was not serializing properties as `null` as per
+the IO specification, but as empty lists instead. This caused deserialization failures in Python, JavaScript and Go
+driver versions 3.6.x or below.
+
+A fix was introduced to correct such error, where Gremlin Server versions 3.7.3 and above will return element properties
+as `null` when `ReferenceElementStrategy` is applied, or when `token` is used with `materializedProperties` option in
+3.7.x drivers. However, this also led to a change in 3.7.x driver behavior, where all non-Java drivers returns `null`
+instead of empty list. As such, an additional change was introduced in these GLVs, where `null` properties from
+reference elements will now deserialized into an empty list, to maintain such behavior with older 3.7.x drivers.
+
+One caveat is that when using 3.7.0 to 3.7.2 drivers to connect to 3.7.3 and above server, these drivers will not
+contain the deserialization change and return `null` as properties. In these cases, it is recommended to upgrade to
+3.7.3 drivers.
+
+See: link:https://tinkerpop.apache.org/docs/3.7.3/reference/#_properties_of_elements[Properties of Elements],
+link:https://issues.apache.org/jira/browse/TINKERPOP-3105[TINKERPOP-3105]
+
+== TinkerPop 3.7.2
+
+*Release Date: April 8, 2024*
+
+Please see the link:https://github.com/apache/tinkerpop/blob/3.7.2/CHANGELOG.asciidoc#release-3-7-2[changelog] for a
+complete list of all the modifications that are part of this release.
 
 == TinkerPop 3.7.1
 *Release Date: November 20, 2023*
@@ -49,8 +107,9 @@ complete list of all the modifications that are part of this release.
 === Upgrading for Users
 
 ==== String Manipulation Steps
-This version introduces the following new string manipulation steps `asString()`, `length()`, `toLower()`, `toUpper()`, `trim()`,
-`lTrim()`, `rTrim()`, `reverse()`, `replace()`, `split()`, `substring()`, and `format()`, as well as modifications to the `concat()` step introduced in 3.7.0.
+This version introduces the following new string manipulation steps `asString()`, `length()`, `toLower()`, `toUpper()`,
+`trim()`, `lTrim()`, `rTrim()`, `reverse()`, `replace()`, `split()`, `substring()`, and `format()`, as well as
+modifications to the `concat()` step introduced in 3.7.0.
 
 ===== Updates to String Step concat():
 Concat has been modified to take traversal varargs instead of a single traversal. Users no longer have to chain
@@ -63,7 +122,10 @@ gremlin> g.V(1).outE().as("a").V(1).values("name").concat(select("a").label(), s
 ==>markoknowsjosh
 ----
 
-A notable breaking change from 3.7.0 is that we have output order of `inject()` as a child of `concat()` to be consistent with other parent steps. Any 3.7.0 uses of `concat(inject(X))` should change to `concat(constant(X))` to retain the old semantics.
+A notable breaking change from 3.7.0 is that we have output order of `inject()` as a child of `concat()` to be
+consistent with other parent steps. Any 3.7.0 uses of `concat(inject(X))` should change to `concat(constant(X))` to
+retain the old semantics.
+
 [source,text]
 ----
 // 3.7.0
@@ -79,7 +141,7 @@ gremlin> g.inject("a").concat(constant("b"))
 ==>ab
 ----
 
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#concat-step[concat()-step]
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#concat-step[concat()-step]
 
 ===== New String Steps asString(), length(), toLower(), toUpper():
 
@@ -148,10 +210,10 @@ gremlin> g.V().values("name").fold().toUpper(local)
 ----
 
 See: link:https://issues.apache.org/jira/browse/TINKERPOP-2672[TINKERPOP-2672],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#asString-step[asString()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#length-step[length()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#toLower-step[toLower()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#toUpper-step[toUpper()-step]
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#asString-step[asString()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#length-step[length()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#toLower-step[toLower()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#toUpper-step[toUpper()-step]
 
 ===== New String Steps trim(), lTrim(), rTrim(), reverse():
 
@@ -201,10 +263,10 @@ gremlin> g.inject(["  hello  ", " world "]).trim(Scope.local)
 ==>[hello,world]
 ----
 
-See: link:https://tinkerpop.apache.org/docs/x.y.z/reference/#trim-step[trim()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#lTrim-step[lTrim()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#rTrim-step[rTrim()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#reverse-step[reverse()-step],
+See: link:https://tinkerpop.apache.org/docs/3.7.1/reference/#trim-step[trim()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#lTrim-step[lTrim()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#rTrim-step[rTrim()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#reverse-step[reverse()-step],
 link:https://issues.apache.org/jira/browse/TINKERPOP-2672[TINKERPOP-2672]
 
 ===== New String Steps replace(), split(), substring()
@@ -275,9 +337,9 @@ gremlin> g.V().hasLabel("person").values("name").substring(-2)
 ==>er
 ----
 
-See: link:https://tinkerpop.apache.org/docs/x.y.z/reference/#replace-step[replace()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#split-step[split()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#substring-step[substring()-step],
+See: link:https://tinkerpop.apache.org/docs/3.7.1/reference/#replace-step[replace()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#split-step[split()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#substring-step[substring()-step],
 link:https://issues.apache.org/jira/browse/TINKERPOP-2672[TINKERPOP-2672]
 
 ===== New String Step format()
@@ -299,7 +361,7 @@ gremlin> g.V(1).format("%{name} has %{_} connections").by(bothE().count())
 ----
 
 See: link:https://issues.apache.org/jira/browse/TINKERPOP-2334[TINKERPOP-2334],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#format-step[format()-step]
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#format-step[format()-step]
 
 ==== List Manipulation Steps
 Additional List manipulation/filter steps have been added to replace the use of closures: `any()`, `all()`, `product()`,
@@ -332,15 +394,15 @@ gremlin> g.V().values("age").fold().conjoin("-")
 ----
 
 See: link:https://issues.apache.org/jira/browse/TINKERPOP-2978[TINKERPOP-2978],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#all-step[all()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#any-step[any()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#product-step[product()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#merge-step[merge()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#intersect-step[intersect()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#combine-step[combine()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#conjoin-step[conjoin()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#difference-step[difference()-step],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#disjunct-step[disjunct()-step]
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#all-step[all()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#any-step[any()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#product-step[product()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#merge-step[merge()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#intersect-step[intersect()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#combine-step[combine()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#conjoin-step[conjoin()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#difference-step[difference()-step],
+link:https://tinkerpop.apache.org/docs/3.7.1/reference/#disjunct-step[disjunct()-step]
 
 ==== Date Manipulation Steps
 
@@ -355,9 +417,9 @@ gremlin> g.inject("2023-08-02T00:00:00Z").asDate().dateAdd(DT.day, 7).dateDiff(d
 ==>604800
 ----
 
-See: link:https://tinkerpop.apache.org/docs/x.y.z/reference/#asDate-step[asDate()-step]
-See: link:https://tinkerpop.apache.org/docs/x.y.z/reference/#dateAdd-step[dateAdd()-step]
-See: link:https://tinkerpop.apache.org/docs/x.y.z/reference/#dateDiff-step[dateDiff()-step]
+See: link:https://tinkerpop.apache.org/docs/3.7.1/reference/#asDate-step[asDate()-step]
+See: link:https://tinkerpop.apache.org/docs/3.7.1/reference/#dateAdd-step[dateAdd()-step]
+See: link:https://tinkerpop.apache.org/docs/3.7.1/reference/#dateDiff-step[dateDiff()-step]
 See: link:https://issues.apache.org/jira/browse/TINKERPOP-2979[TINKERPOP-2979]
 
 ===== `datetime()` for Current Server Time
@@ -386,11 +448,6 @@ removed.
 ===== InsertionOrderingRequired Test Tag
 
 Added a new `@InsertionOrderingRequired` tag which signifies Gherkin feature tests which are reliant on the graph system predictably returning results (vertices, edges, properties) in the same order in which they were inserted into the graph. These tests should be skipped by any graph which does not guarantee such ordering.
-
-==== Graph Driver Providers
-
-
-
 
 == TinkerPop 3.7.0
 
@@ -704,7 +761,7 @@ For 3.7:
 ===== Enabling the previous behavior
 
 Note that drivers from earlier versions like 3.5 and 3.6 will not be able to retrieve properties on elements. Older
-drivers connecting to 3.7.x servers should disable this functionality server-side in one of two ways:
+drivers connecting to 3.7.x servers should disable this functionality server-side:
 
 *Configure Gremlin Server to not return properties* - update Gremlin Server initialization script with
 `ReferenceElementStrategy`. This configuration is essentially the one used in older versions of the server by default.
@@ -714,7 +771,7 @@ drivers connecting to 3.7.x servers should disable this functionality server-sid
 globals << [g : traversal().withEmbedded(graph).withStrategies(ReferenceElementStrategy)]
 ----
 
-*Disable property inclusion per request* - the `materializeProperties` has a `tokens` option for this purpose.
+For 3.7 drivers, properties on elements can also be disabled per request using the `tokens` option with `materializeProperties`.
 
 [source,csharp]
 ----
@@ -862,7 +919,7 @@ See: link:https://issues.apache.org/jira/browse/TINKERPOP-2348[TINKERPOP-2348]
 
 The `SimpleSocketServer` from `gremlin-driver` has been brought into a new module `gremlin-tools/gremlin-socket-server`
 and it has been adapted to be usable by all drivers for testing. See more about creating gremlin socket server tests
-link:https://tinkerpop.apache.org/docs/x.y.z/dev/developer/#gremlin-socket-server-tests[here].
+link:https://tinkerpop.apache.org/docs/3.7.0/dev/developer/#gremlin-socket-server-tests[here].
 
 ===== Mid-traversal E()
 

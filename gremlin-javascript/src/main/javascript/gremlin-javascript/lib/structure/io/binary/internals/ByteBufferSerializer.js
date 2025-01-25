@@ -20,9 +20,10 @@
 /**
  * @author Igor Ostapenko
  */
-'use strict';
 
-module.exports = class ByteBufferSerializer {
+import { Buffer } from 'buffer';
+
+export default class ByteBufferSerializer {
   constructor(ioc) {
     this.ioc = ioc;
     this.ioc.serializers[ioc.DataType.BYTEBUFFER] = this;
@@ -121,4 +122,4 @@ module.exports = class ByteBufferSerializer {
       throw this.ioc.utils.des_error({ serializer: this, args: arguments, cursor, err });
     }
   }
-};
+}

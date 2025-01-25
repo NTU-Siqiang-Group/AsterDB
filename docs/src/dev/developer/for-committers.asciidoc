@@ -139,8 +139,8 @@ TinkerPop has several release branches:
 * `3.2-dev` - 3.2.x (no longer maintained)
 * `3.3-dev` - 3.3.x (no longer maintained)
 * `3.4-dev` - 3.4.x (no longer maintained)
-* `3.5-dev` - 3.5.x (non-breaking bug fixes and enhancements)
-* `3.6-dev` - 3.6.x (non-breaking bug fixes and enhancements)
+* `3.5-dev` - 3.5.x (no longer maintained)
+* `3.6-dev` - 3.6.x (no longer maintained)
 * `3.7-dev` - 3.7.x (non-breaking bug fixes and enhancements)
 * `master` - 4.x.x (current development)
 
@@ -563,6 +563,7 @@ tag when one is necessary will cause provider tests to fail:
 
 * `@AllowNullPropertyValues` - The scenario requires that the graph be configured with `AllowNullPropertyValues` as
 `true` (meaning that it can store `null` values).
+* `@GraphComputerOnly` - The scenario is only supported with `GraphComputer`.
 * `@GraphComputerVerificationInjectionNotSupported` - The scenario will not work on with `GraphComputer` because the
 `inject()` step is not supported.
 * `@GraphComputerVerificationMidVNotSupported` - The scenario will not work on with `GraphComputer` because the
@@ -575,6 +576,8 @@ tries to reference inaccessible properties that are on elements only available b
 `GraphComputer`.
 * `@GraphComputerVerificationStarGraphExceeded` - The scenario itself is not written to support `GraphComputer` because
 the traversal does not mind the star graph limitation.
+* `@GremlinGroovyNotSupported` - The scenario uses `gremlin-lang` syntax which is incompatible with `gremlin-groovy` and
+cannot be resolved with the groovy translator. This is typically for scenarios using ambiguously-types `null` parameters.
 * `@InsertionOrderingRequired` - The scenario is reliant on the graph system predictably returning results (vertices, edges, properties) in the same order in which they were inserted into the graph.
 * `@MetaProperties` - The scenario makes use of meta-properties.
 * `@MultiProperties` - The scenario makes use of multi-properties.
@@ -583,15 +586,17 @@ best example of this sort of test would be one that uses the remote `Lambda` syn
 * `@UserSuppliedVertexIds` - The scenario relies on the vertex IDs specified in the dataset used by the scenario.
 * `@UserSuppliedEdgeIds` - The scenario relies on the edge IDs specified in the dataset used by the scenario.
 * `@UserSuppliedVertexPropertyIds` - The scenario relies on the vertex property IDs specified in the dataset used by the scenario.
-* `@With*` - The scenario uses some `with()` based configuration like strategies:
+* `@With*` - The scenario uses some `with()` based configuration like strategies. This includes but is not limited to the following:
 ** `@WithPartitionStrategy`
 ** `@WithProductiveByStrategy`
 ** `@WithReadOnlyStrategy`
 ** `@WithSeedStrategy`
 ** `@WithSubgraphStrategy`
 
-Tag filters can be applied to Intellij at execution time by adding a system properties of
-`-Dcucumber.filter.tags=<step-filter>`.
+Tag filters can be applied to Intellij at execution time by adding a system property of
+`-Dcucumber.filter.tags=<tag-expression>`. In addition, the scenarios that pass the `<tag-expression>` can be further
+filtered by name with `-Dcucumber.filter.name=<scenario-regex>`. Note that these settings will override those
+configured by `CucumberOptions` on "*FeatureTest" setups. 
 
 [[gremlin-socket-server-tests]]
 === Gremlin Socket Server Tests

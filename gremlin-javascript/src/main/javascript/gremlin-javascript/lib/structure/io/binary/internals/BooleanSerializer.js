@@ -20,9 +20,10 @@
 /**
  * @author Igor Ostapenko
  */
-'use strict';
 
-module.exports = class BooleanSerializer {
+import { Buffer } from 'buffer';
+
+export default class BooleanSerializer {
   constructor(ioc) {
     this.ioc = ioc;
     this.ioc.serializers[ioc.DataType.BOOLEAN] = this;
@@ -100,4 +101,4 @@ module.exports = class BooleanSerializer {
       throw this.ioc.utils.des_error({ serializer: this, args: arguments, cursor, err });
     }
   }
-};
+}

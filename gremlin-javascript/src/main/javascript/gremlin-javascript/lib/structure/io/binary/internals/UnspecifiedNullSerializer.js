@@ -20,9 +20,10 @@
 /**
  * @author Igor Ostapenko
  */
-'use strict';
 
-module.exports = class UnspecifiedNullSerializer {
+import { Buffer } from 'buffer';
+
+export default class UnspecifiedNullSerializer {
   constructor(ioc) {
     this.ioc = ioc;
     this.ioc.serializers[ioc.DataType.UNSPECIFIED_NULL] = this;
@@ -72,4 +73,4 @@ module.exports = class UnspecifiedNullSerializer {
       throw this.ioc.utils.des_error({ serializer: this, args: arguments, cursor, err });
     }
   }
-};
+}

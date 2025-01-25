@@ -21,6 +21,7 @@ package org.apache.tinkerpop.gremlin.process.traversal.step.util;
 import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
 import org.apache.tinkerpop.gremlin.process.traversal.Traverser;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
+import org.apache.tinkerpop.gremlin.process.traversal.step.GValue;
 import org.apache.tinkerpop.gremlin.process.traversal.step.TraversalParent;
 import org.junit.Test;
 
@@ -28,6 +29,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -57,7 +59,15 @@ public class ParametersTest {
 
         final Object[] params = parameters.getKeyValues(mock(Traverser.Admin.class));
         assertEquals(6, params.length);
-        assertThat(Arrays.equals(new Object[] {"a", null, "b", "bat", "c", "cat"}, params), is(true));
+        Map<Object, Object> paramsMap = new HashMap<>();
+        for (int i = 0; i < params.length; i += 2) {
+            paramsMap.put(params[i], params[i + 1]);
+        }
+        Map<Object, Object> expectedMap = new HashMap<>();
+        expectedMap.put("a", null);
+        expectedMap.put("b", "bat");
+        expectedMap.put("c", "cat");
+        assertThat(paramsMap.equals(expectedMap), is(true));
     }
 
     @Test
@@ -67,7 +77,15 @@ public class ParametersTest {
 
         final Object[] params = parameters.getKeyValues(mock(Traverser.Admin.class));
         assertEquals(6, params.length);
-        assertThat(Arrays.equals(new Object[] {"a", "axe", "b", "bat", "c", "cat"}, params), is(true));
+        Map<Object, Object> paramsMap = new HashMap<>();
+        for (int i = 0; i < params.length; i += 2) {
+            paramsMap.put(params[i], params[i + 1]);
+        }
+        Map<Object, Object> expectedMap = new HashMap<>();
+        expectedMap.put("a", "axe");
+        expectedMap.put("b", "bat");
+        expectedMap.put("c", "cat");
+        assertThat(paramsMap.equals(expectedMap), is(true));
     }
 
     @Test
@@ -77,7 +95,14 @@ public class ParametersTest {
 
         final Object[] params = parameters.getKeyValues(mock(Traverser.Admin.class), "b");
         assertEquals(4, params.length);
-        assertThat(Arrays.equals(new Object[] {"a", "axe", "c", "cat"}, params), is(true));
+        Map<Object, Object> paramsMap = new HashMap<>();
+        for (int i = 0; i < params.length; i += 2) {
+            paramsMap.put(params[i], params[i + 1]);
+        }
+        Map<Object, Object> expectedMap = new HashMap<>();
+        expectedMap.put("a", "axe");
+        expectedMap.put("c", "cat");
+        assertThat(paramsMap.equals(expectedMap), is(true));
     }
 
     @Test
@@ -331,5 +356,15 @@ public class ParametersTest {
         parameters.set(mock, "a", "axe", "a", "ant", "b", "bat", "b", "ball", "c", "cat", "t", __.outE("knows"));
 
         verify(mock).integrateChild(__.outE("knows").asAdmin());
+    }
+
+    @Test
+    public void shouldGetKeyValuesAndResolveGValues() {
+        final Parameters parameters = new Parameters();
+        parameters.set(null, "a", "axe", "b", GValue.of("B", "bat"), "c", GValue.of("C", "cat"));
+
+        final Object[] params = parameters.getKeyValues(mock(Traverser.Admin.class));
+        assertEquals(6, params.length);
+        assertThat(Arrays.equals(new Object[] {"a", "axe", "b", "bat", "c", "cat"}, params), is(true));
     }
 }

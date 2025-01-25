@@ -74,6 +74,10 @@ public final class RepeatStep<S> extends ComputerAwareStep<S, S> implements Trav
         this.loopName = loopName;
     }
 
+    public String getLoopName() {
+        return this.loopName;
+    }
+
     public void setUntilTraversal(final Traversal.Admin<S, ?> untilTraversal) {
         if (null != this.untilTraversal)
             throw new IllegalStateException("The repeat()-step already has its until()-modulator declared: " + this);
@@ -175,9 +179,11 @@ public final class RepeatStep<S> extends ComputerAwareStep<S, S> implements Trav
 
     @Override
     public int hashCode() {
-        int result = super.hashCode() ^ this.repeatTraversal.hashCode();
+        int result = super.hashCode();
         result ^= Boolean.hashCode(this.untilFirst);
         result ^= Boolean.hashCode(this.emitFirst) << 1;
+        if (this.repeatTraversal != null)
+            result ^= this.repeatTraversal.hashCode();
         if (this.loopName != null)
             result ^= this.loopName.hashCode();
         if (this.untilTraversal != null)

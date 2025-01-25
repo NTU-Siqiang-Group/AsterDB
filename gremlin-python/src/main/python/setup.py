@@ -18,7 +18,6 @@ under the License.
 """
 import codecs
 import os
-import sys
 import time
 from setuptools import setup
 
@@ -48,12 +47,11 @@ install_requires = [
     'nest_asyncio',
     'aiohttp>=3.8.0,<4.0.0',
     'aenum>=1.4.5,<4.0.0',
-    'six>=1.10.0,<2.0.0',
-    'isodate>=0.6.0,<1.0.0'
+    'isodate>=0.6.0,<1.0.0',
+    'boto3',
+    'botocore',
+    'async-timeout>=4.0.3,<5.0; python_version < "3.11"',
 ]
-
-if sys.version_info < (3, 5):
-    install_requires += ['pyparsing>=2.4.7,<3.0.0']
 
 setup(
     name='gremlinpython',
@@ -62,8 +60,10 @@ setup(
               'gremlin_python.driver.aiohttp', 'gremlin_python.process',
               'gremlin_python.structure', 'gremlin_python.structure.io'],
     license='Apache 2',
-    url='http://tinkerpop.apache.org',
+    url='https://tinkerpop.apache.org',
     description='Gremlin-Python for Apache TinkerPop',
+    maintainer='Apache TinkerPop',
+    maintainer_email='dev@tinkerpop.apache.org',
     long_description=codecs.open("README.rst", "r", "UTF-8").read(),
     long_description_content_type='text/x-rst',
     test_suite="tests",
@@ -74,14 +74,13 @@ setup(
     ],
     tests_require=[
         'pytest>=4.6.4,<7.2.0',
-        'mock>=3.0.5,<5.0.0',
         'radish-bdd==0.13.4',
         'PyHamcrest>=1.9.0,<3.0.0',
         'PyYAML>=5.3'
     ],
     install_requires=install_requires,
     extras_require={
-        'kerberos': 'kerberos>=1.3.0,<2.0.0',    # Does not install in Microsoft Windows
+        'kerberos': 'kerberos>=1.3.0,<2.0.0; sys_platform != "win32"',  # Does not install in Microsoft Windows
         'ujson': 'ujson>=2.0.0'
     },
     classifiers=[
@@ -89,5 +88,6 @@ setup(
         "License :: OSI Approved :: Apache Software License",
         "Natural Language :: English",
         "Programming Language :: Python :: 3"
-    ]
+    ],
+    python_requires='>=3.9'
 )
