@@ -20,9 +20,10 @@
 /**
  * @author Igor Ostapenko
  */
-'use strict';
 
-module.exports = class DateSerializer {
+import { Buffer } from 'buffer';
+
+export default class DateSerializer {
   constructor(ioc, ID) {
     this.ioc = ioc;
     this.ID = ID;
@@ -100,4 +101,4 @@ module.exports = class DateSerializer {
       throw this.ioc.utils.des_error({ serializer: this, args: arguments, cursor, err });
     }
   }
-};
+}

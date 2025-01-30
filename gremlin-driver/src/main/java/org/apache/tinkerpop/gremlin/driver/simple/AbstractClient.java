@@ -25,11 +25,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.apache.tinkerpop.gremlin.util.message.RequestMessage;
 import org.apache.tinkerpop.gremlin.util.message.ResponseMessage;
-import org.apache.tinkerpop.gremlin.util.message.ResponseStatusCode;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
@@ -59,27 +56,6 @@ public abstract class AbstractClient implements SimpleClient {
         // especially in travis as it's not always clear where the hang is. a few reasonable timeouts might help
         // make debugging easier when we look at logs
         return submitAsync(requestMessage).get(180, TimeUnit.SECONDS);
-    }
-
-    @Override
-    public CompletableFuture<List<ResponseMessage>> submitAsync(final RequestMessage requestMessage) throws Exception {
-        final List<ResponseMessage> results = new ArrayList<>();
-        final CompletableFuture<List<ResponseMessage>> f = new CompletableFuture<>();
-        callbackResponseHandler.callback = response -> {
-            if (f.isDone())
-                throw new RuntimeException("A terminating message was already encountered - no more messages should have been received");
-
-            results.add(response);
-
-            // check if the current message is terminating - if it is then we can mark complete
-            if (response.getStatus().getCode().isFinalResponse()) {
-                f.complete(results);
-            }
-        };
-
-        writeAndFlush(requestMessage);
-
-        return f;
     }
 
     static class CallbackResponseHandler extends SimpleChannelInboundHandler<ResponseMessage> {

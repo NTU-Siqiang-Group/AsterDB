@@ -20,9 +20,10 @@
 /**
  * @author Igor Ostapenko
  */
-'use strict';
 
-module.exports = class DoubleSerializer {
+import { Buffer } from 'buffer';
+
+export default class DoubleSerializer {
   constructor(ioc) {
     this.ioc = ioc;
     this.ioc.serializers[ioc.DataType.DOUBLE] = this;
@@ -96,4 +97,4 @@ module.exports = class DoubleSerializer {
       throw this.ioc.utils.des_error({ serializer: this, args: arguments, cursor, err });
     }
   }
-};
+}

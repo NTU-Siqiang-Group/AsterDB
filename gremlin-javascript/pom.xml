@@ -130,6 +130,13 @@ limitations under the License.
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/javascript/gremlin-javascript/build</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.github.eirslett</groupId>
@@ -216,7 +223,7 @@ limitations under the License.
                 <groupId>com.google.code.maven-replacer-plugin</groupId>
                 <artifactId>replacer</artifactId>
                 <configuration>
-                    <file>src/main/javascript/gremlin-javascript/lib/utils.js</file>
+                    <file>src/main/javascript/gremlin-javascript/lib/utils.ts</file>
                     <replacements>
                         <replacement>
                             <token>gremlinVersion = '.*'</token>
@@ -231,8 +238,9 @@ limitations under the License.
         <!-- Test gremlin-javascript in Docker -->
         <profile>
             <id>glv-js</id>
+            <!-- TODO re-enable after gremlin-js is implemented -->
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <build>
                 <finalName>${project.artifactId}-${project.version}</finalName>
@@ -240,7 +248,7 @@ limitations under the License.
                     <plugin>
                         <artifactId>exec-maven-plugin</artifactId>
                         <groupId>org.codehaus.mojo</groupId>
-                        <version>1.2.1</version>
+                        <version>3.1.1</version>
                         <executions>
                             <execution>
                                 <id>run-tests</id>
@@ -256,8 +264,9 @@ limitations under the License.
                                         <!-- setting this env variable is needed to be cross-platform compatible -->
                                         <HOME>${user.home}</HOME>
                                     </environmentVariables>
-                                    <executable>docker-compose</executable>
+                                    <executable>docker</executable>
                                     <arguments>
+                                        <argument>compose</argument>
                                         <argument>up</argument>
                                         <argument>--build</argument>
                                         <argument>--exit-code-from</argument>
@@ -275,8 +284,9 @@ limitations under the License.
                                 <configuration>
                                     <skip>${skipTests}</skip>
                                     <!-- don't need to set env variables for container tear down -->
-                                    <executable>docker-compose</executable>
+                                    <executable>docker</executable>
                                     <arguments>
+                                        <argument>compose</argument>
                                         <argument>down</argument>
                                     </arguments>
                                     <workingDirectory>./src/main/javascript/gremlin-javascript</workingDirectory>

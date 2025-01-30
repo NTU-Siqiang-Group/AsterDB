@@ -69,8 +69,8 @@ public class TraversalMethodVisitorTest {
     }
     
     private void compare(Object expected, Object actual) {
-        assertEquals(((DefaultGraphTraversal) expected).asAdmin().getBytecode(),
-                ((DefaultGraphTraversal) actual).asAdmin().getBytecode());
+        assertEquals(((DefaultGraphTraversal) expected).asAdmin().getGremlinLang(),
+                ((DefaultGraphTraversal) actual).asAdmin().getGremlinLang());
     }
 
     @Test
@@ -163,7 +163,7 @@ public class TraversalMethodVisitorTest {
 
     @Test
     public void shouldParseTraversalMethod_both_MultiString() throws Exception {
-        compare(g.V().both(new String[]{"a", "b"}), eval("g.V().both('a', 'b')"));
+        compare(g.V().both("a", "b"), eval("g.V().both('a', 'b')"));
     }
 
     @Test

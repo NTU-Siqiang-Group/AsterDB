@@ -38,7 +38,7 @@ complete list of all the modifications that are part of this release.
 ==== Runtime Version Upgrades
 
 `gremlin-javascript` and `gremlint` have upgraded from Node 10 to Node 16 as Node 10 has passed end of life.
-`gremlin-go` has upgraded from Go 1.17 to Go 1.20 as Go 1.20 has passed end of life.
+`gremlin-go` has upgraded from Go 1.17 to Go 1.20 as Go 1.17 has passed end of life.
 
 ==== GraphSON max token lengths
 
@@ -873,7 +873,7 @@ IMPORTANT: The `g.tx()` is only supported in Java at this time. Support for othe
 future releases on the 3.5.x line.
 
 See: link:https://issues.apache.org/jira/browse/TINKERPOP-2537[TINKERPOP-2537],
-link:https://tinkerpop.apache.org/docs/x.y.z/reference/#transactions[Reference Documentation - Transactions]
+link:https://tinkerpop.apache.org/docs/3.5.0/reference/#transactions[Reference Documentation - Transactions]
 
 ==== Anonymous Child Traversals
 

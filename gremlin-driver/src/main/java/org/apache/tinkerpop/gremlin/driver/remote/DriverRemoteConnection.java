@@ -21,29 +21,18 @@ package org.apache.tinkerpop.gremlin.driver.remote;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.tinkerpop.gremlin.driver.Client;
 import org.apache.tinkerpop.gremlin.driver.Cluster;
-import org.apache.tinkerpop.gremlin.driver.RequestOptions;
 import org.apache.tinkerpop.gremlin.process.remote.RemoteConnection;
 import org.apache.tinkerpop.gremlin.process.remote.RemoteConnectionException;
 import org.apache.tinkerpop.gremlin.process.remote.traversal.RemoteTraversal;
-import org.apache.tinkerpop.gremlin.process.traversal.Bytecode;
+import org.apache.tinkerpop.gremlin.process.traversal.GremlinLang;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
-import org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.OptionsStrategy;
-import org.apache.tinkerpop.gremlin.process.traversal.util.BytecodeHelper;
 import org.apache.tinkerpop.gremlin.structure.Transaction;
 import org.apache.tinkerpop.gremlin.util.iterator.IteratorUtils;
 
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-import static org.apache.tinkerpop.gremlin.util.Tokens.ARGS_BATCH_SIZE;
-import static org.apache.tinkerpop.gremlin.util.Tokens.ARGS_EVAL_TIMEOUT;
-import static org.apache.tinkerpop.gremlin.util.Tokens.ARGS_USER_AGENT;
-import static org.apache.tinkerpop.gremlin.util.Tokens.REQUEST_ID;
-import static org.apache.tinkerpop.gremlin.util.Tokens.ARGS_MATERIALIZE_PROPERTIES;
-
+import static org.apache.tinkerpop.gremlin.driver.RequestOptions.getRequestOptions;
 
 /**
  * A {@link RemoteConnection} implementation for Gremlin Server. Each {@code DriverServerConnection} is bound to one
@@ -81,7 +70,7 @@ public class DriverRemoteConnection implements RemoteConnection {
                 cluster = conf.containsKey(GREMLIN_REMOTE_DRIVER_CLUSTERFILE) ?
                         Cluster.open(conf.getString(GREMLIN_REMOTE_DRIVER_CLUSTERFILE)) : Cluster.open(conf.subset("clusterConfiguration"));
 
-            client = cluster.connect(Client.Settings.build().create()).alias(remoteTraversalSourceName);
+            client = cluster.connect().alias(remoteTraversalSourceName);
         } catch (Exception ex) {
             throw new IllegalStateException(ex);
         }
@@ -94,7 +83,7 @@ public class DriverRemoteConnection implements RemoteConnection {
     }
 
     private DriverRemoteConnection(final Cluster cluster, final boolean tryCloseCluster, final String remoteTraversalSourceName) {
-        client = cluster.connect(Client.Settings.build().create()).alias(remoteTraversalSourceName);
+        client = cluster.connect().alias(remoteTraversalSourceName);
         this.remoteTraversalSourceName = remoteTraversalSourceName;
         this.tryCloseCluster = tryCloseCluster;
         attachElements = false;
@@ -109,7 +98,7 @@ public class DriverRemoteConnection implements RemoteConnection {
 
         attachElements = conf.containsKey(GREMLIN_REMOTE + "attachment");
 
-        client = cluster.connect(Client.Settings.build().create()).alias(remoteTraversalSourceName);
+        client = cluster.connect().alias(remoteTraversalSourceName);
         tryCloseCluster = false;
         tryCloseClient = true;
         this.conf = Optional.of(conf);
@@ -226,9 +215,11 @@ public class DriverRemoteConnection implements RemoteConnection {
     }
 
     @Override
-    public <E> CompletableFuture<RemoteTraversal<?, E>> submitAsync(final Bytecode bytecode) throws RemoteConnectionException {
+    public <E> CompletableFuture<RemoteTraversal<?, E>> submitAsync(final GremlinLang gremlinLang) throws RemoteConnectionException {
         try {
-            return client.submitAsync(bytecode, getRequestOptions(bytecode)).thenApply(rs -> new DriverRemoteTraversal<>(rs, client, attachElements, conf));
+            gremlinLang.addG(remoteTraversalSourceName);
+            return client.submitAsync(gremlinLang.getGremlin(), getRequestOptions(gremlinLang))
+                    .thenApply(rs -> new DriverRemoteTraversal<>(rs, client, attachElements, conf));
         } catch (Exception ex) {
             throw new RemoteConnectionException(ex);
         }
@@ -238,32 +229,9 @@ public class DriverRemoteConnection implements RemoteConnection {
      * If the connection is bound to a session, then get the session identifier from it.
      */
     Optional<String> getSessionId() {
-        if (client instanceof Client.SessionedClient) {
-            Client.SessionedClient c = (Client.SessionedClient) client;
-            return Optional.of(c.getSessionId());
-        }
+        // todo: not implemented
 
         return Optional.empty();
-    }
-
-    protected static RequestOptions getRequestOptions(final Bytecode bytecode) {
-        final Iterator<OptionsStrategy> itty = BytecodeHelper.findStrategies(bytecode, OptionsStrategy.class);
-        final RequestOptions.Builder builder = RequestOptions.build();
-        while (itty.hasNext()) {
-            final OptionsStrategy optionsStrategy = itty.next();
-            final Map<String,Object> options = optionsStrategy.getOptions();
-            if (options.containsKey(ARGS_EVAL_TIMEOUT))
-                builder.timeout(((Number) options.get(ARGS_EVAL_TIMEOUT)).longValue());
-            if (options.containsKey(REQUEST_ID))
-                builder.overrideRequestId((UUID) options.get(REQUEST_ID));
-            if (options.containsKey(ARGS_BATCH_SIZE))
-                builder.batchSize(((Number) options.get(ARGS_BATCH_SIZE)).intValue());
-            if (options.containsKey(ARGS_USER_AGENT))
-                builder.userAgent((String) options.get(ARGS_USER_AGENT));
-            if (options.containsKey(ARGS_MATERIALIZE_PROPERTIES))
-                builder.materializeProperties((String) options.get(ARGS_MATERIALIZE_PROPERTIES));
-        }
-        return builder.create();
     }
 
     @Override
@@ -280,14 +248,15 @@ public class DriverRemoteConnection implements RemoteConnection {
     }
 
     /**
-     * Constructs a new {@link DriverRemoteTransaction}.
+     * Constructs a new {@link DriverRemoteTransaction}. Not yet supported in TinkerPop 4.
      */
-    @Override
-    public Transaction tx() {
-        final DriverRemoteConnection session = new DriverRemoteConnection(
-                client.getCluster().connect(UUID.randomUUID().toString()), remoteTraversalSourceName, true);
-        return new DriverRemoteTransaction(session);
-    }
+//    @Override
+//    public Transaction tx() {
+//        // todo: not implemented
+//        final DriverRemoteConnection session = new DriverRemoteConnection(
+//                client.getCluster().connect(), remoteTraversalSourceName, true);
+//        return new DriverRemoteTransaction(session);
+//    }
 
     @Override
     public String toString() {

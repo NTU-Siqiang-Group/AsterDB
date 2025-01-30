@@ -254,12 +254,12 @@ the help of a PMC member for those steps.
 .. `mvn deploy -pl gremlin-python -DskipTests -Dpypi`
 .. `mvn deploy -pl :gremlin-dotnet-source -DskipTests -Dnuget`
 .. `mvn deploy -pl gremlin-javascript -DskipTests -Dnpm`
-... Consider direct deploy with `npm publish --otp <otp>` from `gremlin-javscript/src/main/javascript/gremlin-javascript/` - if using this method, ensure the `npm` version aligns with the one expected by the branch.
+... Consider direct deploy with `npm publish --otp <otp>` from `gremlin-javascript/src/main/javascript/gremlin-javascript/` - if using this method, ensure the `npm` version aligns with the one expected by the branch.
 .. `mvn deploy -pl gremlint -DskipTests -Dnpm`
 ... Consider direct deploy with `npm publish --otp <otp>` from `gremlint/` - if using this method, ensure the `npm` version aligns with the one expected by the branch.
-.. `git tag gremlin-go/v3.6.3`
-.. `git push origin gremlin-go/v3.6.3`
-.. `GOPROXY=proxy.golang.org go list -m github.com/apache/tinkerpop/gremlin-go/v3@v3.6.3`
+.. `git tag gremlin-go/vxx.yy.zz`
+.. `git push origin gremlin-go/vxx.yy.zz`
+.. `GOPROXY=proxy.golang.org go list -m github.com/apache/tinkerpop/gremlin-go/v3@vxx.yy.xx`
 . Review the GLV releases
 .. link:https://pypi.org/project/gremlinpython/[gremlin-python - PyPi]
 .. link:https://www.nuget.org/packages/Gremlin.Net/[Gremlin.Net - nuget]
@@ -318,12 +318,16 @@ the help of a PMC member for those steps.
 .. Review `Gremlin.Net.csproj`, `Gremlin.Net.Template.csproj` and `Gremlin.Net.Template.nuspec` in `gremlin-dotnet`
 .. Review `package.json` and `package-lock.json` in `gremlin-javascript` and in `gremlint`
 .. `pushd gremlin-console/bin; ln -fs ../target/apache-tinkerpop-gremlin-console-xx.yy.zz-SNAPSHOT-standalone/bin/gremlin.sh gremlin.sh; popd`
-.. Update CHANGELOG and upgrade docs to have the appropriate headers for the next version.
+.. Update CHANGELOG and upgrade docs to have the appropriate headers for the next version. If a major line will no longer be under development, archive the CHANGELOG entries for it as follows:
+... Create a new `changelog-x.x.x.asciidoc` in the `docs/archive/changelogs` folder.
+... Copy all CHANGELOG entries of the major version into the file (refer to previous files).
+... Replace the CHANGELOG entries under each minor releases with an archived notice containing link to the archived changelog file (refer to previous links inside CHANGELOG).
 .. `mvn clean install -DskipTests` - need to build first so that the right version of the console is used with `bin/publish-docs.sh`
 .. `mvn deploy -DskipTests` - deploy the new `SNAPSHOT`
 .. `bin/process-docs.sh` and validate the generated `SNAPSHOT` documentation locally and then `bin/publish-docs.sh <username>`
 .. Commit and push the `SNAPSHOT` changes to git
 . Examine the `future.asciidoc` and update the "Roadmap" as needed.
+. Update the version numbers in `pull_request_template.md`.
 . Send email to advise that code freeze is lifted.
 . Consider the changes made to Gremlin and determine if the community needs to organize a PR to [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/gremlin) to keep TypeScript up to date.
 . Ensure that the GLV examples compile and run with the latest image and dependencies: `bin/run-examples.sh`.

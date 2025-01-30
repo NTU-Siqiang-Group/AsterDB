@@ -20,24 +20,22 @@
 /**
  * @author Igor Ostapenko
  */
-'use strict';
 
-const utils = require('./utils');
-const assert = require('assert');
-const ioc = require('../../../lib/structure/io/binary/GraphBinary');
-const intSerializer = ioc.intSerializer;
-const t = require('../../../lib/process/traversal');
+import {des_title, cbuf_title, ser_title} from './utils.js';
+import assert from 'assert';
+import {intSerializer, serializers} from '../../../lib/structure/io/binary/GraphBinary.js';
+import { Traverser } from '../../../lib/process/traversal.js';
 
 const { from, concat } = Buffer;
 
-module.exports = ({ ID, name }) => {
+export default ({ ID, name }) => {
 
 describe(`GraphBinary.${name}Serializer`, () => {
 
   const type_code =  from([ID]);
   const value_flag = from([0x00]);
 
-  const serializer = ioc.serializers[ID];
+  const serializer = serializers[ID];
 
   const cases = [
     { v:undefined,                          fq:1, b:[ID,0x01],             av:null },
@@ -45,9 +43,9 @@ describe(`GraphBinary.${name}Serializer`, () => {
     { v:null,                               fq:1, b:[ID,0x01] },
     { v:null,                               fq:0, b:[0x00,0x00,0x00,0x00], av:new Set() },
 
-    { v:new Set(),                              b:[0x00,0x00,0x00,0x00] },
-    { v:new Set([2147483647]),                    b:[0x00,0x00,0x00,0x01, 0x01,0x00,0x7F,0xFF,0xFF,0xFF] },
-    { v:new Set([-1,'A']),                        b:[0x00,0x00,0x00,0x02, 0x01,0x00,0xFF,0xFF,0xFF,0xFF, 0x03,0x00,0x00,0x00,0x00,0x01,0x41] },
+    { v:new Set(),                          b:[0x00,0x00,0x00,0x00] },
+    { v:new Set([2147483647]),       b:[0x00,0x00,0x00,0x01, 0x01,0x00,0x7F,0xFF,0xFF,0xFF] },
+    { v:new Set([-1,'A']),           b:[0x00,0x00,0x00,0x02, 0x01,0x00,0xFF,0xFF,0xFF,0xFF, 0x03,0x00,0x00,0x00,0x00,0x01,0x41] },
 
     { des:1, err:/buffer is missing/,       fq:1, b:undefined },
     { des:1, err:/buffer is missing/,       fq:0, b:undefined },
@@ -74,8 +72,29 @@ describe(`GraphBinary.${name}Serializer`, () => {
     { des:1, err:/{length} is less than zero/,    b:[0x80,0x00,0x00,0x00] },
   ];
 
+  describe('#serialize', () => {
+    cases
+        .filter(({des}) => !des)
+        .forEach(({ v, fq, b }, i) => it(ser_title({i,v}), () => {
+            b = from(b);
+
+            // when fq is under control
+            if (fq !== undefined) {
+                assert.deepEqual( serializer.serialize(v, fq), b );
+                return;
+            }
+
+            // generic case
+            assert.deepEqual( serializer.serialize(v, true),  concat([type_code, value_flag, b]) );
+            assert.deepEqual( serializer.serialize(v, false), concat([                       b]) );
+        }));
+
+    it.skip('should not error if set length is INT32_MAX');
+
+  });
+
   describe('#deserialize', () =>
-    cases.forEach(({ v, fq, b, av, err }, i) => it(utils.des_title({i,b}), () => {
+    cases.forEach(({ v, fq, b, av, err }, i) => it(des_title({i,b}), () => {
       if (Array.isArray(b))
         b = from(b);
 
@@ -112,14 +131,14 @@ describe(`GraphBinary.${name}Serializer`, () => {
       { v: null,                  e: false },
       { v: undefined,             e: false },
       { v: {},                    e: false },
-      { v: new t.Traverser(),     e: false },
+      { v: new Traverser(),     e: false },
       { v: [],                    e: false },
       { v: [0],                   e: false },
       { v: [undefined],           e: false },
       { v: new Set(),             e: true },
       { v: new Set([0]),          e: true },
       { v: new Set([undefined]),  e: true },
-    ].forEach(({ v, e }, i) => it(utils.cbuf_title({i,v}), () =>
+    ].forEach(({ v, e }, i) => it(cbuf_title({i,v}), () =>
       assert.strictEqual( serializer.canBeUsedFor(v), e )
     ))
   );

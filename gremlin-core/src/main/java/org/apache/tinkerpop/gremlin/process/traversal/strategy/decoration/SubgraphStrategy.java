@@ -56,7 +56,7 @@ import org.apache.tinkerpop.gremlin.structure.VertexProperty;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -193,7 +193,7 @@ public final class SubgraphStrategy extends AbstractTraversalStrategy<TraversalS
                 continue;
 
             if (edgeCriterion != null) {
-                final VertexStep<Edge> someEStep = new VertexStep<>(traversal, Edge.class, step.getDirection(), step.getEdgeLabels());
+                final VertexStep<Edge> someEStep = new VertexStep<>(traversal, Edge.class, step.getDirection(), step.getEdgeLabelsGValue());
                 final Step<Edge, Vertex> someVStep = step.getDirection() == Direction.BOTH ?
                         new EdgeOtherVertexStep(traversal) :
                         new EdgeVertexStep(traversal, step.getDirection().opposite());
@@ -310,14 +310,14 @@ public final class SubgraphStrategy extends AbstractTraversalStrategy<TraversalS
 
     @Override
     public Configuration getConfiguration() {
-        final Map<String, Object> map = new HashMap<>();
+        final Map<String, Object> map = new LinkedHashMap<>();
+        map.put(CHECK_ADJACENT_VERTICES, this.checkAdjacentVertices);
         if (null != this.vertexCriterion)
             map.put(VERTICES, this.vertexCriterion);
         if (null != this.edgeCriterion)
             map.put(EDGES, this.edgeCriterion);
         if (null != this.vertexPropertyCriterion)
             map.put(VERTEX_PROPERTIES, this.vertexPropertyCriterion);
-        map.put(CHECK_ADJACENT_VERTICES, this.checkAdjacentVertices);
         return new MapConfiguration(map);
     }
 

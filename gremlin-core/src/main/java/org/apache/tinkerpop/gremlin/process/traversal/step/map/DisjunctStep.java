@@ -20,6 +20,7 @@ package org.apache.tinkerpop.gremlin.process.traversal.step.map;
 
 import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
 import org.apache.tinkerpop.gremlin.process.traversal.Traverser;
+import org.apache.tinkerpop.gremlin.process.traversal.step.GValue;
 import org.apache.tinkerpop.gremlin.process.traversal.step.TraversalParent;
 import org.apache.tinkerpop.gremlin.process.traversal.traverser.TraverserRequirement;
 import org.apache.tinkerpop.gremlin.process.traversal.util.ListFunction;
@@ -35,15 +36,28 @@ import java.util.Set;
  */
 public final class DisjunctStep<S, E> extends ScalarMapStep<S, Set<?>> implements TraversalParent, ListFunction {
     private Traversal.Admin<S, E> valueTraversal;
-    private Object parameterItems;
+    private GValue<Object> parameterItems;
+
     public DisjunctStep(final Traversal.Admin traversal, final Object values) {
         super(traversal);
 
         if (values instanceof Traversal) {
             valueTraversal = integrateChild(((Traversal<S, E>) values).asAdmin());
         } else {
-            parameterItems = values;
+            parameterItems = values instanceof GValue ? (GValue<Object>) values : GValue.of(null, values);
         }
+    }
+
+    public Traversal.Admin<S,E> getValueTraversal() {
+        return this.valueTraversal;
+    }
+
+    public Object getParameterItems() {
+        return parameterItems;
+    }
+
+    public GValue<Object> getParameterItemsGValue() {
+        return parameterItems;
     }
 
     @Override
@@ -52,7 +66,7 @@ public final class DisjunctStep<S, E> extends ScalarMapStep<S, Set<?>> implement
     @Override
     protected Set<?> map(Traverser.Admin<S> traverser) {
         final Set setA = convertTraverserToSet(traverser);
-        final Set setB = (null != valueTraversal) ? convertTraversalToSet(traverser, this.valueTraversal) : convertArgumentToSet(parameterItems);
+        final Set setB = (null != valueTraversal) ? convertTraversalToSet(traverser, this.valueTraversal) : convertArgumentToSet(parameterItems.get());
         final Set disjunctSet = new HashSet();
 
         if (setA.size() == 0) {

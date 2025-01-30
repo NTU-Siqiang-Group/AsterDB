@@ -20,9 +20,10 @@
 /**
  * @author Igor Ostapenko
  */
-'use strict';
 
-module.exports = class ArraySerializer {
+import { Buffer } from 'buffer';
+
+export default class ArraySerializer {
   constructor(ioc, ID) {
     this.ioc = ioc;
     this.ID = ID;
@@ -132,4 +133,4 @@ module.exports = class ArraySerializer {
       throw this.ioc.utils.des_error({ serializer: this, args: arguments, cursor, err });
     }
   }
-};
+}

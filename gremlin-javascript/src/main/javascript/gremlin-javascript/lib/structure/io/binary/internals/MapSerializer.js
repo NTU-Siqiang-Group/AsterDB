@@ -20,9 +20,10 @@
 /**
  * @author Igor Ostapenko
  */
-'use strict';
 
-module.exports = class MapSerializer {
+import { Buffer } from 'buffer';
+
+export default class MapSerializer {
   constructor(ioc) {
     this.ioc = ioc;
     this.ioc.serializers[ioc.DataType.MAP] = this;
@@ -150,4 +151,4 @@ module.exports = class MapSerializer {
       throw this.ioc.utils.des_error({ serializer: this, args: arguments, cursor, err });
     }
   }
-};
+}

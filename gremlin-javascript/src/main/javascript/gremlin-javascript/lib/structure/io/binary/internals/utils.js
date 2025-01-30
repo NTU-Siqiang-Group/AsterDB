@@ -20,12 +20,13 @@
 /**
  * @author Igor Ostapenko
  */
-'use strict';
+
+import { Buffer } from 'buffer';
 
 /*
  * Deserialization error general constructor.
  */
-const des_error = ({ serializer, args, cursor, err }) => {
+export const des_error = ({ serializer, args, cursor, err }) => {
   if (cursor === undefined) {
     cursor = args[0]; // buffer
   }
@@ -52,8 +53,4 @@ const des_error = ({ serializer, args, cursor, err }) => {
   err.message = m;
 
   return err;
-};
-
-module.exports = {
-  des_error,
 };

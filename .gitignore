@@ -39,7 +39,7 @@ tools/
 NuGet.Config
 nuget*.exe
 BenchmarkDotNet.Artifacts/
-/Dockerfile
+# /Dockerfile
 docs/gremlint/
 gremlint/
 coverage.out

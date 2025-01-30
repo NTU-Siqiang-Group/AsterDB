@@ -1,17 +1,17 @@
 Apache TinkerPop
-Copyright 2015-2023 The Apache Software Foundation.
+Copyright 2015-2024 The Apache Software Foundation.
 
 This product includes software developed at
 The Apache Software Foundation (http://www.apache.org/).
 
 ------------------------------------------------------------------------
-Apache Groovy 4.0.9 (AL ASF)
+Apache Groovy 4.0.23 (AL ASF)
 ------------------------------------------------------------------------
 This product includes/uses ANTLR4 (https://github.com/antlr/antlr4)
 Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
 
 ------------------------------------------------------------------------
-Apache Ivy 2.5.1 (AL ASF)
+Apache Ivy 2.5.2 (AL ASF)
 ------------------------------------------------------------------------
 Portions of Ivy were originally developed by
 Jayasoft SARL (http://www.jayasoft.fr/)
@@ -87,7 +87,7 @@ LongAdder), which was released with the following comments:
     http://creativecommons.org/publicdomain/zero/1.0/
 
 ------------------------------------------------------------------------
-Netty 4.1.96
+Netty 4.1.101
 ------------------------------------------------------------------------
 Copyright 2014 The Netty Project
 

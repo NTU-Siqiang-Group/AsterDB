@@ -20,10 +20,11 @@
 /**
  * @author Igor Ostapenko
  */
-'use strict';
+
+import { Buffer } from 'buffer';
 
 // TODO: it has room for performance improvements
-module.exports = class BigIntegerSerializer {
+export default class BigIntegerSerializer {
   constructor(ioc) {
     this.ioc = ioc;
     this.ioc.serializers[ioc.DataType.BIGINTEGER] = this;
@@ -148,4 +149,4 @@ module.exports = class BigIntegerSerializer {
       throw this.ioc.utils.des_error({ serializer: this, args: arguments, cursor, err });
     }
   }
-};
+}

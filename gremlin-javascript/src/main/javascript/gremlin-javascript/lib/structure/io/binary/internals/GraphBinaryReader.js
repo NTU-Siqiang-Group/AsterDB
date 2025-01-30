@@ -20,12 +20,13 @@
 /**
  * @author Igor Ostapenko
  */
-'use strict';
+
+import { Buffer } from 'buffer';
 
 /**
  * GraphBinary reader.
  */
-module.exports = class GraphBinaryReader {
+export default class GraphBinaryReader {
   constructor(ioc) {
     this.ioc = ioc;
   }
@@ -77,4 +78,4 @@ module.exports = class GraphBinaryReader {
 
     return response;
   }
-};
+}
