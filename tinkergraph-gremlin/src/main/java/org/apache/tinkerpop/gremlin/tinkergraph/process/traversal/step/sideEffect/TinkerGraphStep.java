@@ -98,9 +98,11 @@ public final class TinkerGraphStep<S, E extends Element> extends GraphStep<S, E>
         // ids are present, filter on them first
         if (null == resolvedIds)
             iterator = Collections.emptyIterator();
-        else if (resolvedIds.length > 0)
-            iterator = this.iteratorList(graph.vertices(resolvedIds));
-        else
+        else if (this.ids.length > 0)
+            iterator = this.iteratorList(graph.vertices(this.ids));
+        else{
+            // iterator = (null == indexedContainer ?
+            //         this.iteratorList(graph.vertices()) : TinkerIndexHelper.queryVertexIndex(graph, indexedContainer.getKey(), indexedContainer.getPredicate().getValue()).iterator());
             iterator = (null == indexedContainer ?
                     this.iteratorList(graph.vertices()) :
                     IteratorUtils.filter(TinkerIndexHelper.queryVertexIndex(graph, indexedContainer.getKey(), indexedContainer.getPredicate().getValue()).iterator(),
