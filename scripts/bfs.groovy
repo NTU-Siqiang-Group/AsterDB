@@ -1,4 +1,6 @@
-graph = TinkerGraph.open();
+conf = new BaseConfiguration();
+conf.setProperty("updatePolicy", 2); // adaptive
+graph = TinkerGraph.open(conf);
 g = graph.traversal();
 graph.currentVertexId = 3072627;
 
