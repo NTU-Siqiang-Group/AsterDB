@@ -70,10 +70,10 @@ public final class TinkerTransactionGraph extends AbstractTinkerGraph {
 
     private final TinkerGraphFeatures features = new TinkerGraphFeatures();
 
-    private final TinkerTransaction transaction = new TinkerTransaction(this);
+    // private final TinkerTransaction transaction = new TinkerTransaction(this);
 
-    private final Map<Object, TinkerElementContainer<TinkerVertex>> vertices = new ConcurrentHashMap<>();
-    private final Map<Object, TinkerElementContainer<TinkerEdge>> edges = new ConcurrentHashMap<>();
+    // private final Map<Object, TinkerElementContainer<TinkerVertex>> vertices = new ConcurrentHashMap<>();
+    // private final Map<Object, TinkerElementContainer<TinkerEdge>> edges = new ConcurrentHashMap<>();
 
     /**
      * An empty private constructor that initializes {@link TinkerTransactionGraph}.
@@ -329,11 +329,13 @@ public final class TinkerTransactionGraph extends AbstractTinkerGraph {
         return createElementIterator(Edge.class, edges, edgeIdManager, edgeIds);
     }
 
-    private <T extends Element, C extends TinkerElement> Iterator<T> createElementIterator(final Class<T> clazz,
-                                                                  final Map<Object, TinkerElementContainer<C>> elements,
-                                                                  final IdManager idManager,
-
-                                                                  final Object... ids) {
+    private <T extends Element, C extends TinkerElement> 
+    Iterator<T> createElementIterator(
+        final Class<T> clazz,
+        final Map<Object, TinkerElementContainer<C>> elements,
+        final IdManager idManager,
+        final Object... ids
+    ) {
         this.tx().readWrite();
 
         final Iterator<T> iterator;
@@ -362,6 +364,7 @@ public final class TinkerTransactionGraph extends AbstractTinkerGraph {
                         IteratorUtils.filter((Iterator<Edge>) iterator, t -> this.graphComputerView.legalEdge(t.outVertex(), t))) :
                 iterator;
     }
+
     @Override
     protected void addOutEdge(final TinkerVertex vertex, final String label, final Edge edge) {
         touch(vertex);

@@ -15,10 +15,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 --->
 
-AsterDB
-===
-
 <!-- A logo of Aster here --->
+
+<p align="center">
+  <img src="./assets/asterdb-logo.png" alt="asterdb-logo">
+</p>
 
 [![maven-central](https://img.shields.io/maven-central/v/org.apache.tinkerpop/gremlin-driver?color=brightgreen)]("https://mvnrepository.com/artifact/org.apache.tinkerpop/gremlin-driver")
 [![nuget](https://img.shields.io/nuget/v/Gremlin.Net?color=brightgreen)](link="https://www.nuget.org/packages/Gremlin.Net")
@@ -29,9 +30,8 @@ AsterDB
 [![Javadoc](https://javadoc.io/badge/org.janusgraph/janusgraph-core.svg?color=blue)](https://javadoc.io/doc/org.janusgraph/janusgraph-core)
 [![License](https://img.shields.io/badge/license-Apache%202-0E78BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-<p align="center">
+
 AsterDB is a robust and versatile graph database that supports Gremlin query language facilitating various graph applications.
-</p>
 
 AsterDB provides two high-level features:
 
@@ -40,7 +40,6 @@ AsterDB provides two high-level features:
 
 ------------------
 
-- [AsterDB](#asterdb)
 - [Installation](#installation)
   - [Build AsterDB from Scratch](#build-asterdb-from-scratch)
     - [Install Dependencies](#install-dependencies)
