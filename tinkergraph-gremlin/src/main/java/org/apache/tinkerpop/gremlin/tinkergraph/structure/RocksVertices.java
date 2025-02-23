@@ -212,4 +212,16 @@ public class RocksVertices {
   private Object encodeEdgeId(final Object outVertexId, final Object inVertexId) {
     return outVertexId.toString() + "-" + inVertexId.toString();
   }
-}
+
+  // public void BeginTransaction() {
+  //   db.BeginTransaction();
+  // }
+
+  // public void CommitTransaction() {
+  //   db.CommitTransaction();
+  // }
+
+  // public void RollbackTransaction() {
+  //   db.RollbackTransaction();
+  // }
+} 
