@@ -1,0 +1,1938 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT
+[[1;33mWARNING[m] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.openjdk.jmh:jmh-core:jar -> duplicate declaration of version 1.36 @ line 74, column 21
+[[1;33mWARNING[m] 'profiles.profile[io].dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.openjdk.jmh:jmh-core:jar -> duplicate declaration of version 1.36 @ line 117, column 29
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Build Order:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Apache TinkerPop                                                   [pom]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Language                               [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Shaded                                 [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Core                                   [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Annotations                            [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Test                                   [jar]
+[[1;34mINFO[m] Apache TinkerPop :: TinkerGraph Gremlin                            [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Groovy                                 [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Util                                   [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Tools                                  [pom]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Socket Server                          [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Driver                                 [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Server                                 [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Javascript                             [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Python                                 [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin.Net                                    [pom]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin.Net - Source                           [pom]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin.Net - Tests                            [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Go                                     [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Hadoop Gremlin                                 [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Spark Gremlin                                  [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Neo4j Gremlin                                  [jar]
+[[1;34mINFO[m] Apache TinkerPop :: SPARQL Gremlin                                 [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Console                                [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Archetype                              [pom]
+[[1;34mINFO[m] Apache TinkerPop :: Archetype - TinkerGraph                        [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Archetype - Server                             [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Archetype - DSL                                [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Benchmark                              [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Coverage                               [jar]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlint                                       [jar]
+[[1;34mINFO[m] JMH benchmark sample: Java                                         [jar]
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-------------------< [0;36morg.apache.tinkerpop:tinkerpop[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop 4.0.0-SNAPSHOT                          [1/32][m
+[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mtinkerpop[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:tinkerpop:pom:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------------< [0;36morg.apache.tinkerpop:gremlin-language[0;1m >----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Language 4.0.0-SNAPSHOT      [2/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-language[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] +- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  \- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m] \- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------< [0;36morg.apache.tinkerpop:gremlin-shaded[0;1m >-----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Shaded 4.0.0-SNAPSHOT        [3/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-shaded[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- com.esotericsoftware:kryo-shaded:jar:3.0.3:compile
+[[1;34mINFO[m] +- com.esotericsoftware:minlog:jar:1.3.0:compile
+[[1;34mINFO[m] +- org.objenesis:objenesis:jar:3.3:compile
+[[1;34mINFO[m] \- com.fasterxml.jackson.core:jackson-databind:jar:2.15.2:compile
+[[1;34mINFO[m]    +- com.fasterxml.jackson.core:jackson-annotations:jar:2.15.2:compile
+[[1;34mINFO[m]    \- com.fasterxml.jackson.core:jackson-core:jar:2.15.2:compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------< [0;36morg.apache.tinkerpop:gremlin-core[0;1m >------------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Core 4.0.0-SNAPSHOT          [4/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-core[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] +- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m] +- io.github.hakky54:logcaptor:jar:2.7.10:test
+[[1;34mINFO[m] |  +- ch.qos.logback:logback-classic:jar:1.2.11:test
+[[1;34mINFO[m] |  |  \- ch.qos.logback:logback-core:jar:1.2.11:test
+[[1;34mINFO[m] |  +- org.apache.logging.log4j:log4j-to-slf4j:jar:2.17.2:test
+[[1;34mINFO[m] |  |  \- org.apache.logging.log4j:log4j-api:jar:2.17.2:test
+[[1;34mINFO[m] |  \- org.slf4j:jul-to-slf4j:jar:1.7.36:test
+[[1;34mINFO[m] +- org.mockito:mockito-core:jar:3.10.0:test
+[[1;34mINFO[m] |  +- net.bytebuddy:byte-buddy:jar:1.11.0:test
+[[1;34mINFO[m] |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:test
+[[1;34mINFO[m] |  \- org.objenesis:objenesis:jar:3.3:test
+[[1;34mINFO[m] \- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--------------< [0;36morg.apache.tinkerpop:gremlin-annotations[0;1m >--------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Annotations 4.0.0-SNAPSHOT   [5/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-annotations[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-annotations:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m] +- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m] +- org.mockito:mockito-core:jar:3.10.0:test
+[[1;34mINFO[m] |  +- net.bytebuddy:byte-buddy:jar:1.11.0:test
+[[1;34mINFO[m] |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:test
+[[1;34mINFO[m] |  \- org.objenesis:objenesis:jar:3.3:test
+[[1;34mINFO[m] +- com.google.testing.compile:compile-testing:jar:0.21.0:test
+[[1;34mINFO[m] |  +- com.google.truth:truth:jar:1.1.3:test
+[[1;34mINFO[m] |  |  +- com.google.auto.value:auto-value-annotations:jar:1.8.1:test
+[[1;34mINFO[m] |  |  \- org.ow2.asm:asm:jar:9.1:test
+[[1;34mINFO[m] |  +- com.google.auto.value:auto-value:jar:1.10:test
+[[1;34mINFO[m] |  \- com.google.auto:auto-common:jar:1.2.1:test
+[[1;34mINFO[m] +- com.google.guava:guava:jar:31.1-jre:test
+[[1;34mINFO[m] |  +- com.google.guava:failureaccess:jar:1.0.1:test
+[[1;34mINFO[m] |  +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:test
+[[1;34mINFO[m] |  +- com.google.code.findbugs:jsr305:jar:3.0.2:test
+[[1;34mINFO[m] |  +- org.checkerframework:checker-qual:jar:3.12.0:test
+[[1;34mINFO[m] |  \- com.google.j2objc:j2objc-annotations:jar:1.3:test
+[[1;34mINFO[m] \- com.google.errorprone:error_prone_annotations:jar:2.4.0:test
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------< [0;36morg.apache.tinkerpop:gremlin-test[0;1m >------------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Test 4.0.0-SNAPSHOT          [6/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-test[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-test:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- commons-io:commons-io:jar:2.8.0:compile
+[[1;34mINFO[m] +- junit:junit:jar:4.13.1:compile
+[[1;34mINFO[m] +- org.mockito:mockito-core:jar:3.10.0:compile
+[[1;34mINFO[m] |  +- net.bytebuddy:byte-buddy:jar:1.11.0:compile
+[[1;34mINFO[m] |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:compile
+[[1;34mINFO[m] |  \- org.objenesis:objenesis:jar:3.3:compile
+[[1;34mINFO[m] +- org.hamcrest:hamcrest:jar:2.2:compile
+[[1;34mINFO[m] +- io.cucumber:cucumber-java:jar:6.11.0:compile
+[[1;34mINFO[m] |  \- io.cucumber:cucumber-core:jar:6.11.0:compile
+[[1;34mINFO[m] |     +- io.cucumber:cucumber-gherkin:jar:6.11.0:compile
+[[1;34mINFO[m] |     +- io.cucumber:cucumber-gherkin-messages:jar:6.11.0:compile
+[[1;34mINFO[m] |     +- io.cucumber:messages:jar:15.0.0:compile
+[[1;34mINFO[m] |     +- io.cucumber:tag-expressions:jar:3.0.1:compile
+[[1;34mINFO[m] |     +- io.cucumber:cucumber-expressions:jar:10.3.0:compile
+[[1;34mINFO[m] |     +- io.cucumber:datatable:jar:3.5.0:compile
+[[1;34mINFO[m] |     +- io.cucumber:cucumber-plugin:jar:6.11.0:compile
+[[1;34mINFO[m] |     +- io.cucumber:docstring:jar:6.11.0:compile
+[[1;34mINFO[m] |     +- io.cucumber:html-formatter:jar:13.0.0:compile
+[[1;34mINFO[m] |     \- io.cucumber:create-meta:jar:4.0.0:compile
+[[1;34mINFO[m] +- org.apiguardian:apiguardian-api:jar:1.1.2:compile
+[[1;34mINFO[m] +- io.cucumber:cucumber-junit:jar:6.11.0:compile
+[[1;34mINFO[m] +- io.cucumber:cucumber-guice:jar:6.11.0:compile
+[[1;34mINFO[m] +- com.google.inject:guice:jar:4.2.3:provided
+[[1;34mINFO[m] |  +- javax.inject:javax.inject:jar:1:provided
+[[1;34mINFO[m] |  +- aopalliance:aopalliance:jar:1.0:provided
+[[1;34mINFO[m] |  \- com.google.guava:guava:jar:27.1-jre:provided
+[[1;34mINFO[m] |     +- com.google.guava:failureaccess:jar:1.0.1:provided
+[[1;34mINFO[m] |     +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:provided
+[[1;34mINFO[m] |     +- com.google.code.findbugs:jsr305:jar:3.0.2:provided
+[[1;34mINFO[m] |     +- org.checkerframework:checker-qual:jar:2.5.2:provided
+[[1;34mINFO[m] |     +- com.google.errorprone:error_prone_annotations:jar:2.2.0:provided
+[[1;34mINFO[m] |     +- com.google.j2objc:j2objc-annotations:jar:1.1:provided
+[[1;34mINFO[m] |     \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.17:provided
+[[1;34mINFO[m] +- ch.qos.logback:logback-classic:jar:1.2.11:compile
+[[1;34mINFO[m] |  \- ch.qos.logback:logback-core:jar:1.2.11:compile
+[[1;34mINFO[m] \- org.apache.kerby:kerb-simplekdc:jar:2.0.1:compile
+[[1;34mINFO[m]    +- org.apache.kerby:kerb-client:jar:2.0.1:compile
+[[1;34mINFO[m]    |  +- org.apache.kerby:kerby-config:jar:2.0.1:compile
+[[1;34mINFO[m]    |  +- org.apache.kerby:kerb-core:jar:2.0.1:compile
+[[1;34mINFO[m]    |  |  \- org.apache.kerby:kerby-pkix:jar:2.0.1:compile
+[[1;34mINFO[m]    |  |     +- org.apache.kerby:kerby-asn1:jar:2.0.1:compile
+[[1;34mINFO[m]    |  |     \- org.apache.kerby:kerby-util:jar:2.0.1:compile
+[[1;34mINFO[m]    |  +- org.apache.kerby:kerb-common:jar:2.0.1:compile
+[[1;34mINFO[m]    |  |  \- org.apache.kerby:kerb-crypto:jar:2.0.1:compile
+[[1;34mINFO[m]    |  +- org.apache.kerby:kerb-util:jar:2.0.1:compile
+[[1;34mINFO[m]    |  \- org.apache.kerby:token-provider:jar:2.0.1:compile
+[[1;34mINFO[m]    |     \- com.nimbusds:nimbus-jose-jwt:jar:8.2.1:compile
+[[1;34mINFO[m]    |        +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:compile
+[[1;34mINFO[m]    |        \- net.minidev:json-smart:jar:2.3:compile
+[[1;34mINFO[m]    |           \- net.minidev:accessors-smart:jar:1.2:compile
+[[1;34mINFO[m]    |              \- org.ow2.asm:asm:jar:5.0.4:compile
+[[1;34mINFO[m]    \- org.apache.kerby:kerb-admin:jar:2.0.1:compile
+[[1;34mINFO[m]       +- org.apache.kerby:kerb-server:jar:2.0.1:compile
+[[1;34mINFO[m]       |  \- org.apache.kerby:kerb-identity:jar:2.0.1:compile
+[[1;34mINFO[m]       \- org.apache.kerby:kerby-xdr:jar:2.0.1:compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--------------< [0;36morg.apache.tinkerpop:tinkergraph-gremlin[0;1m >--------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: TinkerGraph Gremlin 4.0.0-SNAPSHOT   [7/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mtinkergraph-gremlin[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] +- commons-io:commons-io:jar:2.8.0:compile
+[[1;34mINFO[m] +- com.google.inject:guice:jar:4.2.3:test
+[[1;34mINFO[m] |  +- javax.inject:javax.inject:jar:1:test
+[[1;34mINFO[m] |  +- aopalliance:aopalliance:jar:1.0:test
+[[1;34mINFO[m] |  \- com.google.guava:guava:jar:27.1-jre:test
+[[1;34mINFO[m] |     +- com.google.guava:failureaccess:jar:1.0.1:test
+[[1;34mINFO[m] |     +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:test
+[[1;34mINFO[m] |     +- com.google.code.findbugs:jsr305:jar:3.0.2:test
+[[1;34mINFO[m] |     +- org.checkerframework:checker-qual:jar:2.5.2:test
+[[1;34mINFO[m] |     +- com.google.errorprone:error_prone_annotations:jar:2.2.0:test
+[[1;34mINFO[m] |     +- com.google.j2objc:j2objc-annotations:jar:1.1:test
+[[1;34mINFO[m] |     \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.17:test
+[[1;34mINFO[m] +- ch.qos.logback:logback-classic:jar:1.2.11:test
+[[1;34mINFO[m] |  \- ch.qos.logback:logback-core:jar:1.2.11:test
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-test:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m] |  +- org.mockito:mockito-core:jar:3.10.0:test
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy:jar:1.11.0:test
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:test
+[[1;34mINFO[m] |  |  \- org.objenesis:objenesis:jar:3.3:test
+[[1;34mINFO[m] |  +- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-java:jar:6.11.0:test
+[[1;34mINFO[m] |  |  \- io.cucumber:cucumber-core:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin-messages:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:messages:jar:15.0.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:tag-expressions:jar:3.0.1:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-expressions:jar:10.3.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:datatable:jar:3.5.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-plugin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:docstring:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:html-formatter:jar:13.0.0:test
+[[1;34mINFO[m] |  |     \- io.cucumber:create-meta:jar:4.0.0:test
+[[1;34mINFO[m] |  +- org.apiguardian:apiguardian-api:jar:1.1.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-junit:jar:6.11.0:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-guice:jar:6.11.0:test
+[[1;34mINFO[m] |  \- org.apache.kerby:kerb-simplekdc:jar:2.0.1:test
+[[1;34mINFO[m] |     +- org.apache.kerby:kerb-client:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerby-config:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-core:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerby-pkix:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     +- org.apache.kerby:kerby-asn1:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     \- org.apache.kerby:kerby-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-common:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerb-crypto:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  \- org.apache.kerby:token-provider:jar:2.0.1:test
+[[1;34mINFO[m] |     |     \- com.nimbusds:nimbus-jose-jwt:jar:8.2.1:test
+[[1;34mINFO[m] |     |        +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:test
+[[1;34mINFO[m] |     |        \- net.minidev:json-smart:jar:2.3:test
+[[1;34mINFO[m] |     |           \- net.minidev:accessors-smart:jar:1.2:test
+[[1;34mINFO[m] |     |              \- org.ow2.asm:asm:jar:5.0.4:test
+[[1;34mINFO[m] |     \- org.apache.kerby:kerb-admin:jar:2.0.1:test
+[[1;34mINFO[m] |        +- org.apache.kerby:kerb-server:jar:2.0.1:test
+[[1;34mINFO[m] |        |  \- org.apache.kerby:kerb-identity:jar:2.0.1:test
+[[1;34mINFO[m] |        \- org.apache.kerby:kerby-xdr:jar:2.0.1:test
+[[1;34mINFO[m] +- org.rocksdb:rocksdbjni:jar:8.9.0:compile
+[[1;34mINFO[m] \- org.openjdk.jmh:jmh-core:jar:1.36:test
+[[1;34mINFO[m]    +- net.sf.jopt-simple:jopt-simple:jar:5.0.4:test
+[[1;34mINFO[m]    \- org.apache.commons:commons-math3:jar:3.2:test
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------< [0;36morg.apache.tinkerpop:gremlin-groovy[0;1m >-----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Groovy 4.0.0-SNAPSHOT        [8/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-groovy[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-groovy:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-annotations:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] +- org.apache.ivy:ivy:jar:2.5.1:compile
+[[1;34mINFO[m] +- org.apache.groovy:groovy:jar:4.0.9:compile
+[[1;34mINFO[m] +- org.apache.groovy:groovy-groovysh:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-console:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- com.github.javaparser:javaparser-core:jar:3.25.0:compile
+[[1;34mINFO[m] |  |  +- org.abego.treelayout:org.abego.treelayout.core:jar:1.0.3:compile
+[[1;34mINFO[m] |  |  \- org.apache.groovy:groovy-swing:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-templates:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-xml:jar:4.0.9:compile
+[[1;34mINFO[m] |  \- jline:jline:jar:2.14.6:compile
+[[1;34mINFO[m] +- org.apache.groovy:groovy-json:jar:4.0.9:compile
+[[1;34mINFO[m] +- org.apache.groovy:groovy-jsr223:jar:4.0.9:compile
+[[1;34mINFO[m] +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] +- org.mindrot:jbcrypt:jar:0.4:compile
+[[1;34mINFO[m] +- com.github.ben-manes.caffeine:caffeine:jar:2.3.1:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  +- commons-io:commons-io:jar:2.8.0:test
+[[1;34mINFO[m] |  \- org.rocksdb:rocksdbjni:jar:8.9.0:test
+[[1;34mINFO[m] +- ch.qos.logback:logback-classic:jar:1.2.11:test
+[[1;34mINFO[m] |  \- ch.qos.logback:logback-core:jar:1.2.11:test
+[[1;34mINFO[m] \- org.apache.tinkerpop:gremlin-test:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m]    +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m]    +- org.mockito:mockito-core:jar:3.10.0:test
+[[1;34mINFO[m]    |  +- net.bytebuddy:byte-buddy:jar:1.11.0:test
+[[1;34mINFO[m]    |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:test
+[[1;34mINFO[m]    |  \- org.objenesis:objenesis:jar:3.3:test
+[[1;34mINFO[m]    +- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m]    +- io.cucumber:cucumber-java:jar:6.11.0:test
+[[1;34mINFO[m]    |  \- io.cucumber:cucumber-core:jar:6.11.0:test
+[[1;34mINFO[m]    |     +- io.cucumber:cucumber-gherkin:jar:6.11.0:test
+[[1;34mINFO[m]    |     +- io.cucumber:cucumber-gherkin-messages:jar:6.11.0:test
+[[1;34mINFO[m]    |     +- io.cucumber:messages:jar:15.0.0:test
+[[1;34mINFO[m]    |     +- io.cucumber:tag-expressions:jar:3.0.1:test
+[[1;34mINFO[m]    |     +- io.cucumber:cucumber-expressions:jar:10.3.0:test
+[[1;34mINFO[m]    |     +- io.cucumber:datatable:jar:3.5.0:test
+[[1;34mINFO[m]    |     +- io.cucumber:cucumber-plugin:jar:6.11.0:test
+[[1;34mINFO[m]    |     +- io.cucumber:docstring:jar:6.11.0:test
+[[1;34mINFO[m]    |     +- io.cucumber:html-formatter:jar:13.0.0:test
+[[1;34mINFO[m]    |     \- io.cucumber:create-meta:jar:4.0.0:test
+[[1;34mINFO[m]    +- org.apiguardian:apiguardian-api:jar:1.1.2:test
+[[1;34mINFO[m]    +- io.cucumber:cucumber-junit:jar:6.11.0:test
+[[1;34mINFO[m]    +- io.cucumber:cucumber-guice:jar:6.11.0:test
+[[1;34mINFO[m]    \- org.apache.kerby:kerb-simplekdc:jar:2.0.1:test
+[[1;34mINFO[m]       +- org.apache.kerby:kerb-client:jar:2.0.1:test
+[[1;34mINFO[m]       |  +- org.apache.kerby:kerby-config:jar:2.0.1:test
+[[1;34mINFO[m]       |  +- org.apache.kerby:kerb-core:jar:2.0.1:test
+[[1;34mINFO[m]       |  |  \- org.apache.kerby:kerby-pkix:jar:2.0.1:test
+[[1;34mINFO[m]       |  |     +- org.apache.kerby:kerby-asn1:jar:2.0.1:test
+[[1;34mINFO[m]       |  |     \- org.apache.kerby:kerby-util:jar:2.0.1:test
+[[1;34mINFO[m]       |  +- org.apache.kerby:kerb-common:jar:2.0.1:test
+[[1;34mINFO[m]       |  |  \- org.apache.kerby:kerb-crypto:jar:2.0.1:test
+[[1;34mINFO[m]       |  +- org.apache.kerby:kerb-util:jar:2.0.1:test
+[[1;34mINFO[m]       |  \- org.apache.kerby:token-provider:jar:2.0.1:test
+[[1;34mINFO[m]       |     \- com.nimbusds:nimbus-jose-jwt:jar:8.2.1:test
+[[1;34mINFO[m]       |        +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:test
+[[1;34mINFO[m]       |        \- net.minidev:json-smart:jar:2.3:test
+[[1;34mINFO[m]       |           \- net.minidev:accessors-smart:jar:1.2:test
+[[1;34mINFO[m]       |              \- org.ow2.asm:asm:jar:5.0.4:test
+[[1;34mINFO[m]       \- org.apache.kerby:kerb-admin:jar:2.0.1:test
+[[1;34mINFO[m]          +- org.apache.kerby:kerb-server:jar:2.0.1:test
+[[1;34mINFO[m]          |  \- org.apache.kerby:kerb-identity:jar:2.0.1:test
+[[1;34mINFO[m]          \- org.apache.kerby:kerby-xdr:jar:2.0.1:test
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------< [0;36morg.apache.tinkerpop:gremlin-util[0;1m >------------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Util 4.0.0-SNAPSHOT          [9/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-util[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-util:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- io.netty:netty-all:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-buffer:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-haproxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-http:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-http2:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-memcache:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-mqtt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-redis:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-smtp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-socks:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-stomp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-xml:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-handler:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-unix-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-handler-proxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-handler-ssl-ocsp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-resolver:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-resolver-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-rxtx:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-sctp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-udt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-classes-epoll:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-classes-kqueue:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-resolver-dns-classes-macos:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  \- io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-test:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  +- commons-io:commons-io:jar:2.8.0:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-java:jar:6.11.0:test
+[[1;34mINFO[m] |  |  \- io.cucumber:cucumber-core:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin-messages:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:messages:jar:15.0.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:tag-expressions:jar:3.0.1:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-expressions:jar:10.3.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:datatable:jar:3.5.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-plugin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:docstring:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:html-formatter:jar:13.0.0:test
+[[1;34mINFO[m] |  |     \- io.cucumber:create-meta:jar:4.0.0:test
+[[1;34mINFO[m] |  +- org.apiguardian:apiguardian-api:jar:1.1.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-junit:jar:6.11.0:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-guice:jar:6.11.0:test
+[[1;34mINFO[m] |  \- org.apache.kerby:kerb-simplekdc:jar:2.0.1:test
+[[1;34mINFO[m] |     +- org.apache.kerby:kerb-client:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerby-config:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-core:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerby-pkix:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     +- org.apache.kerby:kerby-asn1:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     \- org.apache.kerby:kerby-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-common:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerb-crypto:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  \- org.apache.kerby:token-provider:jar:2.0.1:test
+[[1;34mINFO[m] |     |     \- com.nimbusds:nimbus-jose-jwt:jar:8.2.1:test
+[[1;34mINFO[m] |     |        +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:test
+[[1;34mINFO[m] |     |        \- net.minidev:json-smart:jar:2.3:test
+[[1;34mINFO[m] |     |           \- net.minidev:accessors-smart:jar:1.2:test
+[[1;34mINFO[m] |     |              \- org.ow2.asm:asm:jar:5.0.4:test
+[[1;34mINFO[m] |     \- org.apache.kerby:kerb-admin:jar:2.0.1:test
+[[1;34mINFO[m] |        +- org.apache.kerby:kerb-server:jar:2.0.1:test
+[[1;34mINFO[m] |        |  \- org.apache.kerby:kerb-identity:jar:2.0.1:test
+[[1;34mINFO[m] |        \- org.apache.kerby:kerby-xdr:jar:2.0.1:test
+[[1;34mINFO[m] +- org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  \- org.rocksdb:rocksdbjni:jar:8.9.0:test
+[[1;34mINFO[m] +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m] +- org.mockito:mockito-core:jar:3.10.0:test
+[[1;34mINFO[m] |  +- net.bytebuddy:byte-buddy:jar:1.11.0:test
+[[1;34mINFO[m] |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:test
+[[1;34mINFO[m] |  \- org.objenesis:objenesis:jar:3.3:test
+[[1;34mINFO[m] \- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------< [0;36morg.apache.tinkerpop:gremlin-tools[0;1m >-----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Tools 4.0.0-SNAPSHOT        [10/32][m
+[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-tools[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-tools:pom:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-------------< [0;36morg.apache.tinkerpop:gremlin-socket-server[0;1m >-------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Socket Server 4.0.0-SNAPSHOT [11/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-socket-server[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-socket-server:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-util:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  \- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |     +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |     +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |     |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |     |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |     |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |     +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |     |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] |     +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |     |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |     +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |     +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |     +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |     +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |     \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- commons-io:commons-io:jar:2.8.0:compile
+[[1;34mINFO[m] |  \- org.rocksdb:rocksdbjni:jar:8.9.0:compile
+[[1;34mINFO[m] +- io.netty:netty-all:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-buffer:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-haproxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-http:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-http2:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-memcache:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-mqtt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-redis:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-smtp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-socks:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-stomp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-xml:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-handler:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-unix-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-handler-proxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-handler-ssl-ocsp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-resolver:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-resolver-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-rxtx:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-sctp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-udt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-classes-epoll:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-classes-kqueue:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-resolver-dns-classes-macos:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  \- io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] +- org.apache.groovy:groovy:jar:4.0.9:compile
+[[1;34mINFO[m] \- org.apache.groovy:groovy-json:jar:4.0.9:compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------< [0;36morg.apache.tinkerpop:gremlin-driver[0;1m >-----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Driver 4.0.0-SNAPSHOT       [12/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-driver[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-driver:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-util:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] +- io.netty:netty-all:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-buffer:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-haproxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-http:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-http2:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-memcache:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-mqtt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-redis:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-smtp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-socks:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-stomp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-codec-xml:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-handler:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-unix-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-handler-proxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-handler-ssl-ocsp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-resolver:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-resolver-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-rxtx:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-sctp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-udt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-classes-epoll:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-classes-kqueue:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-resolver-dns-classes-macos:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  \- io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] +- ch.qos.logback:logback-classic:jar:1.2.11:compile
+[[1;34mINFO[m] |  \- ch.qos.logback:logback-core:jar:1.2.11:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- commons-io:commons-io:jar:2.8.0:compile
+[[1;34mINFO[m] |  \- org.rocksdb:rocksdbjni:jar:8.9.0:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-test:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-java:jar:6.11.0:test
+[[1;34mINFO[m] |  |  \- io.cucumber:cucumber-core:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin-messages:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:messages:jar:15.0.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:tag-expressions:jar:3.0.1:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-expressions:jar:10.3.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:datatable:jar:3.5.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-plugin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:docstring:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:html-formatter:jar:13.0.0:test
+[[1;34mINFO[m] |  |     \- io.cucumber:create-meta:jar:4.0.0:test
+[[1;34mINFO[m] |  +- org.apiguardian:apiguardian-api:jar:1.1.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-junit:jar:6.11.0:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-guice:jar:6.11.0:test
+[[1;34mINFO[m] |  \- org.apache.kerby:kerb-simplekdc:jar:2.0.1:test
+[[1;34mINFO[m] |     +- org.apache.kerby:kerb-client:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerby-config:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-core:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerby-pkix:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     +- org.apache.kerby:kerby-asn1:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     \- org.apache.kerby:kerby-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-common:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerb-crypto:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  \- org.apache.kerby:token-provider:jar:2.0.1:test
+[[1;34mINFO[m] |     |     \- com.nimbusds:nimbus-jose-jwt:jar:8.2.1:test
+[[1;34mINFO[m] |     |        +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:test
+[[1;34mINFO[m] |     |        \- net.minidev:json-smart:jar:2.3:test
+[[1;34mINFO[m] |     |           \- net.minidev:accessors-smart:jar:1.2:test
+[[1;34mINFO[m] |     |              \- org.ow2.asm:asm:jar:5.0.4:test
+[[1;34mINFO[m] |     \- org.apache.kerby:kerb-admin:jar:2.0.1:test
+[[1;34mINFO[m] |        +- org.apache.kerby:kerb-server:jar:2.0.1:test
+[[1;34mINFO[m] |        |  \- org.apache.kerby:kerb-identity:jar:2.0.1:test
+[[1;34mINFO[m] |        \- org.apache.kerby:kerby-xdr:jar:2.0.1:test
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-socket-server:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m] +- org.mockito:mockito-core:jar:3.10.0:test
+[[1;34mINFO[m] |  +- net.bytebuddy:byte-buddy:jar:1.11.0:test
+[[1;34mINFO[m] |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:test
+[[1;34mINFO[m] |  \- org.objenesis:objenesis:jar:3.3:test
+[[1;34mINFO[m] +- org.mockito:mockito-inline:jar:4.10.0:test
+[[1;34mINFO[m] +- io.github.hakky54:logcaptor:jar:2.7.10:test
+[[1;34mINFO[m] |  +- org.apache.logging.log4j:log4j-to-slf4j:jar:2.17.2:test
+[[1;34mINFO[m] |  |  \- org.apache.logging.log4j:log4j-api:jar:2.17.2:test
+[[1;34mINFO[m] |  \- org.slf4j:jul-to-slf4j:jar:1.7.36:test
+[[1;34mINFO[m] \- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------< [0;36morg.apache.tinkerpop:gremlin-server[0;1m >-----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Server 4.0.0-SNAPSHOT       [13/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-server[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-server:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  |  |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  |  +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |  |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- commons-io:commons-io:jar:2.8.0:compile
+[[1;34mINFO[m] |  \- org.rocksdb:rocksdbjni:jar:8.9.0:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-util:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- io.netty:netty-all:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-buffer:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec-haproxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec-http:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec-http2:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec-memcache:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec-mqtt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec-redis:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec-smtp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec-socks:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec-stomp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec-xml:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-handler:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-native-unix-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-handler-proxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-handler-ssl-ocsp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-resolver:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-resolver-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-rxtx:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-sctp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-udt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-classes-epoll:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-classes-kqueue:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-resolver-dns-classes-macos:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  |  +- io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  |  \- io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] |  \- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-groovy:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.ivy:ivy:jar:2.5.1:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-groovysh:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-console:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  |  +- com.github.javaparser:javaparser-core:jar:3.25.0:compile
+[[1;34mINFO[m] |  |  |  +- org.abego.treelayout:org.abego.treelayout.core:jar:1.0.3:compile
+[[1;34mINFO[m] |  |  |  \- org.apache.groovy:groovy-swing:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-templates:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-xml:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  \- jline:jline:jar:2.14.6:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-json:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-jsr223:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.mindrot:jbcrypt:jar:0.4:compile
+[[1;34mINFO[m] |  \- com.github.ben-manes.caffeine:caffeine:jar:2.3.1:compile
+[[1;34mINFO[m] +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] +- ch.qos.logback:logback-classic:jar:1.2.11:compile
+[[1;34mINFO[m] |  \- ch.qos.logback:logback-core:jar:1.2.11:compile
+[[1;34mINFO[m] +- com.codahale.metrics:metrics-core:jar:3.0.2:compile
+[[1;34mINFO[m] +- com.codahale.metrics:metrics-graphite:jar:3.0.2:compile
+[[1;34mINFO[m] +- com.codahale.metrics:metrics-ganglia:jar:3.0.2:compile
+[[1;34mINFO[m] |  \- info.ganglia.gmetric4j:gmetric4j:jar:1.0.3:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-test:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m] |  +- org.mockito:mockito-core:jar:3.10.0:test
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy:jar:1.11.0:test
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:test
+[[1;34mINFO[m] |  |  \- org.objenesis:objenesis:jar:3.3:test
+[[1;34mINFO[m] |  +- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-java:jar:6.11.0:test
+[[1;34mINFO[m] |  |  \- io.cucumber:cucumber-core:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin-messages:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:messages:jar:15.0.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:tag-expressions:jar:3.0.1:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-expressions:jar:10.3.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:datatable:jar:3.5.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-plugin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:docstring:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:html-formatter:jar:13.0.0:test
+[[1;34mINFO[m] |  |     \- io.cucumber:create-meta:jar:4.0.0:test
+[[1;34mINFO[m] |  +- org.apiguardian:apiguardian-api:jar:1.1.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-junit:jar:6.11.0:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-guice:jar:6.11.0:test
+[[1;34mINFO[m] |  \- org.apache.kerby:kerb-simplekdc:jar:2.0.1:test
+[[1;34mINFO[m] |     +- org.apache.kerby:kerb-client:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerby-config:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-core:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerby-pkix:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     +- org.apache.kerby:kerby-asn1:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     \- org.apache.kerby:kerby-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-common:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerb-crypto:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  \- org.apache.kerby:token-provider:jar:2.0.1:test
+[[1;34mINFO[m] |     |     \- com.nimbusds:nimbus-jose-jwt:jar:8.2.1:test
+[[1;34mINFO[m] |     |        +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:test
+[[1;34mINFO[m] |     |        \- net.minidev:json-smart:jar:2.3:test
+[[1;34mINFO[m] |     |           \- net.minidev:accessors-smart:jar:1.2:test
+[[1;34mINFO[m] |     |              \- org.ow2.asm:asm:jar:5.0.4:test
+[[1;34mINFO[m] |     \- org.apache.kerby:kerb-admin:jar:2.0.1:test
+[[1;34mINFO[m] |        +- org.apache.kerby:kerb-server:jar:2.0.1:test
+[[1;34mINFO[m] |        |  \- org.apache.kerby:kerb-identity:jar:2.0.1:test
+[[1;34mINFO[m] |        \- org.apache.kerby:kerby-xdr:jar:2.0.1:test
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-driver:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] +- com.carrotsearch:junit-benchmarks:jar:0.7.2:test
+[[1;34mINFO[m] +- org.apache.httpcomponents:httpclient:jar:4.5.13:test
+[[1;34mINFO[m] |  +- org.apache.httpcomponents:httpcore:jar:4.4.13:test
+[[1;34mINFO[m] |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] +- com.google.inject:guice:jar:4.2.3:test
+[[1;34mINFO[m] |  +- javax.inject:javax.inject:jar:1:test
+[[1;34mINFO[m] |  +- aopalliance:aopalliance:jar:1.0:test
+[[1;34mINFO[m] |  \- com.google.guava:guava:jar:27.1-jre:test
+[[1;34mINFO[m] |     +- com.google.guava:failureaccess:jar:1.0.1:test
+[[1;34mINFO[m] |     +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:test
+[[1;34mINFO[m] |     +- com.google.code.findbugs:jsr305:jar:3.0.2:test
+[[1;34mINFO[m] |     +- org.checkerframework:checker-qual:jar:2.5.2:test
+[[1;34mINFO[m] |     +- com.google.errorprone:error_prone_annotations:jar:2.2.0:test
+[[1;34mINFO[m] |     +- com.google.j2objc:j2objc-annotations:jar:1.1:test
+[[1;34mINFO[m] |     \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.17:test
+[[1;34mINFO[m] \- io.github.hakky54:logcaptor:jar:2.7.10:test
+[[1;34mINFO[m]    +- org.apache.logging.log4j:log4j-to-slf4j:jar:2.17.2:test
+[[1;34mINFO[m]    |  \- org.apache.logging.log4j:log4j-api:jar:2.17.2:test
+[[1;34mINFO[m]    \- org.slf4j:jul-to-slf4j:jar:1.7.36:test
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--------------< [0;36morg.apache.tinkerpop:gremlin-javascript[0;1m >---------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Javascript 4.0.0-SNAPSHOT   [14/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-javascript[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-javascript:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------< [0;36morg.apache.tinkerpop:gremlin-python[0;1m >-----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Python 4.0.0-SNAPSHOT       [15/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-python[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-python:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------< [0;36morg.apache.tinkerpop:gremlin-dotnet[0;1m >-----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin.Net 4.0.0-SNAPSHOT          [16/32][m
+[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-dotnet[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-dotnet:pom:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-------------< [0;36morg.apache.tinkerpop:gremlin-dotnet-source[0;1m >-------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin.Net - Source 4.0.0-SNAPSHOT [17/32][m
+[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-dotnet-source[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-dotnet-source:pom:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-------------< [0;36morg.apache.tinkerpop:gremlin-dotnet-tests[0;1m >--------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin.Net - Tests 4.0.0-SNAPSHOT  [18/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-dotnet-tests[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-dotnet-tests:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.tinkerpop:gremlin-go[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Go 4.0.0-SNAPSHOT           [19/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-go[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-go:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------< [0;36morg.apache.tinkerpop:hadoop-gremlin[0;1m >-----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Hadoop Gremlin 4.0.0-SNAPSHOT       [20/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mhadoop-gremlin[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:hadoop-gremlin:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-groovy:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.ivy:ivy:jar:2.5.1:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-groovysh:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-console:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  |  +- com.github.javaparser:javaparser-core:jar:3.25.0:compile
+[[1;34mINFO[m] |  |  |  +- org.abego.treelayout:org.abego.treelayout.core:jar:1.0.3:compile
+[[1;34mINFO[m] |  |  |  \- org.apache.groovy:groovy-swing:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-templates:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-xml:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  \- jline:jline:jar:2.14.6:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-json:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-jsr223:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.mindrot:jbcrypt:jar:0.4:compile
+[[1;34mINFO[m] |  \- com.github.ben-manes.caffeine:caffeine:jar:2.3.1:compile
+[[1;34mINFO[m] +- org.apache.hadoop:hadoop-client:jar:3.3.3:compile
+[[1;34mINFO[m] |  +- org.apache.hadoop:hadoop-common:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  +- org.apache.hadoop.thirdparty:hadoop-shaded-protobuf_3_7:jar:1.1.1:compile
+[[1;34mINFO[m] |  |  +- org.apache.hadoop.thirdparty:hadoop-shaded-guava:jar:1.1.1:compile
+[[1;34mINFO[m] |  |  +- commons-cli:commons-cli:jar:1.2:compile
+[[1;34mINFO[m] |  |  +- org.apache.commons:commons-math3:jar:3.1.1:compile
+[[1;34mINFO[m] |  |  +- org.apache.httpcomponents:httpclient:jar:4.5.13:compile
+[[1;34mINFO[m] |  |  |  \- org.apache.httpcomponents:httpcore:jar:4.4.13:compile
+[[1;34mINFO[m] |  |  +- commons-codec:commons-codec:jar:1.15:compile
+[[1;34mINFO[m] |  |  +- commons-net:commons-net:jar:3.6:compile
+[[1;34mINFO[m] |  |  +- jakarta.activation:jakarta.activation-api:jar:1.2.1:compile
+[[1;34mINFO[m] |  |  +- org.eclipse.jetty:jetty-servlet:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  +- org.eclipse.jetty:jetty-security:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  \- org.eclipse.jetty:jetty-util-ajax:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  +- org.eclipse.jetty:jetty-webapp:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  \- org.eclipse.jetty:jetty-xml:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  +- javax.servlet.jsp:jsp-api:jar:2.1:runtime
+[[1;34mINFO[m] |  |  +- com.sun.jersey:jersey-servlet:jar:1.19:compile
+[[1;34mINFO[m] |  |  +- org.slf4j:slf4j-reload4j:jar:1.7.36:compile
+[[1;34mINFO[m] |  |  +- org.apache.avro:avro:jar:1.7.7:compile
+[[1;34mINFO[m] |  |  |  +- org.codehaus.jackson:jackson-core-asl:jar:1.9.13:compile
+[[1;34mINFO[m] |  |  |  \- org.codehaus.jackson:jackson-mapper-asl:jar:1.9.13:compile
+[[1;34mINFO[m] |  |  +- com.google.re2j:re2j:jar:1.1:compile
+[[1;34mINFO[m] |  |  +- com.google.protobuf:protobuf-java:jar:2.5.0:compile
+[[1;34mINFO[m] |  |  +- com.google.code.gson:gson:jar:2.8.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.hadoop:hadoop-auth:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  |  +- net.minidev:json-smart:jar:2.4.7:compile
+[[1;34mINFO[m] |  |  |  |  \- net.minidev:accessors-smart:jar:2.4.7:compile
+[[1;34mINFO[m] |  |  |  |     \- org.ow2.asm:asm:jar:9.1:compile
+[[1;34mINFO[m] |  |  |  \- org.apache.curator:curator-framework:jar:4.2.0:compile
+[[1;34mINFO[m] |  |  +- org.apache.curator:curator-client:jar:4.2.0:compile
+[[1;34mINFO[m] |  |  +- org.apache.curator:curator-recipes:jar:4.2.0:compile
+[[1;34mINFO[m] |  |  +- org.apache.kerby:kerb-core:jar:1.0.1:compile
+[[1;34mINFO[m] |  |  |  \- org.apache.kerby:kerby-pkix:jar:1.0.1:compile
+[[1;34mINFO[m] |  |  |     +- org.apache.kerby:kerby-asn1:jar:1.0.1:compile
+[[1;34mINFO[m] |  |  |     \- org.apache.kerby:kerby-util:jar:1.0.1:compile
+[[1;34mINFO[m] |  |  +- com.fasterxml.woodstox:woodstox-core:jar:5.3.0:compile
+[[1;34mINFO[m] |  |  \- dnsjava:dnsjava:jar:2.1.7:compile
+[[1;34mINFO[m] |  +- org.apache.hadoop:hadoop-hdfs-client:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  \- com.squareup.okhttp:okhttp:jar:2.7.5:compile
+[[1;34mINFO[m] |  |     \- com.squareup.okio:okio:jar:1.6.0:compile
+[[1;34mINFO[m] |  +- org.apache.hadoop:hadoop-yarn-api:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  +- javax.xml.bind:jaxb-api:jar:2.2.11:compile
+[[1;34mINFO[m] |  |  \- javax.ws.rs:javax.ws.rs-api:jar:2.1.1:compile
+[[1;34mINFO[m] |  +- org.apache.hadoop:hadoop-yarn-client:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  +- org.eclipse.jetty.websocket:websocket-client:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  +- org.eclipse.jetty:jetty-client:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  |  \- org.eclipse.jetty:jetty-http:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  +- org.eclipse.jetty:jetty-util:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  +- org.eclipse.jetty:jetty-io:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  \- org.eclipse.jetty.websocket:websocket-common:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |     \- org.eclipse.jetty.websocket:websocket-api:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  \- org.jline:jline:jar:3.9.0:compile
+[[1;34mINFO[m] |  +- org.apache.hadoop:hadoop-mapreduce-client-core:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  \- org.apache.hadoop:hadoop-yarn-common:jar:3.3.3:compile
+[[1;34mINFO[m] |  |     +- javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[[1;34mINFO[m] |  |     +- com.sun.jersey:jersey-core:jar:1.19:compile
+[[1;34mINFO[m] |  |     |  \- javax.ws.rs:jsr311-api:jar:1.1.1:compile
+[[1;34mINFO[m] |  |     +- com.sun.jersey:jersey-client:jar:1.19:compile
+[[1;34mINFO[m] |  |     +- com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.13.2:compile
+[[1;34mINFO[m] |  |     |  \- jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.3:compile
+[[1;34mINFO[m] |  |     \- com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.13.2:compile
+[[1;34mINFO[m] |  |        \- com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.13.2:compile
+[[1;34mINFO[m] |  +- org.apache.hadoop:hadoop-mapreduce-client-jobclient:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  \- org.apache.hadoop:hadoop-mapreduce-client-common:jar:3.3.3:compile
+[[1;34mINFO[m] |  \- org.apache.hadoop:hadoop-annotations:jar:3.3.3:compile
+[[1;34mINFO[m] +- ch.qos.reload4j:reload4j:jar:1.2.19:compile
+[[1;34mINFO[m] +- com.thoughtworks.paranamer:paranamer:jar:2.8:compile
+[[1;34mINFO[m] +- org.codehaus.woodstox:stax2-api:jar:4.2.1:compile
+[[1;34mINFO[m] +- org.apache.commons:commons-compress:jar:1.21:compile
+[[1;34mINFO[m] +- org.xerial.snappy:snappy-java:jar:1.1.8.2:compile
+[[1;34mINFO[m] +- com.nimbusds:nimbus-jose-jwt:jar:9.8.1:compile
+[[1;34mINFO[m] |  \- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:compile
+[[1;34mINFO[m] +- com.google.guava:guava:jar:27.0-jre:compile
+[[1;34mINFO[m] |  +- com.google.guava:failureaccess:jar:1.0:compile
+[[1;34mINFO[m] |  +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[[1;34mINFO[m] |  +- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[[1;34mINFO[m] |  +- org.checkerframework:checker-qual:jar:2.5.2:compile
+[[1;34mINFO[m] |  +- com.google.errorprone:error_prone_annotations:jar:2.2.0:compile
+[[1;34mINFO[m] |  +- com.google.j2objc:j2objc-annotations:jar:1.1:compile
+[[1;34mINFO[m] |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.17:compile
+[[1;34mINFO[m] +- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] +- com.fasterxml.jackson.core:jackson-annotations:jar:2.13.5:compile
+[[1;34mINFO[m] +- com.fasterxml.jackson.core:jackson-core:jar:2.13.5:compile
+[[1;34mINFO[m] +- com.fasterxml.jackson.core:jackson-databind:jar:2.13.5:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-test:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  +- commons-io:commons-io:jar:2.8.0:compile
+[[1;34mINFO[m] |  +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m] |  +- org.mockito:mockito-core:jar:3.10.0:test
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy:jar:1.11.0:test
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:test
+[[1;34mINFO[m] |  |  \- org.objenesis:objenesis:jar:3.3:test
+[[1;34mINFO[m] |  +- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-java:jar:6.11.0:test
+[[1;34mINFO[m] |  |  \- io.cucumber:cucumber-core:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin-messages:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:messages:jar:15.0.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:tag-expressions:jar:3.0.1:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-expressions:jar:10.3.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:datatable:jar:3.5.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-plugin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:docstring:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:html-formatter:jar:13.0.0:test
+[[1;34mINFO[m] |  |     \- io.cucumber:create-meta:jar:4.0.0:test
+[[1;34mINFO[m] |  +- org.apiguardian:apiguardian-api:jar:1.1.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-junit:jar:6.11.0:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-guice:jar:6.11.0:test
+[[1;34mINFO[m] |  \- org.apache.kerby:kerb-simplekdc:jar:2.0.1:compile
+[[1;34mINFO[m] |     +- org.apache.kerby:kerb-client:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerby-config:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-common:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerb-crypto:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-util:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  \- org.apache.kerby:token-provider:jar:2.0.1:compile
+[[1;34mINFO[m] |     \- org.apache.kerby:kerb-admin:jar:2.0.1:compile
+[[1;34mINFO[m] |        +- org.apache.kerby:kerb-server:jar:2.0.1:compile
+[[1;34mINFO[m] |        |  \- org.apache.kerby:kerb-identity:jar:2.0.1:compile
+[[1;34mINFO[m] |        \- org.apache.kerby:kerby-xdr:jar:2.0.1:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  \- org.rocksdb:rocksdbjni:jar:8.9.0:test
+[[1;34mINFO[m] \- com.google.inject:guice:jar:4.2.3:test
+[[1;34mINFO[m]    +- javax.inject:javax.inject:jar:1:test
+[[1;34mINFO[m]    \- aopalliance:aopalliance:jar:1.0:test
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------< [0;36morg.apache.tinkerpop:spark-gremlin[0;1m >-----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Spark Gremlin 4.0.0-SNAPSHOT        [21/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mspark-gremlin[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:spark-gremlin:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- com.google.guava:guava:jar:27.0-jre:compile
+[[1;34mINFO[m] |  +- com.google.guava:failureaccess:jar:1.0:compile
+[[1;34mINFO[m] |  +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[[1;34mINFO[m] |  +- org.checkerframework:checker-qual:jar:2.5.2:compile
+[[1;34mINFO[m] |  +- com.google.errorprone:error_prone_annotations:jar:2.2.0:compile
+[[1;34mINFO[m] |  +- com.google.j2objc:j2objc-annotations:jar:1.1:compile
+[[1;34mINFO[m] |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.17:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  \- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:hadoop-gremlin:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-groovy:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.apache.ivy:ivy:jar:2.5.1:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-groovysh:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  |  +- org.apache.groovy:groovy-console:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  |  |  +- com.github.javaparser:javaparser-core:jar:3.25.0:compile
+[[1;34mINFO[m] |  |  |  |  +- org.abego.treelayout:org.abego.treelayout.core:jar:1.0.3:compile
+[[1;34mINFO[m] |  |  |  |  \- org.apache.groovy:groovy-swing:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  |  +- org.apache.groovy:groovy-templates:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  |  +- org.apache.groovy:groovy-xml:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  |  \- jline:jline:jar:2.14.6:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-json:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-jsr223:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.mindrot:jbcrypt:jar:0.4:compile
+[[1;34mINFO[m] |  |  \- com.github.ben-manes.caffeine:caffeine:jar:2.3.1:compile
+[[1;34mINFO[m] |  +- org.apache.hadoop:hadoop-client:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  +- org.apache.hadoop:hadoop-common:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  |  +- org.apache.hadoop.thirdparty:hadoop-shaded-protobuf_3_7:jar:1.1.1:compile
+[[1;34mINFO[m] |  |  |  +- org.apache.hadoop.thirdparty:hadoop-shaded-guava:jar:1.1.1:compile
+[[1;34mINFO[m] |  |  |  +- commons-cli:commons-cli:jar:1.2:compile
+[[1;34mINFO[m] |  |  |  +- org.apache.httpcomponents:httpclient:jar:4.5.13:compile
+[[1;34mINFO[m] |  |  |  |  \- org.apache.httpcomponents:httpcore:jar:4.4.13:compile
+[[1;34mINFO[m] |  |  |  +- commons-net:commons-net:jar:3.6:compile
+[[1;34mINFO[m] |  |  |  +- jakarta.activation:jakarta.activation-api:jar:1.2.1:compile
+[[1;34mINFO[m] |  |  |  +- org.eclipse.jetty:jetty-servlet:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  |  +- org.eclipse.jetty:jetty-security:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  |  \- org.eclipse.jetty:jetty-util-ajax:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  +- org.eclipse.jetty:jetty-webapp:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  |  \- org.eclipse.jetty:jetty-xml:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  +- javax.servlet.jsp:jsp-api:jar:2.1:runtime
+[[1;34mINFO[m] |  |  |  +- com.sun.jersey:jersey-servlet:jar:1.19:compile
+[[1;34mINFO[m] |  |  |  +- com.google.re2j:re2j:jar:1.1:compile
+[[1;34mINFO[m] |  |  |  +- com.google.protobuf:protobuf-java:jar:2.5.0:compile
+[[1;34mINFO[m] |  |  |  +- org.apache.hadoop:hadoop-auth:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  |  |  \- net.minidev:json-smart:jar:2.4.7:compile
+[[1;34mINFO[m] |  |  |  |     \- net.minidev:accessors-smart:jar:2.4.7:compile
+[[1;34mINFO[m] |  |  |  |        \- org.ow2.asm:asm:jar:9.1:compile
+[[1;34mINFO[m] |  |  |  +- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[[1;34mINFO[m] |  |  |  +- com.fasterxml.woodstox:woodstox-core:jar:5.3.0:compile
+[[1;34mINFO[m] |  |  |  \- dnsjava:dnsjava:jar:2.1.7:compile
+[[1;34mINFO[m] |  |  +- org.apache.hadoop:hadoop-hdfs-client:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  |  \- com.squareup.okhttp:okhttp:jar:2.7.5:compile
+[[1;34mINFO[m] |  |  |     \- com.squareup.okio:okio:jar:1.6.0:compile
+[[1;34mINFO[m] |  |  +- org.apache.hadoop:hadoop-yarn-api:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  |  +- javax.xml.bind:jaxb-api:jar:2.2.11:compile
+[[1;34mINFO[m] |  |  |  \- javax.ws.rs:javax.ws.rs-api:jar:2.1.1:compile
+[[1;34mINFO[m] |  |  +- org.apache.hadoop:hadoop-yarn-client:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  |  +- org.eclipse.jetty.websocket:websocket-client:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  |  +- org.eclipse.jetty:jetty-client:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  |  |  \- org.eclipse.jetty:jetty-http:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  |  +- org.eclipse.jetty:jetty-util:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  |  +- org.eclipse.jetty:jetty-io:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  |  \- org.eclipse.jetty.websocket:websocket-common:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  |     \- org.eclipse.jetty.websocket:websocket-api:jar:9.4.43.v20210629:compile
+[[1;34mINFO[m] |  |  |  \- org.jline:jline:jar:3.9.0:compile
+[[1;34mINFO[m] |  |  +- org.apache.hadoop:hadoop-mapreduce-client-core:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  |  \- org.apache.hadoop:hadoop-yarn-common:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  |     +- javax.servlet:javax.servlet-api:jar:3.1.0:compile
+[[1;34mINFO[m] |  |  |     +- com.sun.jersey:jersey-core:jar:1.19:compile
+[[1;34mINFO[m] |  |  |     |  \- javax.ws.rs:jsr311-api:jar:1.1.1:compile
+[[1;34mINFO[m] |  |  |     +- com.sun.jersey:jersey-client:jar:1.19:compile
+[[1;34mINFO[m] |  |  |     +- com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.13.2:compile
+[[1;34mINFO[m] |  |  |     |  \- jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.3:compile
+[[1;34mINFO[m] |  |  |     \- com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.13.2:compile
+[[1;34mINFO[m] |  |  |        \- com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.13.2:compile
+[[1;34mINFO[m] |  |  +- org.apache.hadoop:hadoop-mapreduce-client-jobclient:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  |  \- org.apache.hadoop:hadoop-mapreduce-client-common:jar:3.3.3:compile
+[[1;34mINFO[m] |  |  \- org.apache.hadoop:hadoop-annotations:jar:3.3.3:compile
+[[1;34mINFO[m] |  +- ch.qos.reload4j:reload4j:jar:1.2.19:compile
+[[1;34mINFO[m] |  +- com.thoughtworks.paranamer:paranamer:jar:2.8:compile
+[[1;34mINFO[m] |  +- org.codehaus.woodstox:stax2-api:jar:4.2.1:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-compress:jar:1.21:compile
+[[1;34mINFO[m] |  +- com.nimbusds:nimbus-jose-jwt:jar:9.8.1:compile
+[[1;34mINFO[m] |  |  \- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:compile
+[[1;34mINFO[m] |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] +- org.apache.spark:spark-core_2.12:jar:3.3.2:compile
+[[1;34mINFO[m] |  +- org.apache.avro:avro-mapred:jar:1.11.0:compile
+[[1;34mINFO[m] |  |  \- org.apache.avro:avro-ipc:jar:1.11.0:compile
+[[1;34mINFO[m] |  |     \- org.tukaani:xz:jar:1.9:compile
+[[1;34mINFO[m] |  +- com.twitter:chill_2.12:jar:0.10.0:compile
+[[1;34mINFO[m] |  |  \- com.esotericsoftware:kryo-shaded:jar:4.0.2:compile
+[[1;34mINFO[m] |  |     \- com.esotericsoftware:minlog:jar:1.3.0:compile
+[[1;34mINFO[m] |  +- com.twitter:chill-java:jar:0.10.0:compile
+[[1;34mINFO[m] |  +- org.apache.xbean:xbean-asm9-shaded:jar:4.20:compile
+[[1;34mINFO[m] |  +- org.apache.hadoop:hadoop-client-api:jar:3.3.2:compile
+[[1;34mINFO[m] |  +- org.apache.hadoop:hadoop-client-runtime:jar:3.3.2:compile
+[[1;34mINFO[m] |  +- org.apache.spark:spark-launcher_2.12:jar:3.3.2:compile
+[[1;34mINFO[m] |  +- org.apache.spark:spark-kvstore_2.12:jar:3.3.2:compile
+[[1;34mINFO[m] |  |  \- org.fusesource.leveldbjni:leveldbjni-all:jar:1.8:compile
+[[1;34mINFO[m] |  +- org.apache.spark:spark-network-common_2.12:jar:3.3.2:compile
+[[1;34mINFO[m] |  |  \- com.google.crypto.tink:tink:jar:1.6.1:compile
+[[1;34mINFO[m] |  |     \- com.google.code.gson:gson:jar:2.8.6:compile
+[[1;34mINFO[m] |  +- org.apache.spark:spark-network-shuffle_2.12:jar:3.3.2:compile
+[[1;34mINFO[m] |  +- org.apache.spark:spark-unsafe_2.12:jar:3.3.2:compile
+[[1;34mINFO[m] |  +- javax.activation:activation:jar:1.1.1:compile
+[[1;34mINFO[m] |  +- org.apache.zookeeper:zookeeper:jar:3.6.2:compile
+[[1;34mINFO[m] |  |  +- commons-lang:commons-lang:jar:2.6:compile
+[[1;34mINFO[m] |  |  +- org.apache.zookeeper:zookeeper-jute:jar:3.6.2:compile
+[[1;34mINFO[m] |  |  \- org.apache.yetus:audience-annotations:jar:0.5.0:compile
+[[1;34mINFO[m] |  +- jakarta.servlet:jakarta.servlet-api:jar:4.0.3:compile
+[[1;34mINFO[m] |  +- commons-codec:commons-codec:jar:1.15:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  +- commons-io:commons-io:jar:2.8.0:compile
+[[1;34mINFO[m] |  +- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  +- org.slf4j:jul-to-slf4j:jar:1.7.32:compile
+[[1;34mINFO[m] |  +- org.apache.logging.log4j:log4j-api:jar:2.17.2:compile
+[[1;34mINFO[m] |  +- org.apache.logging.log4j:log4j-core:jar:2.17.2:compile
+[[1;34mINFO[m] |  +- org.apache.logging.log4j:log4j-1.2-api:jar:2.17.2:compile
+[[1;34mINFO[m] |  +- com.ning:compress-lzf:jar:1.1:compile
+[[1;34mINFO[m] |  +- org.lz4:lz4-java:jar:1.8.0:compile
+[[1;34mINFO[m] |  +- com.github.luben:zstd-jni:jar:1.5.2-1:compile
+[[1;34mINFO[m] |  +- org.roaringbitmap:RoaringBitmap:jar:0.9.25:compile
+[[1;34mINFO[m] |  |  \- org.roaringbitmap:shims:jar:0.9.25:runtime
+[[1;34mINFO[m] |  +- org.scala-lang.modules:scala-xml_2.12:jar:1.2.0:compile
+[[1;34mINFO[m] |  +- org.scala-lang:scala-reflect:jar:2.12.15:compile
+[[1;34mINFO[m] |  +- org.json4s:json4s-jackson_2.12:jar:3.7.0-M11:compile
+[[1;34mINFO[m] |  |  \- org.json4s:json4s-core_2.12:jar:3.7.0-M11:compile
+[[1;34mINFO[m] |  |     +- org.json4s:json4s-ast_2.12:jar:3.7.0-M11:compile
+[[1;34mINFO[m] |  |     \- org.json4s:json4s-scalap_2.12:jar:3.7.0-M11:compile
+[[1;34mINFO[m] |  +- org.glassfish.jersey.core:jersey-client:jar:2.36:compile
+[[1;34mINFO[m] |  |  +- jakarta.ws.rs:jakarta.ws.rs-api:jar:2.1.6:compile
+[[1;34mINFO[m] |  |  \- org.glassfish.hk2.external:jakarta.inject:jar:2.6.1:compile
+[[1;34mINFO[m] |  +- org.glassfish.jersey.core:jersey-common:jar:2.36:compile
+[[1;34mINFO[m] |  |  +- jakarta.annotation:jakarta.annotation-api:jar:1.3.5:compile
+[[1;34mINFO[m] |  |  \- org.glassfish.hk2:osgi-resource-locator:jar:1.0.3:compile
+[[1;34mINFO[m] |  +- org.glassfish.jersey.core:jersey-server:jar:2.36:compile
+[[1;34mINFO[m] |  |  \- jakarta.validation:jakarta.validation-api:jar:2.0.2:compile
+[[1;34mINFO[m] |  +- org.glassfish.jersey.containers:jersey-container-servlet:jar:2.36:compile
+[[1;34mINFO[m] |  +- org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.36:compile
+[[1;34mINFO[m] |  +- org.glassfish.jersey.inject:jersey-hk2:jar:2.36:compile
+[[1;34mINFO[m] |  |  +- org.glassfish.hk2:hk2-locator:jar:2.6.1:compile
+[[1;34mINFO[m] |  |  |  +- org.glassfish.hk2.external:aopalliance-repackaged:jar:2.6.1:compile
+[[1;34mINFO[m] |  |  |  +- org.glassfish.hk2:hk2-api:jar:2.6.1:compile
+[[1;34mINFO[m] |  |  |  \- org.glassfish.hk2:hk2-utils:jar:2.6.1:compile
+[[1;34mINFO[m] |  |  \- org.javassist:javassist:jar:3.25.0-GA:compile
+[[1;34mINFO[m] |  +- io.netty:netty-all:jar:4.1.74.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-buffer:jar:4.1.74.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-codec:jar:4.1.74.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-common:jar:4.1.74.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-handler:jar:4.1.74.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-tcnative-classes:jar:2.0.48.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-resolver:jar:4.1.74.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport:jar:4.1.74.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-classes-epoll:jar:4.1.74.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-native-unix-common:jar:4.1.74.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-classes-kqueue:jar:4.1.74.Final:compile
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.74.Final:runtime
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.1.74.Final:runtime
+[[1;34mINFO[m] |  |  +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.1.74.Final:runtime
+[[1;34mINFO[m] |  |  \- io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.1.74.Final:runtime
+[[1;34mINFO[m] |  +- com.clearspring.analytics:stream:jar:2.9.6:compile
+[[1;34mINFO[m] |  +- io.dropwizard.metrics:metrics-core:jar:4.2.7:compile
+[[1;34mINFO[m] |  +- io.dropwizard.metrics:metrics-jvm:jar:4.2.7:compile
+[[1;34mINFO[m] |  +- io.dropwizard.metrics:metrics-json:jar:4.2.7:compile
+[[1;34mINFO[m] |  +- io.dropwizard.metrics:metrics-graphite:jar:4.2.7:compile
+[[1;34mINFO[m] |  +- io.dropwizard.metrics:metrics-jmx:jar:4.2.7:compile
+[[1;34mINFO[m] |  +- com.fasterxml.jackson.module:jackson-module-scala_2.12:jar:2.13.4:compile
+[[1;34mINFO[m] |  +- oro:oro:jar:2.0.8:compile
+[[1;34mINFO[m] |  +- net.razorvine:pickle:jar:1.2:compile
+[[1;34mINFO[m] |  +- net.sf.py4j:py4j:jar:0.10.9.5:compile
+[[1;34mINFO[m] |  +- org.apache.spark:spark-tags_2.12:jar:3.3.2:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-crypto:jar:1.1.0:compile
+[[1;34mINFO[m] |  \- org.spark-project.spark:unused:jar:1.0.0:compile
+[[1;34mINFO[m] +- org.apache.curator:curator-recipes:jar:4.2.0:compile
+[[1;34mINFO[m] |  \- org.apache.curator:curator-framework:jar:4.2.0:compile
+[[1;34mINFO[m] |     \- org.apache.curator:curator-client:jar:4.2.0:compile
+[[1;34mINFO[m] +- org.apache.avro:avro:jar:1.8.2:compile
+[[1;34mINFO[m] |  +- org.codehaus.jackson:jackson-core-asl:jar:1.9.13:compile
+[[1;34mINFO[m] |  \- org.codehaus.jackson:jackson-mapper-asl:jar:1.9.13:compile
+[[1;34mINFO[m] +- org.apache.commons:commons-math3:jar:3.4.1:compile
+[[1;34mINFO[m] +- org.scala-lang:scala-library:jar:2.12.15:compile
+[[1;34mINFO[m] +- com.fasterxml.jackson.core:jackson-annotations:jar:2.13.5:compile
+[[1;34mINFO[m] +- com.fasterxml.jackson.core:jackson-core:jar:2.13.5:compile
+[[1;34mINFO[m] +- com.fasterxml.jackson.core:jackson-databind:jar:2.13.5:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-test:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m] |  +- org.mockito:mockito-core:jar:3.10.0:test
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy:jar:1.11.0:test
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:test
+[[1;34mINFO[m] |  |  \- org.objenesis:objenesis:jar:3.3:compile
+[[1;34mINFO[m] |  +- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-java:jar:6.11.0:test
+[[1;34mINFO[m] |  |  \- io.cucumber:cucumber-core:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin-messages:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:messages:jar:15.0.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:tag-expressions:jar:3.0.1:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-expressions:jar:10.3.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:datatable:jar:3.5.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-plugin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:docstring:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:html-formatter:jar:13.0.0:test
+[[1;34mINFO[m] |  |     \- io.cucumber:create-meta:jar:4.0.0:test
+[[1;34mINFO[m] |  +- org.apiguardian:apiguardian-api:jar:1.1.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-junit:jar:6.11.0:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-guice:jar:6.11.0:test
+[[1;34mINFO[m] |  \- org.apache.kerby:kerb-simplekdc:jar:2.0.1:test
+[[1;34mINFO[m] |     +- org.apache.kerby:kerb-client:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerby-config:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-core:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerby-pkix:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     +- org.apache.kerby:kerby-asn1:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     \- org.apache.kerby:kerby-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-common:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerb-crypto:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  \- org.apache.kerby:token-provider:jar:2.0.1:test
+[[1;34mINFO[m] |     \- org.apache.kerby:kerb-admin:jar:2.0.1:test
+[[1;34mINFO[m] |        +- org.apache.kerby:kerb-server:jar:2.0.1:test
+[[1;34mINFO[m] |        |  \- org.apache.kerby:kerb-identity:jar:2.0.1:test
+[[1;34mINFO[m] |        \- org.apache.kerby:kerby-xdr:jar:2.0.1:test
+[[1;34mINFO[m] +- com.google.inject:guice:jar:4.2.3:test
+[[1;34mINFO[m] |  +- javax.inject:javax.inject:jar:1:test
+[[1;34mINFO[m] |  \- aopalliance:aopalliance:jar:1.0:test
+[[1;34mINFO[m] +- org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  \- org.rocksdb:rocksdbjni:jar:8.9.0:compile
+[[1;34mINFO[m] +- ch.qos.logback:logback-classic:jar:1.2.11:test
+[[1;34mINFO[m] |  \- ch.qos.logback:logback-core:jar:1.2.11:test
+[[1;34mINFO[m] \- org.xerial.snappy:snappy-java:jar:1.1.8.4:compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------< [0;36morg.apache.tinkerpop:neo4j-gremlin[0;1m >-----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Neo4j Gremlin 4.0.0-SNAPSHOT        [22/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mneo4j-gremlin[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:neo4j-gremlin:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- org.neo4j:neo4j-tinkerpop-api:jar:0.1.1:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-test:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  +- commons-io:commons-io:jar:2.8.0:test
+[[1;34mINFO[m] |  +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m] |  +- org.mockito:mockito-core:jar:3.10.0:test
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy:jar:1.11.0:test
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:test
+[[1;34mINFO[m] |  |  \- org.objenesis:objenesis:jar:3.3:test
+[[1;34mINFO[m] |  +- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-java:jar:6.11.0:test
+[[1;34mINFO[m] |  |  \- io.cucumber:cucumber-core:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin-messages:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:messages:jar:15.0.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:tag-expressions:jar:3.0.1:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-expressions:jar:10.3.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:datatable:jar:3.5.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-plugin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:docstring:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:html-formatter:jar:13.0.0:test
+[[1;34mINFO[m] |  |     \- io.cucumber:create-meta:jar:4.0.0:test
+[[1;34mINFO[m] |  +- org.apiguardian:apiguardian-api:jar:1.1.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-junit:jar:6.11.0:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-guice:jar:6.11.0:test
+[[1;34mINFO[m] |  \- org.apache.kerby:kerb-simplekdc:jar:2.0.1:test
+[[1;34mINFO[m] |     +- org.apache.kerby:kerb-client:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerby-config:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-core:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerby-pkix:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     +- org.apache.kerby:kerby-asn1:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     \- org.apache.kerby:kerby-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-common:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerb-crypto:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  \- org.apache.kerby:token-provider:jar:2.0.1:test
+[[1;34mINFO[m] |     |     \- com.nimbusds:nimbus-jose-jwt:jar:8.2.1:test
+[[1;34mINFO[m] |     |        +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:test
+[[1;34mINFO[m] |     |        \- net.minidev:json-smart:jar:2.3:test
+[[1;34mINFO[m] |     |           \- net.minidev:accessors-smart:jar:1.2:test
+[[1;34mINFO[m] |     \- org.apache.kerby:kerb-admin:jar:2.0.1:test
+[[1;34mINFO[m] |        +- org.apache.kerby:kerb-server:jar:2.0.1:test
+[[1;34mINFO[m] |        |  \- org.apache.kerby:kerb-identity:jar:2.0.1:test
+[[1;34mINFO[m] |        \- org.apache.kerby:kerby-xdr:jar:2.0.1:test
+[[1;34mINFO[m] +- com.google.inject:guice:jar:4.2.3:test
+[[1;34mINFO[m] |  +- javax.inject:javax.inject:jar:1:test
+[[1;34mINFO[m] |  +- aopalliance:aopalliance:jar:1.0:test
+[[1;34mINFO[m] |  \- com.google.guava:guava:jar:27.1-jre:test
+[[1;34mINFO[m] |     +- com.google.guava:failureaccess:jar:1.0.1:test
+[[1;34mINFO[m] |     +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:test
+[[1;34mINFO[m] |     +- com.google.code.findbugs:jsr305:jar:3.0.2:test
+[[1;34mINFO[m] |     +- org.checkerframework:checker-qual:jar:2.5.2:test
+[[1;34mINFO[m] |     +- com.google.errorprone:error_prone_annotations:jar:2.2.0:test
+[[1;34mINFO[m] |     +- com.google.j2objc:j2objc-annotations:jar:1.1:test
+[[1;34mINFO[m] |     \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.17:test
+[[1;34mINFO[m] \- ch.qos.logback:logback-classic:jar:1.2.11:test
+[[1;34mINFO[m]    \- ch.qos.logback:logback-core:jar:1.2.11:test
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------< [0;36morg.apache.tinkerpop:sparql-gremlin[0;1m >-----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: SPARQL Gremlin 4.0.0-SNAPSHOT       [23/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36msparql-gremlin[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:sparql-gremlin:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.jena:apache-jena-libs:pom:3.12.0:compile
+[[1;34mINFO[m] |  +- org.apache.jena:jena-tdb:jar:3.12.0:compile
+[[1;34mINFO[m] |  |  \- org.apache.jena:jena-arq:jar:3.12.0:compile
+[[1;34mINFO[m] |  |     +- org.apache.jena:jena-core:jar:3.12.0:compile
+[[1;34mINFO[m] |  |     |  +- org.apache.jena:jena-iri:jar:3.12.0:compile
+[[1;34mINFO[m] |  |     |  +- commons-cli:commons-cli:jar:1.4:compile
+[[1;34mINFO[m] |  |     |  +- commons-codec:commons-codec:jar:1.15:compile
+[[1;34mINFO[m] |  |     |  \- org.apache.jena:jena-base:jar:3.12.0:compile
+[[1;34mINFO[m] |  |     |     +- org.apache.commons:commons-csv:jar:1.5:compile
+[[1;34mINFO[m] |  |     |     +- org.apache.commons:commons-compress:jar:1.18:compile
+[[1;34mINFO[m] |  |     |     \- com.github.andrewoma.dexx:collection:jar:0.7:compile
+[[1;34mINFO[m] |  |     +- org.apache.jena:jena-shaded-guava:jar:3.12.0:compile
+[[1;34mINFO[m] |  |     +- org.apache.httpcomponents:httpclient:jar:4.5.13:compile
+[[1;34mINFO[m] |  |     |  \- org.apache.httpcomponents:httpcore:jar:4.4.13:compile
+[[1;34mINFO[m] |  |     +- com.github.jsonld-java:jsonld-java:jar:0.12.3:compile
+[[1;34mINFO[m] |  |     +- com.fasterxml.jackson.core:jackson-core:jar:2.9.9:compile
+[[1;34mINFO[m] |  |     +- com.fasterxml.jackson.core:jackson-databind:jar:2.9.9:compile
+[[1;34mINFO[m] |  |     |  \- com.fasterxml.jackson.core:jackson-annotations:jar:2.9.0:compile
+[[1;34mINFO[m] |  |     +- org.apache.httpcomponents:httpclient-cache:jar:4.5.5:compile
+[[1;34mINFO[m] |  |     \- org.apache.thrift:libthrift:jar:0.12.0:compile
+[[1;34mINFO[m] |  +- org.apache.jena:jena-tdb2:jar:3.12.0:compile
+[[1;34mINFO[m] |  |  \- org.apache.jena:jena-dboe-trans-data:jar:3.12.0:compile
+[[1;34mINFO[m] |  |     +- org.apache.jena:jena-dboe-transaction:jar:3.12.0:compile
+[[1;34mINFO[m] |  |     |  \- org.apache.jena:jena-dboe-base:jar:3.12.0:compile
+[[1;34mINFO[m] |  |     \- org.apache.jena:jena-dboe-index:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- org.apache.jena:jena-rdfconnection:jar:3.12.0:compile
+[[1;34mINFO[m] |  \- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- ch.qos.logback:logback-classic:jar:1.2.11:test
+[[1;34mINFO[m] |  \- ch.qos.logback:logback-core:jar:1.2.11:test
+[[1;34mINFO[m] +- org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  +- commons-io:commons-io:jar:2.8.0:compile
+[[1;34mINFO[m] |  \- org.rocksdb:rocksdbjni:jar:8.9.0:test
+[[1;34mINFO[m] +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m] \- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------< [0;36morg.apache.tinkerpop:gremlin-console[0;1m >----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Console 4.0.0-SNAPSHOT      [24/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-console[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-console:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-groovy:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  |  |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] |  |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  |  +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |  |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] |  +- org.apache.ivy:ivy:jar:2.5.1:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-groovysh:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-console:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  |  +- com.github.javaparser:javaparser-core:jar:3.25.0:compile
+[[1;34mINFO[m] |  |  |  +- org.abego.treelayout:org.abego.treelayout.core:jar:1.0.3:compile
+[[1;34mINFO[m] |  |  |  \- org.apache.groovy:groovy-swing:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-templates:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-xml:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  \- jline:jline:jar:2.14.6:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-json:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-jsr223:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- org.mindrot:jbcrypt:jar:0.4:compile
+[[1;34mINFO[m] |  \- com.github.ben-manes.caffeine:caffeine:jar:2.3.1:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- commons-io:commons-io:jar:2.8.0:compile
+[[1;34mINFO[m] |  \- org.rocksdb:rocksdbjni:jar:8.9.0:compile
+[[1;34mINFO[m] +- org.apache.httpcomponents:httpclient:jar:4.5.13:compile
+[[1;34mINFO[m] |  +- org.apache.httpcomponents:httpcore:jar:4.4.13:compile
+[[1;34mINFO[m] |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] +- commons-codec:commons-codec:jar:1.15:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-driver:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-util:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  \- io.netty:netty-all:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-buffer:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-haproxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-http:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-http2:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-memcache:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-mqtt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-redis:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-smtp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-socks:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-stomp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-xml:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-handler:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-unix-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-handler-proxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-handler-ssl-ocsp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-resolver:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-resolver-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-rxtx:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-sctp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-udt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-classes-epoll:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-classes-kqueue:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-resolver-dns-classes-macos:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     +- io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     \- io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] +- ch.qos.logback:logback-classic:jar:1.2.11:compile
+[[1;34mINFO[m] |  +- ch.qos.logback:logback-core:jar:1.2.11:compile
+[[1;34mINFO[m] |  \- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] +- org.fusesource.jansi:jansi:jar:1.17.1:compile
+[[1;34mINFO[m] +- junit:junit:jar:4.13.1:test
+[[1;34mINFO[m] +- org.hamcrest:hamcrest:jar:2.2:test
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-server:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  \- com.codahale.metrics:metrics-core:jar:3.0.2:test
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-test:jar:4.0.0-SNAPSHOT:test
+[[1;34mINFO[m] |  +- org.mockito:mockito-core:jar:3.10.0:test
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy:jar:1.11.0:test
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:test
+[[1;34mINFO[m] |  |  \- org.objenesis:objenesis:jar:3.3:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-java:jar:6.11.0:test
+[[1;34mINFO[m] |  |  \- io.cucumber:cucumber-core:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin-messages:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:messages:jar:15.0.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:tag-expressions:jar:3.0.1:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-expressions:jar:10.3.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:datatable:jar:3.5.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-plugin:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:docstring:jar:6.11.0:test
+[[1;34mINFO[m] |  |     +- io.cucumber:html-formatter:jar:13.0.0:test
+[[1;34mINFO[m] |  |     \- io.cucumber:create-meta:jar:4.0.0:test
+[[1;34mINFO[m] |  +- org.apiguardian:apiguardian-api:jar:1.1.2:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-junit:jar:6.11.0:test
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-guice:jar:6.11.0:test
+[[1;34mINFO[m] |  \- org.apache.kerby:kerb-simplekdc:jar:2.0.1:test
+[[1;34mINFO[m] |     +- org.apache.kerby:kerb-client:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerby-config:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-core:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerby-pkix:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     +- org.apache.kerby:kerby-asn1:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |     \- org.apache.kerby:kerby-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-common:jar:2.0.1:test
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerb-crypto:jar:2.0.1:test
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-util:jar:2.0.1:test
+[[1;34mINFO[m] |     |  \- org.apache.kerby:token-provider:jar:2.0.1:test
+[[1;34mINFO[m] |     |     \- com.nimbusds:nimbus-jose-jwt:jar:8.2.1:test
+[[1;34mINFO[m] |     |        +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:test
+[[1;34mINFO[m] |     |        \- net.minidev:json-smart:jar:2.3:test
+[[1;34mINFO[m] |     |           \- net.minidev:accessors-smart:jar:1.2:test
+[[1;34mINFO[m] |     |              \- org.ow2.asm:asm:jar:5.0.4:test
+[[1;34mINFO[m] |     \- org.apache.kerby:kerb-admin:jar:2.0.1:test
+[[1;34mINFO[m] |        +- org.apache.kerby:kerb-server:jar:2.0.1:test
+[[1;34mINFO[m] |        |  \- org.apache.kerby:kerb-identity:jar:2.0.1:test
+[[1;34mINFO[m] |        \- org.apache.kerby:kerby-xdr:jar:2.0.1:test
+[[1;34mINFO[m] +- com.github.tomakehurst:wiremock:jar:standalone:1.58:test
+[[1;34mINFO[m] \- org.apache.groovy:groovy-cli-picocli:jar:4.0.9:compile
+[[1;34mINFO[m]    \- info.picocli:picocli:jar:4.7.0:compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------------< [0;36morg.apache.tinkerpop:gremlin-archetype[0;1m >---------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Archetype 4.0.0-SNAPSHOT    [25/32][m
+[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-archetype[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-archetype:pom:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------< [0;36morg.apache.tinkerpop:gremlin-archetype-tinkergraph[0;1m >---------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Archetype - TinkerGraph 4.0.0-SNAPSHOT [26/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-archetype-tinkergraph[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-archetype-tinkergraph:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------< [0;36morg.apache.tinkerpop:gremlin-archetype-server[0;1m >------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Archetype - Server 4.0.0-SNAPSHOT   [27/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-archetype-server[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-archetype-server:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-------------< [0;36morg.apache.tinkerpop:gremlin-archetype-dsl[0;1m >-------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Archetype - DSL 4.0.0-SNAPSHOT      [28/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-archetype-dsl[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-archetype-dsl:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------------< [0;36morg.apache.tinkerpop:gremlin-benchmark[0;1m >---------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Benchmark 4.0.0-SNAPSHOT    [29/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-benchmark[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-benchmark:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- junit:junit:jar:4.13.1:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-groovy:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.ivy:ivy:jar:2.5.1:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-groovysh:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-console:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  |  +- com.github.javaparser:javaparser-core:jar:3.25.0:compile
+[[1;34mINFO[m] |  |  |  +- org.abego.treelayout:org.abego.treelayout.core:jar:1.0.3:compile
+[[1;34mINFO[m] |  |  |  \- org.apache.groovy:groovy-swing:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-templates:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-xml:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  \- jline:jline:jar:2.14.6:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-json:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-jsr223:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.mindrot:jbcrypt:jar:0.4:compile
+[[1;34mINFO[m] |  \- com.github.ben-manes.caffeine:caffeine:jar:2.3.1:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-test:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- commons-io:commons-io:jar:2.8.0:compile
+[[1;34mINFO[m] |  +- org.mockito:mockito-core:jar:3.10.0:compile
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy:jar:1.11.0:compile
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:compile
+[[1;34mINFO[m] |  |  \- org.objenesis:objenesis:jar:3.3:compile
+[[1;34mINFO[m] |  +- org.hamcrest:hamcrest:jar:2.2:compile
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-java:jar:6.11.0:compile
+[[1;34mINFO[m] |  |  \- io.cucumber:cucumber-core:jar:6.11.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin:jar:6.11.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin-messages:jar:6.11.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:messages:jar:15.0.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:tag-expressions:jar:3.0.1:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-expressions:jar:10.3.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:datatable:jar:3.5.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-plugin:jar:6.11.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:docstring:jar:6.11.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:html-formatter:jar:13.0.0:compile
+[[1;34mINFO[m] |  |     \- io.cucumber:create-meta:jar:4.0.0:compile
+[[1;34mINFO[m] |  +- org.apiguardian:apiguardian-api:jar:1.1.2:compile
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-junit:jar:6.11.0:compile
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-guice:jar:6.11.0:compile
+[[1;34mINFO[m] |  \- org.apache.kerby:kerb-simplekdc:jar:2.0.1:compile
+[[1;34mINFO[m] |     +- org.apache.kerby:kerb-client:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerby-config:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-core:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerby-pkix:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  |     +- org.apache.kerby:kerby-asn1:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  |     \- org.apache.kerby:kerby-util:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-common:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerb-crypto:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-util:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  \- org.apache.kerby:token-provider:jar:2.0.1:compile
+[[1;34mINFO[m] |     |     \- com.nimbusds:nimbus-jose-jwt:jar:8.2.1:compile
+[[1;34mINFO[m] |     |        +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:compile
+[[1;34mINFO[m] |     |        \- net.minidev:json-smart:jar:2.3:compile
+[[1;34mINFO[m] |     |           \- net.minidev:accessors-smart:jar:1.2:compile
+[[1;34mINFO[m] |     |              \- org.ow2.asm:asm:jar:5.0.4:compile
+[[1;34mINFO[m] |     \- org.apache.kerby:kerb-admin:jar:2.0.1:compile
+[[1;34mINFO[m] |        +- org.apache.kerby:kerb-server:jar:2.0.1:compile
+[[1;34mINFO[m] |        |  \- org.apache.kerby:kerb-identity:jar:2.0.1:compile
+[[1;34mINFO[m] |        \- org.apache.kerby:kerby-xdr:jar:2.0.1:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  \- org.rocksdb:rocksdbjni:jar:8.9.0:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-driver:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-util:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  \- io.netty:netty-all:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-buffer:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-haproxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-http:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-http2:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-memcache:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-mqtt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-redis:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-smtp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-socks:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-stomp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-xml:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-handler:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-unix-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-handler-proxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-handler-ssl-ocsp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-resolver:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-resolver-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-rxtx:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-sctp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-udt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-classes-epoll:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-classes-kqueue:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-resolver-dns-classes-macos:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     +- io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     \- io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] +- org.openjdk.jmh:jmh-core:jar:1.36:compile
+[[1;34mINFO[m] |  +- net.sf.jopt-simple:jopt-simple:jar:5.0.4:compile
+[[1;34mINFO[m] |  \- org.apache.commons:commons-math3:jar:3.2:compile
+[[1;34mINFO[m] +- org.openjdk.jmh:jmh-generator-annprocess:jar:1.36:provided
+[[1;34mINFO[m] \- ch.qos.logback:logback-classic:jar:1.2.11:compile
+[[1;34mINFO[m]    \- ch.qos.logback:logback-core:jar:1.2.11:compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------------< [0;36morg.apache.tinkerpop:gremlin-coverage[0;1m >----------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlin Coverage 4.0.0-SNAPSHOT     [30/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlin-coverage[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlin-coverage:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-annotations:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  \- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-console:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.httpcomponents:httpclient:jar:4.5.13:compile
+[[1;34mINFO[m] |  |  +- org.apache.httpcomponents:httpcore:jar:4.4.13:compile
+[[1;34mINFO[m] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m] |  +- commons-codec:commons-codec:jar:1.15:compile
+[[1;34mINFO[m] |  +- org.fusesource.jansi:jansi:jar:1.17.1:compile
+[[1;34mINFO[m] |  \- org.apache.groovy:groovy-cli-picocli:jar:4.0.9:compile
+[[1;34mINFO[m] |     \- info.picocli:picocli:jar:4.7.0:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m] |  +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m] |  +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m] |  +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m] |  \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-driver:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.tinkerpop:gremlin-util:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  \- io.netty:netty-all:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-buffer:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-haproxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-http:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-http2:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-memcache:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-mqtt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-redis:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-smtp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-socks:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-stomp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-codec-xml:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-handler:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-unix-common:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-handler-proxy:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-handler-ssl-ocsp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-resolver:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-resolver-dns:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-rxtx:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-sctp:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-udt:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-classes-epoll:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-classes-kqueue:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-resolver-dns-classes-macos:jar:4.1.101.Final:compile
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     +- io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     +- io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.1.101.Final:runtime
+[[1;34mINFO[m] |     \- io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.1.101.Final:runtime
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-groovy:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.apache.ivy:ivy:jar:2.5.1:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-groovysh:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-console:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  |  +- com.github.javaparser:javaparser-core:jar:3.25.0:compile
+[[1;34mINFO[m] |  |  |  +- org.abego.treelayout:org.abego.treelayout.core:jar:1.0.3:compile
+[[1;34mINFO[m] |  |  |  \- org.apache.groovy:groovy-swing:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-templates:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  +- org.apache.groovy:groovy-xml:jar:4.0.9:compile
+[[1;34mINFO[m] |  |  \- jline:jline:jar:2.14.6:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-json:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.apache.groovy:groovy-jsr223:jar:4.0.9:compile
+[[1;34mINFO[m] |  +- org.mindrot:jbcrypt:jar:0.4:compile
+[[1;34mINFO[m] |  \- com.github.ben-manes.caffeine:caffeine:jar:2.3.1:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m] |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m] |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-server:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  \- com.codahale.metrics:metrics-core:jar:3.0.2:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:gremlin-test:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  +- commons-io:commons-io:jar:2.8.0:compile
+[[1;34mINFO[m] |  +- junit:junit:jar:4.13.1:compile
+[[1;34mINFO[m] |  +- org.mockito:mockito-core:jar:3.10.0:compile
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy:jar:1.11.0:compile
+[[1;34mINFO[m] |  |  +- net.bytebuddy:byte-buddy-agent:jar:1.11.0:compile
+[[1;34mINFO[m] |  |  \- org.objenesis:objenesis:jar:3.3:compile
+[[1;34mINFO[m] |  +- org.hamcrest:hamcrest:jar:2.2:compile
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-java:jar:6.11.0:compile
+[[1;34mINFO[m] |  |  \- io.cucumber:cucumber-core:jar:6.11.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin:jar:6.11.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-gherkin-messages:jar:6.11.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:messages:jar:15.0.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:tag-expressions:jar:3.0.1:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-expressions:jar:10.3.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:datatable:jar:3.5.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:cucumber-plugin:jar:6.11.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:docstring:jar:6.11.0:compile
+[[1;34mINFO[m] |  |     +- io.cucumber:html-formatter:jar:13.0.0:compile
+[[1;34mINFO[m] |  |     \- io.cucumber:create-meta:jar:4.0.0:compile
+[[1;34mINFO[m] |  +- org.apiguardian:apiguardian-api:jar:1.1.2:compile
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-junit:jar:6.11.0:compile
+[[1;34mINFO[m] |  +- io.cucumber:cucumber-guice:jar:6.11.0:compile
+[[1;34mINFO[m] |  \- org.apache.kerby:kerb-simplekdc:jar:2.0.1:compile
+[[1;34mINFO[m] |     +- org.apache.kerby:kerb-client:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerby-config:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-core:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerby-pkix:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  |     +- org.apache.kerby:kerby-asn1:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  |     \- org.apache.kerby:kerby-util:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-common:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  |  \- org.apache.kerby:kerb-crypto:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  +- org.apache.kerby:kerb-util:jar:2.0.1:compile
+[[1;34mINFO[m] |     |  \- org.apache.kerby:token-provider:jar:2.0.1:compile
+[[1;34mINFO[m] |     |     \- com.nimbusds:nimbus-jose-jwt:jar:8.2.1:compile
+[[1;34mINFO[m] |     |        +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:compile
+[[1;34mINFO[m] |     |        \- net.minidev:json-smart:jar:2.3:compile
+[[1;34mINFO[m] |     |           \- net.minidev:accessors-smart:jar:1.2:compile
+[[1;34mINFO[m] |     |              \- org.ow2.asm:asm:jar:5.0.4:compile
+[[1;34mINFO[m] |     \- org.apache.kerby:kerb-admin:jar:2.0.1:compile
+[[1;34mINFO[m] |        +- org.apache.kerby:kerb-server:jar:2.0.1:compile
+[[1;34mINFO[m] |        |  \- org.apache.kerby:kerb-identity:jar:2.0.1:compile
+[[1;34mINFO[m] |        \- org.apache.kerby:kerby-xdr:jar:2.0.1:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:neo4j-gremlin:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  \- org.neo4j:neo4j-tinkerpop-api:jar:0.1.1:compile
+[[1;34mINFO[m] +- org.apache.tinkerpop:tinkergraph-gremlin:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m] |  \- org.rocksdb:rocksdbjni:jar:8.9.0:compile
+[[1;34mINFO[m] \- ch.qos.logback:logback-classic:jar:1.2.11:compile
+[[1;34mINFO[m]    \- ch.qos.logback:logback-core:jar:1.2.11:compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-------------------< [0;36morg.apache.tinkerpop:gremlint[0;1m >--------------------[m
+[[1;34mINFO[m] [1mBuilding Apache TinkerPop :: Gremlint 4.0.0-SNAPSHOT             [31/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.3.0:tree[m [1m(default-cli)[m @ [36mgremlint[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:gremlint:jar:4.0.0-SNAPSHOT
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------< [0;36morg.apache.tinkerpop:rocksdbbench[0;1m >------------------[m
+[[1;34mINFO[m] [1mBuilding JMH benchmark sample: Java 1.0                          [32/32][m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:2.8:tree[m [1m(default-cli)[m @ [36mrocksdbbench[0;1m ---[m
+[[1;34mINFO[m] org.apache.tinkerpop:rocksdbbench:jar:1.0
+[[1;34mINFO[m] +- org.openjdk.jmh:jmh-core:jar:1.36:compile
+[[1;34mINFO[m] |  +- net.sf.jopt-simple:jopt-simple:jar:5.0.4:compile
+[[1;34mINFO[m] |  \- org.apache.commons:commons-math3:jar:3.2:compile
+[[1;34mINFO[m] +- org.openjdk.jmh:jmh-generator-annprocess:jar:1.36:provided
+[[1;34mINFO[m] +- org.rocksdb:rocksdbjni:jar:8.9.0:compile
+[[1;34mINFO[m] +- commons-io:commons-io:jar:2.8.0:compile
+[[1;34mINFO[m] \- org.apache.tinkerpop:gremlin-core:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m]    +- org.apache.tinkerpop:gremlin-shaded:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m]    +- org.apache.tinkerpop:gremlin-language:jar:4.0.0-SNAPSHOT:compile
+[[1;34mINFO[m]    |  +- org.antlr:antlr4-runtime:jar:4.9.1:compile
+[[1;34mINFO[m]    |  +- org.javatuples:javatuples:jar:1.2:compile
+[[1;34mINFO[m]    |  \- org.apache.commons:commons-text:jar:1.10.0:compile
+[[1;34mINFO[m]    +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[[1;34mINFO[m]    +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[[1;34mINFO[m]    +- org.apache.commons:commons-configuration2:jar:2.9.0:compile
+[[1;34mINFO[m]    |  \- commons-logging:commons-logging:jar:1.2:compile
+[[1;34mINFO[m]    +- commons-beanutils:commons-beanutils:jar:1.9.4:compile
+[[1;34mINFO[m]    |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[[1;34mINFO[m]    +- org.apache.commons:commons-collections4:jar:4.4:compile
+[[1;34mINFO[m]    +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[[1;34mINFO[m]    +- org.yaml:snakeyaml:jar:2.0:compile
+[[1;34mINFO[m]    +- com.carrotsearch:hppc:jar:0.7.1:compile
+[[1;34mINFO[m]    +- com.squareup:javapoet:jar:1.13.0:compile
+[[1;34mINFO[m]    \- net.objecthunter:exp4j:jar:0.4.8:compile
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mReactor Summary:[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Apache TinkerPop 4.0.0-SNAPSHOT .................... [1;32mSUCCESS[m [  0.299 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Language 4.0.0-SNAPSHOT  [1;32mSUCCESS[m [  0.015 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Shaded 4.0.0-SNAPSHOT .. [1;32mSUCCESS[m [  0.009 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Core 4.0.0-SNAPSHOT .... [1;32mSUCCESS[m [  0.022 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Annotations 4.0.0-SNAPSHOT [1;32mSUCCESS[m [  0.012 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Test 4.0.0-SNAPSHOT .... [1;32mSUCCESS[m [  0.034 s]
+[[1;34mINFO[m] Apache TinkerPop :: TinkerGraph Gremlin 4.0.0-SNAPSHOT [1;32mSUCCESS[m [  0.014 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Groovy 4.0.0-SNAPSHOT .. [1;32mSUCCESS[m [  0.019 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Util 4.0.0-SNAPSHOT .... [1;32mSUCCESS[m [  0.035 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Tools 4.0.0-SNAPSHOT ... [1;32mSUCCESS[m [  0.002 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Socket Server 4.0.0-SNAPSHOT [1;32mSUCCESS[m [  0.008 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Driver 4.0.0-SNAPSHOT .. [1;32mSUCCESS[m [  0.016 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Server 4.0.0-SNAPSHOT .. [1;32mSUCCESS[m [  0.022 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Javascript 4.0.0-SNAPSHOT [1;32mSUCCESS[m [  0.004 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Python 4.0.0-SNAPSHOT .. [1;32mSUCCESS[m [  0.002 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin.Net 4.0.0-SNAPSHOT ..... [1;32mSUCCESS[m [  0.072 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin.Net - Source 4.0.0-SNAPSHOT [1;32mSUCCESS[m [  0.002 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin.Net - Tests 4.0.0-SNAPSHOT [1;32mSUCCESS[m [  0.002 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Go 4.0.0-SNAPSHOT ...... [1;32mSUCCESS[m [  0.001 s]
+[[1;34mINFO[m] Apache TinkerPop :: Hadoop Gremlin 4.0.0-SNAPSHOT .. [1;32mSUCCESS[m [  0.113 s]
+[[1;34mINFO[m] Apache TinkerPop :: Spark Gremlin 4.0.0-SNAPSHOT ... [1;32mSUCCESS[m [  0.072 s]
+[[1;34mINFO[m] Apache TinkerPop :: Neo4j Gremlin 4.0.0-SNAPSHOT ... [1;32mSUCCESS[m [  0.010 s]
+[[1;34mINFO[m] Apache TinkerPop :: SPARQL Gremlin 4.0.0-SNAPSHOT .. [1;32mSUCCESS[m [  0.017 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Console 4.0.0-SNAPSHOT . [1;32mSUCCESS[m [  0.020 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Archetype 4.0.0-SNAPSHOT [1;32mSUCCESS[m [  0.001 s]
+[[1;34mINFO[m] Apache TinkerPop :: Archetype - TinkerGraph 4.0.0-SNAPSHOT [1;32mSUCCESS[m [  0.003 s]
+[[1;34mINFO[m] Apache TinkerPop :: Archetype - Server 4.0.0-SNAPSHOT [1;32mSUCCESS[m [  0.002 s]
+[[1;34mINFO[m] Apache TinkerPop :: Archetype - DSL 4.0.0-SNAPSHOT . [1;32mSUCCESS[m [  0.001 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Benchmark 4.0.0-SNAPSHOT [1;32mSUCCESS[m [  0.014 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlin Coverage 4.0.0-SNAPSHOT  [1;32mSUCCESS[m [  0.017 s]
+[[1;34mINFO[m] Apache TinkerPop :: Gremlint 4.0.0-SNAPSHOT ........ [1;32mSUCCESS[m [  0.002 s]
+[[1;34mINFO[m] JMH benchmark sample: Java 1.0 ..................... [1;32mSUCCESS[m [  0.147 s]
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  1.245 s
+[[1;34mINFO[m] Finished at: 2025-01-18T15:49:27+08:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
