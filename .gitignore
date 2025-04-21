@@ -1,3 +1,4 @@
+dataset/*
 *.log
 target/
 *.iml
