@@ -1,20 +1,18 @@
 conf = new BaseConfiguration();
-conf.setProperty("updatePolicy", 2); // adaptive
+conf.setProperty("updatePolicy", 2);
 graph = TinkerGraph.open(conf);
 g = graph.traversal();
-graph.currentVertexId = 3072627;
+graph.currentVertexId = GRAPH_VERTEX_NUM;
 
 rand = new Random();
 
-depth = 3;
-bfs_time = 0;
-for (int i = 0; i < 10; i++) {
-  startId = rand.nextInt(graph.currentVertexId as Integer);
+depth = 5;
+
+for (int i = 0; i < 1; i++) {
+  startId = BFS_SOURCE;
   v = g.V(startId);
   t = System.nanoTime();
-  count = v.repeat(both().where(without("x")).aggregate("x")).times(depth).cap("x").next().size();
+  count = v.repeat(out()).emit().times(depth).dedup().toList();
   exec_time = System.nanoTime() - t;
-  println("BFS start from " + startId + " finished in " + exec_time + " ns");
-  bfs_time += exec_time;
+  println("BFS start from " + startId + " finished in " + exec_time + " ns, count: " + count.size());
 }
-println("avg bfs: ${(double)bfs_time / 10 / 1000}");

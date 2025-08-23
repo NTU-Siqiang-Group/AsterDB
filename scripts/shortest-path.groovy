@@ -1,15 +1,17 @@
-graph = TinkerGraph.open();
+conf = new BaseConfiguration();
+conf.setProperty("updatePolicy", 2);
+graph = TinkerGraph.open(conf);
 g = graph.traversal();
-graph.currentVertexId = 3072627;
+graph.currentVertexId = GRAPH_VERTEX_NUM;
 
 rand = new Random();
 
-for (int i = 0; i < 10; i++) {
-  srcId = rand.nextInt(graph.currentVertexId as Integer);
-  dstId = rand.nextInt(graph.currentVertexId as Integer);
+for (int i = 0; i < 1; i++) {
+  srcId = SSSP_SOURCE;
+  dstId = SSSP_DST;
   srcV = g.V(srcId);
   t = System.nanoTime();
-  l = srcV.repeat(both().where(without("x")).aggregate("x")).until(hasId(dstId)).limit(1).path().count(local);
+  l = srcV.repeat(out().where(without("x")).aggregate("x")).until(hasId(dstId)).limit(1).path().count(local);
   if (l.hasNext()) {
     x = l.next();
   } else {

@@ -75,7 +75,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
 
     private final TinkerGraphFeatures features = new TinkerGraphFeatures();
 
-    private final RocksTransaction transaction;
+    // private final RocksTransaction transaction;
 
     // protected Map<Object, Vertex> vertices = new ConcurrentHashMap<>();
     // protected Map<Object, Edge> edges = new ConcurrentHashMap<>();
@@ -138,7 +138,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
         System.out.println("using update policy: " + configuration.getInt("updatePolicy"));
         openRocksDB(configuration.getInt("updatePolicy"));
         vertices = new RocksVertices(db, this);
-        transaction = new RocksTransaction(db);
+        // transaction = new RocksTransaction(db);
 
         currentVertexId = vertices.vertexNum();
         this.configuration = configuration;
@@ -358,7 +358,7 @@ public class TinkerGraph extends AbstractTinkerGraph {
 
     @Override
     public Transaction tx() {
-        return transaction;
+        return null;
     }
 
     @Override
@@ -604,97 +604,97 @@ public class TinkerGraph extends AbstractTinkerGraph {
         }
     }
 
-    class RocksTransaction implements Transaction {
+    // class RocksTransaction implements Transaction {
         
-        private RocksGraph _db;
-        private boolean _is_open;
+    //     private RocksGraph _db;
+    //     private boolean _is_open;
 
-        public RocksTransaction(RocksGraph db) {
-            super();
-            this._db = db;
-            this._is_open = false;
-        }
+    //     public RocksTransaction(RocksGraph db) {
+    //         super();
+    //         this._db = db;
+    //         this._is_open = false;
+    //     }
 
-        @Override
-        public void open() {
-            if (this._is_open) {
-                throw Transaction.Exceptions.transactionAlreadyOpen();
-            }
-            try {
-                _db.BeginTransaction();
-                _is_open = true;
-            } catch (RocksDBException e) {
-                e.printStackTrace();
-            }
-        }
+    //     @Override
+    //     public void open() {
+    //         if (this._is_open) {
+    //             throw Transaction.Exceptions.transactionAlreadyOpen();
+    //         }
+    //         try {
+    //             _db.BeginTransaction();
+    //             _is_open = true;
+    //         } catch (RocksDBException e) {
+    //             e.printStackTrace();
+    //         }
+    //     }
 
-        @Override
-        public void close() {
-            if (!this._is_open) {
-                throw Transaction.Exceptions.transactionMustBeOpenToReadWrite();
-            }
-            try {
-                _db.CommitTransaction();
-            } catch (RocksDBException e) {
-                e.printStackTrace();
-            }
-        }
+    //     @Override
+    //     public void close() {
+    //         if (!this._is_open) {
+    //             throw Transaction.Exceptions.transactionMustBeOpenToReadWrite();
+    //         }
+    //         try {
+    //             _db.CommitTransaction();
+    //         } catch (RocksDBException e) {
+    //             e.printStackTrace();
+    //         }
+    //     }
 
-        @Override
-        public void commit() {
-            close();
-        }
+    //     @Override
+    //     public void commit() {
+    //         close();
+    //     }
 
-        @Override
-        public void rollback() {
-            if (!this._is_open) {
-                throw Transaction.Exceptions.transactionMustBeOpenToReadWrite();
-            }
-            try {
-                _db.RollbackTransaction();
-            } catch (RocksDBException e) {
-                e.printStackTrace();
-            }
-        }
+    //     @Override
+    //     public void rollback() {
+    //         if (!this._is_open) {
+    //             throw Transaction.Exceptions.transactionMustBeOpenToReadWrite();
+    //         }
+    //         try {
+    //             _db.RollbackTransaction();
+    //         } catch (RocksDBException e) {
+    //             e.printStackTrace();
+    //         }
+    //     }
 
-        @Override
-        public boolean isOpen() {
-            return _is_open;
-        }
+    //     @Override
+    //     public boolean isOpen() {
+    //         return _is_open;
+    //     }
 
-        @Override
-        public <C extends TraversalSource> C begin(final Class<C> traversalSourceClass) {
-            throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
-        }
+    //     @Override
+    //     public <C extends TraversalSource> C begin(final Class<C> traversalSourceClass) {
+    //         throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
+    //     }
 
-        @Override
-        public void readWrite() {
-            throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
-        }
+    //     @Override
+    //     public void readWrite() {
+    //         throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
+    //     }
 
-        @Override
-        public Transaction onReadWrite(final Consumer<Transaction> consumer) {
-            throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
-        }
+    //     @Override
+    //     public Transaction onReadWrite(final Consumer<Transaction> consumer) {
+    //         throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
+    //     }
 
-        @Override
-        public Transaction onClose(final Consumer<Transaction> consumer) {
-            throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
-        }
+    //     @Override
+    //     public Transaction onClose(final Consumer<Transaction> consumer) {
+    //         throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
+    //     }
 
-        @Override
-        public void addTransactionListener(final Consumer<Status> listener) {
-            throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
-        }
+    //     @Override
+    //     public void addTransactionListener(final Consumer<Status> listener) {
+    //         throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
+    //     }
 
-        @Override
-        public void removeTransactionListener(final Consumer<Status> listener) {
-            throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
-        }
+    //     @Override
+    //     public void removeTransactionListener(final Consumer<Status> listener) {
+    //         throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
+    //     }
 
-        @Override
-        public void clearTransactionListeners() {
-            throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
-        }
-    }
+    //     @Override
+    //     public void clearTransactionListeners() {
+    //         throw new UnsupportedOperationException("This Transaction implementation is a no-op for all methods");
+    //     }
+    // }
 }
