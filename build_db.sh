@@ -1,6 +1,7 @@
 #!/bin/bash
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 cd GraphKV
+sudo make clean
 sudo DEBUG_LEVEL=0 DISABLE_WARNING_AS_ERROR=1 JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 EXTRA_CXXFLAGS=-fPIC make -j10 install-static
 sudo DEBUG_LEVEL=0 DISABLE_WARNING_AS_ERROR=1 JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 EXTRA_CXXFLAGS=-fPIC make -j10 install-shared
 sudo DEBUG_LEVEL=0 DISABLE_WARNING_AS_ERROR=1 JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 EXTRA_CXXFLAGS=-fPIC make -j10 rocksdbjava

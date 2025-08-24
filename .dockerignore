@@ -12,3 +12,5 @@
 docs/*.asciidoc
 Dockerfile
 .dockerignore
+.git/*
+.gitignore

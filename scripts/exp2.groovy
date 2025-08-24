@@ -8,6 +8,7 @@ total_ops = 2000000;
 rops = total_ops * rratio as Integer;
 wops = total_ops -  rops;
 println("rops: " + rops + " wops: " + wops);
+isWarmup = false;
 
 
 for (int i = 0; i < rops; i++) {
@@ -31,12 +32,11 @@ println("currentVertex: ${graph.currentVertexId}")
 tl = "new-edge";
 cnts = 0
 
-if (conf.getInt("updatePolicy") == 2) {
-  if (wops == 800000) {
-    graph.setCacheMissRate(0.6);
-  }// adaptive
+if (conf.getInt("updatePolicy") == 2 && isWarmup) {
+  graph.setCacheMissRate(2000); // more eager in warmup
   println("warming up for adaptive...");
-  warmup_ops = 50000000;
+  // warmup_ops = 50000000;
+  warmup_ops = 10;
   for (int i = 0; i < warmup_ops; i++) {
     vid1 = rand.nextInt(graph.currentVertexId as Integer);
     vid2 = rand.nextInt(graph.currentVertexId as Integer);
@@ -45,7 +45,22 @@ if (conf.getInt("updatePolicy") == 2) {
     v1.addEdge(tl, v2);
   }
   println("finished warmup for adaptive update: " + warmup_ops);
+  graph.closeDB();
+  System.exit(0);
 }
+// for orkut only
+if (wops >= 1200000) {
+  // more lazy
+  graph.setCacheMissRate(0.2);
+}
+
+if (wops == 200000) {
+  graph.setCacheMissRate(0.05);
+}
+
+// if (wops == 600000 || wops == 800000) {
+//   graph.setCacheMissRate(0.3);
+// }
 
 for (int i = 0; i < op_arr.size(); i++) {
   if (op_arr[i] > 0) {
@@ -80,3 +95,4 @@ add_avg_us = (double)add_time / wops / 1000;
 println("get: ${get_avg_us}, add: ${add_avg_us}")
 println((get_time + add_time) / 1000000);
 println("avg out count: " + (double)cnts / rops)
+graph.closeDB();
