@@ -1,8 +1,8 @@
 #!/bin/bash
 # datasets=('twitch.json3')
 # datasets=('com-orkut.ungraph.json3')
-datasets=('com-dblp.ungraph.json3')
-#datasets=('wikipedia.json3' 'com-orkut.ungraph.json3')
+# datasets=('com-dblp.ungraph.json3')
+datasets=('wikipedia.json3' 'com-orkut.ungraph.json3')
 ratios=(0.5)
 ratios=(0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9)
 # updates=(0)
