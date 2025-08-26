@@ -5,7 +5,10 @@
 # datasets=(ldbc.json2 freebase_large.json2)
 datasets=(ldbc.json2)
 
-export LD_PRELOAD=/usr/local/lib/libjemalloc.so
+export LD_PRELOAD="$(
+  ( /sbin/ldconfig -p 2>/dev/null || /usr/sbin/ldconfig -p 2>/dev/null || ldconfig -p ) \
+  | awk '/libjemalloc\.so(\.|$)/{print $4; exit}'
+)"
 
 for ds in "${datasets[@]}"
 do

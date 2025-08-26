@@ -1,5 +1,22 @@
 #!/bin/bash
-datasets=('com-dblp.ungraph.json3')
+DATASET_ALIAS="${1:-null}"
+resolve_dataset() {
+  case "$1" in
+    dblp)       echo "com-dblp.ungraph.json3" ;;
+    wikipedia)
+                echo "wikipedia.json3" ;;
+    orkut)      echo "com-orkut.ungraph.json3" ;;
+    twitter)
+                echo "twitter-2010.json3" ;;
+    *)
+      echo "Unknown dataset alias: $1" >&2
+      return 1
+      ;;
+  esac
+}
+dataset="$(resolve_dataset "$DATASET_ALIAS")"
+datasets=($dataset)
+
 vnum=3072627
 algms=('get-and-add.groovy')
 
@@ -7,7 +24,10 @@ ratios=(0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9)
 # ratios=(0.5)
 total_ops=1000000
 
-export LD_PRELOAD=/usr/local/lib/libjemalloc.so
+export LD_PRELOAD="$(
+  ( /sbin/ldconfig -p 2>/dev/null || /usr/sbin/ldconfig -p 2>/dev/null || ldconfig -p ) \
+  | awk '/libjemalloc\.so(\.|$)/{print $4; exit}'
+)"
 
 for ds in "${datasets[@]}"
 do

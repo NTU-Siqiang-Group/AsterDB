@@ -3,7 +3,10 @@
 # datasets=('com-orkut.ungraph.json3')
 datasets=('com-dblp.ungraph.json3')
 
-export LD_PRELOAD=/usr/local/lib/libjemalloc.so
+export LD_PRELOAD="$(
+  ( /sbin/ldconfig -p 2>/dev/null || /usr/sbin/ldconfig -p 2>/dev/null || ldconfig -p ) \
+  | awk '/libjemalloc\.so(\.|$)/{print $4; exit}'
+)"
 
 cp scripts/inmemory.groovy tmp.groovy
 
