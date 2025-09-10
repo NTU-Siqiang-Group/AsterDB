@@ -2,8 +2,24 @@
 # datasets=('twitch.json3')
 # datasets=('com-orkut.ungraph.json3')
 # datasets=('com-dblp.ungraph.json3')
-datasets=('wikipedia.json3' 'com-orkut.ungraph.json3')
-ratios=(0.5)
+DATASET_ALIAS="${1:-null}"
+resolve_dataset() {
+  case "$1" in
+    dblp)       echo "com-dblp.ungraph.json3" ;;
+    wikipedia)
+                echo "wikipedia.json3" ;;
+    orkut)      echo "com-orkut.ungraph.json3" ;;
+    twitter)
+                echo "twitter-2010.json3" ;;
+    *)
+      echo "Unknown dataset alias: $1" >&2
+      return 1
+      ;;
+  esac
+}
+dataset="$(resolve_dataset "$DATASET_ALIAS")"
+datasets=($dataset)
+# ratios=(0.5)
 ratios=(0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9)
 # updates=(0)
 updates=(0 1 2)
@@ -28,7 +44,7 @@ do
       cp warmup.groovy tmp.groovy
       sed -i "s/conf.setProperty(\"updatePolicy\", 2)/conf.setProperty(\"updatePolicy\", $update)/g" tmp.groovy
       bin/gremlin.sh -e tmp.groovy
-      cp -r /tmp/demo /tmp/warmup
+      rm -rf /tmp/warmup && cp -r /tmp/demo /tmp/warmup
     fi
     for ratio in "${ratios[@]}"
     do
@@ -42,7 +58,7 @@ do
         sed -i "s/isWarmup = false/isWarmup = true/g" tmp.groovy
         sed -i "s/conf.setProperty(\"updatePolicy\", 2)/conf.setProperty(\"updatePolicy\", $update)/g" tmp.groovy
         bin/gremlin.sh -e tmp.groovy
-        cp -r /tmp/demo /tmp/warmup
+        rm -rf /tmp/warmup && cp -r /tmp/demo /tmp/warmup
         rm -rf /tmp/demo
       fi
       cp -r /tmp/warmup /tmp/demo

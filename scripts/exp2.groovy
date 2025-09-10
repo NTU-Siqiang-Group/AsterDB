@@ -35,8 +35,8 @@ cnts = 0
 if (conf.getInt("updatePolicy") == 2 && isWarmup) {
   graph.setCacheMissRate(2000); // more eager in warmup
   println("warming up for adaptive...");
-  // warmup_ops = 50000000;
-  warmup_ops = 10;
+  warmup_ops = 50000000;
+  // warmup_ops = 10;
   for (int i = 0; i < warmup_ops; i++) {
     vid1 = rand.nextInt(graph.currentVertexId as Integer);
     vid2 = rand.nextInt(graph.currentVertexId as Integer);
