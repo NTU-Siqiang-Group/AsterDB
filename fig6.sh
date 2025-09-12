@@ -43,6 +43,9 @@ do
   elif [[ $ds == *twitch.json3 ]]; then
     vnum=168115
     undirect=0
+  elif [[ $ds == *wikipedia.json3 ]]; then
+    vnum=3333397
+    undirect=1
   fi
   for algm in "${algms[@]}"
   do

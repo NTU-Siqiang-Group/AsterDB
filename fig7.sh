@@ -8,6 +8,7 @@ resolve_dataset() {
     orkut)      echo "com-orkut.ungraph.json3" ;;
     twitter)
                 echo "twitter-2010.json3" ;;
+    twitch)     echo "twitch.json3" ;;
     *)
       echo "Unknown dataset alias: $1" >&2
       return 1
@@ -38,6 +39,9 @@ do
   elif [[ $ds == *twitch.json3 ]]; then
     vnum=168115
     undirect=0
+  elif [[ $ds == *wikipedia.json3 ]]; then
+    vnum=3333397
+    undirect=1
   fi
   for algm in "${algms[@]}"
   do
