@@ -1,19 +1,19 @@
-FROM openjdk:11
-
+# FROM openjdk:11
+FROM eclipse-temurin:11
 # initialize dependencies version tag & evironment path
-ENV MAVEN_HOME=/usr/local/maven/apache-maven-3.9.11
-ENV JAVA_HOME=/usr/local/openjdk-11
+ENV MAVEN_HOME=/usr/local/maven/apache-maven-3.9.12
+# ENV JAVA_HOME=/usr/local/openjdk-11
 ENV PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH
 # for Chinese mainland user:
 # RUN sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 # build dependencies
 RUN apt-get update \
     && apt-get install wget g++-10 gcc-10 make libboost-all-dev -y \
-    && wget https://dlcdn.apache.org/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.tar.gz \
+    && wget https://dlcdn.apache.org/maven/maven-3/3.9.12/binaries/apache-maven-3.9.12-bin.tar.gz \
     && mkdir /usr/local/maven/ \
     && mkdir /root/.m2/ \
     && mkdir /root/.m2/repository/ \
-    && tar -xvzf apache-maven-3.9.11-bin.tar.gz -C /usr/local/maven \
+    && tar -xvzf apache-maven-3.9.12-bin.tar.gz -C /usr/local/maven \
     && ln -s /usr/bin/g++-10 /usr/bin/g++ 
 # copy Aster source code to container
 COPY . /root/AsterDB/
@@ -38,6 +38,9 @@ RUN make -j8 rocksdbjava DEBUG_LEVEL=0 DISABLE_WARNING_AS_ERROR=1 EXTRA_CXXFLAGS
 
 # build AsterDB
 WORKDIR /root/AsterDB/
+RUN apt-get update && \
+    apt-get install -y git && \
+    rm -rf /var/lib/apt/lists/*
 RUN mvn install:install-file \
     -Dfile=GraphKV/java/target/rocksdbjni-8.9.0-linux64.jar \
     -DgroupId=org.rocksdb \
