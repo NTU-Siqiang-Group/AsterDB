@@ -156,7 +156,7 @@ docker build -t asterdb:v1.0 .
 
 # Getting Started
 
-## Load Graph Dataset into AsterDB 
+## Load Graph Dataset into AsterDB (bulkload)
 
 Prepare your dataset for testing, e.g.
 
@@ -182,6 +182,116 @@ export WRITE_SST_PATH=/udf/sst/file/path
 
 <p align="center">
   <img src="./assets/session3.gif" alt="build-asterdb">
+</p>
+
+
+## Load Graph Dataset into AsterDB (Gremlin Console)
+
+Please refer to the **"Prepare your dataset for testing"** section above to prepare your dataset.
+
+```bash
+# (Optional) Create a mini dataset with first 1000 lines for quick verification
+head -n 1000 com-orkut.ungraph.txt > com-orkut.mini.txt
+```
+
+Load the mini dataset.
+```bash
+bin/gremlin.sh
+
+         \,,,/
+         (o o)
+-----oOOo-(3)-oOOo-----
+plugin activated: tinkerpop.server
+plugin activated: tinkerpop.utilities
+plugin activated: tinkerpop.tinkergraph
+
+# Configure and Open AsterDB
+gremlin> conf = new BaseConfiguration()
+==>org.apache.commons.configuration2.BaseConfiguration@576b7c74
+gremlin> conf.setProperty("gremlin.tinkergraph.graphLocation", "/tmp/asterdb_orkut")
+==>null
+gremlin> conf.setProperty("gremlin.tinkergraph.graphFormat", "rocksdb")
+==>null
+gremlin> conf.setProperty("updatePolicy", 2)
+==>null
+gremlin> graph = TinkerGraph.open(conf)
+using update policy: 2
+==>tinkergraph[vertices:0 edges:0]
+gremlin> g = graph.traversal()
+==>graphtraversalsource[tinkergraph[vertices:0 edges:0], standard]
+
+# Define a function for loading
+def loadGraphSafe(graph, traversal, filePath) {
+    def file = new File(filePath)
+    if (!file.exists()) { 
+        println "Error: File not found -> " + filePath
+        return 
+    }
+
+    println "Start loading from: " + filePath
+    long counter = 0
+    long startTime = System.currentTimeMillis()
+
+    file.eachLine { line ->
+        line = line.trim()
+        // Skip comments and empty lines
+        if (line.isEmpty() || line.startsWith("#") || line.startsWith("%")) return
+
+        try {
+            def parts = line.split("\\s+")
+            if (parts.length >= 2) {
+                // Parse IDs as Long for better compatibility and performance
+                long id1 = Long.parseLong(parts[0])
+                long id2 = Long.parseLong(parts[1])
+
+                // 1. Upsert Source Vertex
+                traversal.V(id1).fold().coalesce(
+                    __.unfold(), 
+                    __.addV("node").property(T.id, id1)
+                ).iterate()
+
+                // 2. Upsert Destination Vertex
+                traversal.V(id2).fold().coalesce(
+                    __.unfold(), 
+                    __.addV("node").property(T.id, id2)
+                ).iterate()
+
+                // 3. Add Edge (v1 -> v2)
+                traversal.V(id1).addE("link").to(__.V(id2)).iterate()
+
+                // Progress logging
+                counter++
+                if (counter % 1000 == 0) print "."
+                if (counter % 50000 == 0) println " Loaded ${counter} edges..."
+            }
+        } catch (Exception e) {
+            println "\nSkipping line due to error: ${line}. " + e.getMessage()
+        }
+    }
+
+    long endTime = System.currentTimeMillis()
+    println "\nDone! Loaded ${counter} edges in ${(endTime - startTime) / 1000} seconds."
+}
+==>true
+# Execute loading
+# The path to the data file is relative to gremlin-console/bin/gremlin.sh.
+loadGraphSafe(graph, g, "../../../datasets/com-orkut.mini.txt")
+
+...
+Done! Loaded 142 edges in 2.085 seconds.
+==>null
+
+# Verify Data
+gremlin> println "Total Vertices: " + g.V().count().next()
+Total Vertices: 859
+==>null
+gremlin> println "Total Edges:    " + g.E().count().next()
+Total Edges:    142
+==>null
+```
+
+<p align="center">
+  <img src="./assets/session5.gif" alt="load-grahp-data-gremlin">
 </p>
 
 ## A Toy Example to Try AsterDB
